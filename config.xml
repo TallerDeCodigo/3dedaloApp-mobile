@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="org.dedalo.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>3Dedalo</name>
+    <description>
+        Dedalo i...
+    </description>
+    <author email="john@tallerdecodigo.com" href="http://tallerdecodigo.com">
+        John Falcon for TDC
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+
+    <platform name="android">
+        <!-- you can use any density that exists in the Android project -->
+        <splash src="res/android/splash-land-hdpi.png" density="land-hdpi"/>
+        <splash src="res/android/splash-land-ldpi.png" density="land-ldpi"/>
+        <splash src="res/android/splash-land-mdpi.png" density="land-mdpi"/>
+        <splash src="res/android/splash-land-xhdpi.png" density="land-xhdpi"/>
+
+        <splash src="res/android/splash-port-hdpi.png" density="port-hdpi"/>
+        <splash src="res/android/splash-port-ldpi.png" density="port-ldpi"/>
+        <splash src="res/android/splash-port-mdpi.png" density="port-mdpi"/>
+        <splash src="res/android/splash-port-xhdpi.png" density="port-xhdpi"/>
+    </platform>
+
+    <platform name="ios">
+        <!-- images are determined by width and height. The following are supported -->
+        <splash src="res/ios/Default~iphone.png" width="320" height="480"/>
+        <splash src="res/ios/Default@2x~iphone.png" width="640" height="960"/>
+        <splash src="res/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
+        <splash src="res/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+        <splash src="res/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
+        <splash src="res/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+        <splash src="res/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
+        <splash src="res/ios/Default-667h.png" width="750" height="1334"/>
+        <splash src="res/ios/Default-736h.png" width="1242" height="2208"/>
+        <splash src="res/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
+    </platform>
+
+    <preference name="SplashScreenDelay" value="10000" />
+</widget>

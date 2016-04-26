@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+	<title>DEDALO</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/google.js"></script>
+</head>
+<body>
+<div id="content" class="map">
+	<header class="big"><a href="#" onclick="history.back(-1)"><i id="back" class="material-icons">arrow_back</i></a><div id="barra"><i class="material-icons">search</i><input type="text" onfocus="if(this.value == 'Search') { this.value = ''; }$(this).css('color','#FFF');" value="Search"></div><i id="photo" class="material-icons">photo_camera</i></header>
+	<div class="subheader" style="text-align:center">
+		<a id="allBtn" class="cats1 select">ALL</a><a id="printBtn" class="cats1">PRINTER</a><a id="scanBtn" class="cats1">SCANNER</a><a id="shipBtn" class="cats1">+SHIP</a>
+	</div>
+	<div id="no-cat" class="pages">
+		<section>
+    		<div id="map"></div>
+    		<a href="maker.html"><div id="info-maker" style="display:none"><div><i class="material-icons">account_circle</i>Lorem Ipsum<br>Dolor Sit Amet</div><div><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><br>3 km. de Col. del Valle</div></div></a>
+    		<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDQ3zqRkIHDwpNjliZ1ir7nJ7CNz6ikMtI&v=3.exp"></script>
+    		<script type="text/javascript" src="js/map.js"></script>
+    	</section>
+	</div>
+	<footer>
+	<a href="search.html"><i class="material-icons">search</i></a>
+	<a href="notifications.html"><i class="material-icons">notifications</i></a>
+	<a href="map.html"><i class="material-icons">explore</i></a>
+	<a href="cart.html"><i class="material-icons">shopping_cart</i></a>
+	</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+	</head>
+
+	<body>
+		<section class="main">
+		
+		</section>
+	</body>
+
+	<!--  -->
+	<script src="js/handlebars-runtime.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+    <script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		window.is_home = true;
+		app.initialize();
+	</script>
+
+	<script id="login_screen_template" type="text/x-handlebars-template">
+			<div id="content" class="index">
+				{{> header}}
+								
+			</div>
+			{{> sidemenu}}
+		
+	</script>
+
+	<script type="text/javascript">
+		app.render_login_screen();
+	</script>
+	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/fullPage.js"></script>
+</html>
