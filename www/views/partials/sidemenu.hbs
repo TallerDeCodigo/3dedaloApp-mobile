@@ -1,30 +1,30 @@
-<div class="wrapper" style="display:none;">
+<div class="wrapper" style="display:none">
 	<div id="user">
-		<div class="logout" style="display:none">
+		<div class="logout" >
 			<p>Sign in</p>
-			<input type="text" onfocus="if(this.value == 'E-mail') { this.value = ''; }" value="E-mail"><br>
-			<input type="text" onfocus="if(this.value == 'Password') { this.value = ''; }" value="Password">
-			<p>Forgot e-mail | Forgot password</p>
-			<p>New to Dedalo? Create an account</p>
+			<form id="login_form" class="login_form">
+				<input name="email" type="text" placeholder="E-mail" value=""><br>
+				<input name="password" type="password" placeholder="Password"><br>
+				<input type="submit" class="icon_hack" value=""><i class="material-icons post_submit">send</i>
+			</form>
+			<p><a class="underline1" href="#">Forgot password</a></p>
+			<p>New to Dedalo?<a class="underline" href="settings.html">Create an account</a></p>
 			<p>or</p>
-			<a href="#">Sign in with Facebook</a>
-			<a href="#">Sign in with Twitter</a>
-			<a href="#">Sign in with Google+</a>
+			<a class="media" href="#">Sign in with Facebook</a><br>
+			<a class="media" href="#">Sign in with Twitter</a><br>
+			<a class="media" href="#">Sign in with Google+</a>
 		</div>
-		<div class="login">
-			<div>
-				<i id="account" class="material-icons">account_circle</i>
-				<p>{{user_display}}</p>
-			</div>
+		<div class="login" style="display:none">
+			<div><i id="account" class="material-icons">account_circle</i><p>Lorem Ipsum Dolor Sit Amet</p></div>
 			<a href="settings.html">Account</a>
-			<a href="#">Dashboard</a>
+			<a href="followers.html">Dashboard</a>
 			<a href="#">Products</a>
 			<a href="#">Sales</a>
-			<a href="#">Following</a>
+			<a href="followers.html">Following</a>
 		</div>
 		<div class="footer">
-		<p><span>About</span> <img width="134" height="32" src="images/logo.svg" /></p>
-		<p>Terms and conditions | Privacy policies</p>
+		<p><a href="http://3dedalo.org/"><span>About</span> <img width="134" height="32" src="images/logo.svg" /></a></p>
+		<p><a href="http://3dedalo.org/">Terms and conditions</a> | <a href="http://3dedalo.org/">Privacy policies</a></p>
 		</div>
 	</div>
 	<div class="separate"></div>

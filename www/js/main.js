@@ -159,7 +159,7 @@
 				</select>";
 		},
 		render_main_feed : function(offset, filter){
-			$.getJSON(api_base_url+user+'feed/'+offset+'/'+filter , function(response){
+			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
 				console.log(response);
 				app.registerTemplate('feed');
 				var template = Handlebars.templates.feed(response);
@@ -512,19 +512,27 @@
 	*/
 	jQuery(document).ready(function($) {
 
-		// $( ".fixed_header" ).toolbar({ position: "fixed" });
 
 		/* Log In with a regular ol' account */
 		$('#login_form').submit(function(e){
 			app.showLoader();
 			e.preventDefault();
 			var data_login  	= app.getFormData('#login_form');
+			console.log(data_login);
 			var responsedata 	= apiRH.loginNative(data_login);
 			if(responsedata) {
+				console.log(responsedata);
 				apiRH.save_user_data_clientside(responsedata);
 				window.location.assign('feed.html?filter_feed=all');
 			}
 		});
+
+
+
+
+
+
+		// ----------------------------------------------------------------------
 
 		$('#register_us').on('tap', function(){
 			$('#register_form').slideToggle('fast');
@@ -535,38 +543,39 @@
 		});
 
 		/* Create a new account the old fashioned way */
-		$('#register_form').validate({
-			rules: {
-				user_login_reg: "required",
-				user_email_reg: {
-						required: true,
-						email: true
-					},
-				user_country: "required",
-				i_accept_terms : "required"
-			},
-			messages: {
-				user_login_reg: "Debes proporcionar un username",
-				user_email_reg: {
-						required: "Debes proporcionar un email",
-						email: "Por favor proporciona un email válido"
-					},
-				user_country: "Por favor selecciona tu país",
-				i_accept_terms: "Debes aceptar los términos y condiciones para continuar"
-			},
-			submitHandler: function(e){
-				var data_login  	= app.getFormData('#register_form');
-				data_login.user_password_reg = $('#user_password_reg').val();
-				var responsedata 	= apiRH.registerNative(data_login);
-				if(responsedata) {
-					apiRH.save_user_data_clientside(responsedata);
-					window.location.assign('feed.html?filter_feed=all');
-					return;
+		if($('#register_form').length)
+			$('#register_form').validate({
+				rules: {
+					user_login_reg: "required",
+					user_email_reg: {
+							required: true,
+							email: true
+						},
+					user_country: "required",
+					i_accept_terms : "required"
+				},
+				messages: {
+					user_login_reg: "Debes proporcionar un username",
+					user_email_reg: {
+							required: "Debes proporcionar un email",
+							email: "Por favor proporciona un email válido"
+						},
+					user_country: "Por favor selecciona tu país",
+					i_accept_terms: "Debes aceptar los términos y condiciones para continuar"
+				},
+				submitHandler: function(e){
+					var data_login  	= app.getFormData('#register_form');
+					data_login.user_password_reg = $('#user_password_reg').val();
+					var responsedata 	= apiRH.registerNative(data_login);
+					if(responsedata) {
+						apiRH.save_user_data_clientside(responsedata);
+						window.location.assign('feed.html?filter_feed=all');
+						return;
+					}
+					app.toast('Lo sentimos, el nombre de usuario ya existe.');
+					e.preventDefault();
 				}
-				app.toast('Lo sentimos, el nombre de usuario ya existe.');
-				e.preventDefault();
-			}
-		});
+			});
 
 		/* Log Out from the API */
 		$('body').on('click', '#logout', function(e){

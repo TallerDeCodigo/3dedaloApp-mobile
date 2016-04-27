@@ -44,8 +44,8 @@ function requestHandlerAPI(){
 		this.loginNative =  function(data_login){
 								
 								var data_object = {
-													user_login : data_login.user_login, 
-													user_password: data_login.user_password, 
+													user_email : data_login.email, 
+													user_password: data_login.password, 
 													request_token: apiRH.get_request_token(),
 													parts:  {
 																model: context.device_model, 
@@ -54,6 +54,7 @@ function requestHandlerAPI(){
 															}
 												  };
 								var response = this.makeRequest('auth/login/', data_object);
+								console.log(response);
 								return (response.success) ? response.data : false;
 							};
 		/* 
