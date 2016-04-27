@@ -69,7 +69,7 @@
 		registerPartials: function() {
 			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header', 'sidemenu'];
+			var filenames = ['header', 'sidemenu', 'footer', 'subheader'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
 				request.open('GET', 'views/partials/' + filename + '.hbs',false);
@@ -187,10 +187,36 @@
 		},
 		render_login_screen : function(){
 
-			var source   = $("#login_screen_template").html();
-			var template = Handlebars.compile(source);
-			$('.main').html( template({}) );
-			app.render_main_feed(0, 'all');
+			// $.getJSON(api_base_url+user+'/timeline/', function(response){
+				var source   = $("#login_screen_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template({}) );
+			// })
+			//  .done(function(response){
+				app.render_main_feed(0, 'all');
+			// })
+			//  .fail(function(err){
+			// 	console.log(err);
+			// });
+		},
+		render_search_composite : function(){
+			$.getJSON(api_base_url+'content/enum/categories/')
+			 .done(function(response){
+				console.log(response);
+				var data 	 = { categories: response}; 
+				var source   = $("#search_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+				// app.render_search_categories();
+			})
+			 .fail(function(error){
+			 	console.log(error);
+			 });
+		},
+		render_search_categories : function(){
+
+			var template = Handlebars.templates.subheader(source);
+			$('.main').append( template({}) );
 		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */

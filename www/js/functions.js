@@ -64,8 +64,13 @@ $(window).on("load resize",function(){
     });
     */
     var numcats = $('.cats').length;
-    var numcats = numcats*72 + "px";
-    $("#swipper div").css("width", numcats);
+    var total_length = 0;
+    $('.cats').each(function(){
+        total_length += $(this).width();
+    });
+
+    //var numcats = numcats*72 + "px";
+    $("#swipper div").css("width", total_length);
     var numsubc = $('.sucats').length;
     var numsubc = numsubc*105 + "px";
     $("#swipper1 div").css("width", numsubc);
