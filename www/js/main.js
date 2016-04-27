@@ -69,7 +69,7 @@
 		registerPartials: function() {
 			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header', 'sidemenu', 'footer', 'subheader'];
+			var filenames = ['header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
 				request.open('GET', 'views/partials/' + filename + '.hbs',false);
@@ -149,28 +149,6 @@
 				}
 				return true;
 		},
-		province_select_partial: function(){
-			return "\
-				<select id='user_province' name='user_province'>\
-					<option value='>Provincia/ciudad</option>\
-					{{#each .}}\
-						<option value='{{slug}}'>{{name}}</option>\
-					{{/each}}\
-				</select>";
-		},
-		render_main_feed : function(offset, filter){
-			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
-				console.log(response);
-				app.registerTemplate('feed');
-				var template = Handlebars.templates.feed(response);
-				$('#content').append( template );
-				app.set_selected_filter(filter);
-			}).fail(function(err){
-				console.log(err);
-			}).done(function(err){
-				// app.render_header();
-			});
-		},
 		render_header : function(){
 			$.getJSON(api_base_url+'auth/user/me/', function(response){
 				console.log(response);
@@ -185,10 +163,30 @@
 				$('.main').prepend( template ).trigger('create');
 			});
 		},
-		render_login_screen : function(){
+		render_main_feed : function(offset, filter){
+			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
+				console.log(response);
+				app.registerTemplate('feed');
+				var template = Handlebars.templates.feed(response);
+				$('#content').append( template );
+				//app.set_selected_filter(filter);
+			}).fail(function(err){
+				console.log(err);
+			}).done(function(err){
+				// app.render_header();
+			});
+		},
+		render_unlogged_feed : function(){
+
+			var source   = $("#unlogged_feed_template").html();
+			var template = Handlebars.compile(source);
+			$('.main').html( template({}) );
+			app.render_main_feed(0, 'all');
+		},
+		render_logged_feed : function(){
 
 			// $.getJSON(api_base_url+user+'/timeline/', function(response){
-				var source   = $("#login_screen_template").html();
+				var source   = $("#logged_feed_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template({}) );
 			// })

@@ -1,112 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
-	<title>DEDALO</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
-    <script type="text/javascript" src="js/fullPage.js"></script>
-</head>
-<body style="background:#000">
-<div class="wrapper" style="display:none">
-	<div id="user">
-		<div class="logout" >
-			<p>Sign in</p>
-			<input type="text" onfocus="if(this.value == 'E-mail') { this.value = ''; }" value="E-mail"><br>
-			<input type="text" onfocus="if(this.value == 'Password') { this.value = ''; }" value="Password">
-			<p><a class="underline1" href="#">Forgot password</a></p>
-			<p>New to Dedalo?<a class="underline" href="settings.html">Create an account</a></p>
-			<p>or</p>
-			<a class="media" href="#">Sign in with Facebook</a><br>
-			<a class="media" href="#">Sign in with Twitter</a><br>
-			<a class="media" href="#">Sign in with Google+</a>
-		</div>
-		<div class="login" style="display:none">
-			<div><i id="account" class="material-icons">account_circle</i><p>Lorem Ipsum Dolor Sit Amet</p></div>
-			<a href="settings.html">Account</a>
-			<a href="followers.html">Dashboard</a>
-			<a href="#">Products</a>
-			<a href="#">Sales</a>
-			<a href="followers.html">Following</a>
-		</div>
-		<div class="footer">
-		<p><a href="http://3dedalo.org/"><span>About</span> <img width="134" height="32" src="images/logo.svg" /></a></p>
-		<p><a href="http://3dedalo.org/">Terms and conditions</a> | <a href="http://3dedalo.org/">Privacy policies</a></p>
-		</div>
-	</div>
-	<div class="separate"></div>
-</div>
-<header><a href="index.html"><img width="134" height="32" src="images/logo.svg" /></a><i id="account1" class="material-icons">account_circle</i></header>
-<div id="static">
-		<div id="superior1" class="arriba fotos">
-				<a class="bigg link" href="post.html?id=1"><img src="images/1.png"><div><i class="material-icons">account_circle</i><h1>1 Product Name</h1><span>Designer/Brand</span></div><div><p>Lorem ipsum dolor sit amet, consectetur adipiscing  elit. Integer aliquam magna non erat semper.</p><h2>$1,500</h2></div></a>
-		</div>
-		<div id="superior2" class="arriba fotos merged" style="display:none;">
-				<a class="small link" href="post.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>3 Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-		</div>
-		<div id="superior3" class="arriba fotos merged" style="display:none;">
-				<a class="small link" href="post.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>5 Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-		</div>
-		<div id="superior4" class="arriba fotos merged" style="display:none;">
-				<a class="small link" href="post.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>7 Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-		</div>
-		<div id="inferior4" class="abajo fotos">
-				<a class="small link" href="post.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>8 Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-		</div>
-		<div id="inferior3" class="abajo fotos">
-				<a class="small link" href="post.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>6 Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-		</div>
-		<div id="inferior2" class="abajo fotos">
-				<a id="ejemplo" class="small link" href="post.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>4 Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-		</div>
-		<div id="inferior1" class="abajo fotos">
-				<a class="small link" href="post.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>2 Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-				<a class="small link" href="post.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div><div><p>Texto</p><h2>$1,500</h2></div></a>
-		</div>
-	</div>
-	<div id="content-index" class="index">
-		<div class="section" id="section1">
-			<a class="replica grd" href="post.html?id=1"></a><a class="replica sml" href="post.html?id=2"></a><a class="replica sml" href="post.html?id=3"></a><a class="replica sml" href="post.html?id=4"></a><a class="replica sml" href="post.html?id=5"></a>
-		</div>
-		<div class="section" id="section2">
-			<a class="replica sml margen" href="post.html?id=6"></a><a class="replica sml" href="post.html?id=7"></a><a class="replica sml" href="post.html?id=8"></a><a class="replica sml" href="post.html?id=9"></a><a class="replica sml" href="post.html?id=2"></a><a class="replica sml" href="post.html?id=3"></a><a class="replica sml" href="post.html?id=4"></a><a class="replica sml" href="post.html?id=5"></a>
-		</div>
-		<div class="section" id="section3">
-			<a class="replica sml margen" href="post.html?id=2"></a><a class="replica sml" href="post.html?id=3"></a><a class="replica sml" href="post.html?id=4"></a><a class="replica sml" href="post.html?id=5"></a><a class="replica sml" href="post.html?id=2"></a><a class="replica sml" href="post.html?id=3"></a><a class="replica sml" href="post.html?id=4"></a><a class="replica sml" href="post.html?id=5"></a>
-		</div>
-		<div class="section" id="section4">
-			<a class="replica sml margen" href="post.html?id=2"></a><a class="replica sml" href="post.html?id=3"></a><a class="replica sml" href="post.html?id=4"></a><a class="replica sml" href="post.html?id=5"></a><a class="replica sml" href="post.html?id=6"></a><a class="replica sml" href="post.html?id=7"></a><a class="replica sml" href="post.html?id=8"></a><a class="replica sml" href="post.html?id=9"></a>
-		</div>
-	</div>
-<footer>
-	<a href="search.html"><i class="material-icons">search</i></a>
-	<a href="notifications.html"><i class="material-icons">notifications</i></a>
-	<a href="map.html"><i class="material-icons">explore</i></a>
-	<a href="cart.html"><i class="material-icons">shopping_cart</i></a>
-</footer>
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+	</head>
+
+	<body>
+		<section class="main">
+			<!-- Template will be inserted here -->
+		</section>
+	</body>
+
+	<!-- Load Scripts -->
+	<script src="js/handlebars-runtime.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+    <script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		window.is_home = true;
+		app.initialize();
+	</script>
+
+	<script id="unlogged_feed_template" type="text/x-handlebars-template">
+			<div id="content" class="index">
+				{{> header}}
+								
+			</div>
+			{{> sidemenu}}
+		
+	</script>
+
+	<script type="text/javascript">
+		app.render_unlogged_feed();
+	</script>
+	<script type="text/javascript" src="js/functions.js"></script>
+	<script type="text/javascript" src="js/fullPage.js"></script>
 </html>

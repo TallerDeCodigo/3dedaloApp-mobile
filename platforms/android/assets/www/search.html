@@ -1,114 +1,134 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
-	<title>DEDALO</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
-</head>
-<body>
-<div id="content" class="search">
-	<header class="big"><a href="#" onclick="history.back(-1)"><i id="back" class="material-icons">arrow_back</i></a><div id="barra"><i class="material-icons">search</i><input type="text" onfocus="if(this.value == 'Search') { this.value = ''; }$(this).css('color','#FFF');" value="Search"></div><i id="photo" class="material-icons">photo_camera</i></header>
-	<div class="subheader">
-		<div id="swipper"><div><a id="probar" class="cats">LOREM</a><a class="cats">IPSUM</a><a class="cats">DOLOR</a><a class="cats">SIT AMET</a></div></div>
-		<div id="subcats" style="display:none"><div id="swipper1"><div><a id="sca1" class="sucats" onclick="slider.uno();return false;" href="#">SUBCAT 1</a><a id="sca2" class="sucats" onclick="slider.dos();return false;" href="#">SUBCAT 2</a><a id="sca3" class="sucats" onclick="slider.tres();return false;" href="#">SUBCAT 3</a><a id="sca4" class="sucats" onclick="slider.cuatro();return false;" href="#">SUBCAT 4</a></div></div><i id="return" class="material-icons">arrow_back</i></div>
-	</div>
-	<div id="no-cat" class="pages">
-		<section>
-    		<p>Previous Searches</p>
-			<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-			<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-			<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-			<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-			<p>Featured Products</p>
-			<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-			<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-			<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-			<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-    	</section>
-	</div>
-	<div id="con-cat" class="pages">
-		<div id="mask" class='swipe' style='width:100%'>
-    	<ul>
-    	<li class="pagina" style='display:block'>
-	    	<section>
-				<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-	    	</section>
-   		</li>
-    	<li class="pagina" style='display:none'>
-    		<section>
-				<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-	    	</section>
-    	</li>
-    	<li class="pagina" style='display:none'>
-    		<section>
-				<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-	    	</section>
-    	</li>
-    	<li class="pagina" style='display:none'>
-    		<section>
-				<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-				<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-	    	</section>
-    	</li>
-    	</ul>
-    	</div>
-    </div>
-    <script type='text/javascript' src='js/swipe.js'></script>
-    <script type='text/javascript' src='js/callswipe1.js'></script>
-	<footer>
-	<a href="search.html"><i class="material-icons">search</i></a>
-	<a href="notifications.html"><i class="material-icons">notifications</i></a>
-	<a href="map.html"><i class="material-icons">explore</i></a>
-	<a href="cart.html"><i class="material-icons">shopping_cart</i></a>
-	</footer>
-</div>
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	    <script type="text/javascript" src="js/functions.js"></script>
+	</head>
+
+	<body>
+		<section class="main">
+			<!-- Template will be inserted here -->
+		</section>
+	</body>
+
+	<script src="js/handlebars-runtime.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		window.is_home = true;
+		app.initialize();
+	</script>
+
+	<script id="search_template" type="text/x-handlebars-template">
+		<div id="content" class="search">
+			{{> header}}
+
+			{{> subheader}}
+			<div id="no-cat" class="pages">
+				<section>
+		    		<p>Previous Searches</p>
+					<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+					<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+					<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+					<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+					<p>Featured Products</p>
+					<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+					<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+					<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+					<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+		    	</section>
+			</div>
+			<div id="con-cat" class="pages">
+				<div id="mask" class='swipe' style='width:100%'>
+		    	<ul>
+		    	<li class="pagina" style='display:block'>
+			    	<section>
+						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+			    	</section>
+		   		</li>
+		    	<li class="pagina" style='display:none'>
+		    		<section>
+						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+			    	</section>
+		    	</li>
+		    	<li class="pagina" style='display:none'>
+		    		<section>
+						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+			    	</section>
+		    	</li>
+		    	<li class="pagina" style='display:none'>
+		    		<section>
+						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+						<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+			    	</section>
+		    	</li>
+		    	</ul>
+		    	</div>
+		    </div>
+		    
+		</div>
+		{{> footer}}
+		{{> sidemenu}}
+		
+	</script>
+
+	<script type="text/javascript">
+		app.render_search_composite();
+	</script>
+
+	<script type='text/javascript' src='js/swipe.js'></script>
+	<script type='text/javascript' src='js/callswipe1.js'></script>
+
+
 </html>

@@ -8,7 +8,7 @@ function requestHandlerAPI(){
 	/*** Attributes ***/
 	this.token = null;
 	this.version = "1.0";
-	this.app_build = "1.4.2";
+	this.app_build = "1.0.2";
 	this.device_model = (typeof device != 'undefined') ? device.model : 'not set';
 	this.device_platform = (typeof device != 'undefined') ? device.platform : 'not set';
 	this.device_platform_version = (typeof device != 'undefined') ? device.version : 'not set';
@@ -22,14 +22,14 @@ function requestHandlerAPI(){
 	var context = this;
 	window.sdk_app_context = null;
 	/* Production API URL */
-	window.api_base_url = "http://museografo.com/rest/v1/"; 
+	// window.api_base_url = "http://3dedalo.org/rest/v1/"; 
 	/* Development local API URL */
-	// window.api_base_url = "http://museografo.dev/rest/v1/";
+	window.api_base_url = "http://dedalo.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
 	this.construct = function(app_context){
-					console.log('Initialized rest API Museógrafo sdk v1.0');
+					console.log('Initialized rest API Dedalo sdk v1.0');
 					if(this.ls.getItem('request_token')) this.token = this.ls.getItem('request_token');
 					sdk_app_context = app_context;
 					/* For chaining purposes ::) */
@@ -44,8 +44,8 @@ function requestHandlerAPI(){
 		this.loginNative =  function(data_login){
 								
 								var data_object = {
-													user_login : data_login.user_login, 
-													user_password: data_login.user_password, 
+													user_email : data_login.email, 
+													user_password: data_login.password, 
 													request_token: apiRH.get_request_token(),
 													parts:  {
 																model: context.device_model, 
@@ -54,6 +54,7 @@ function requestHandlerAPI(){
 															}
 												  };
 								var response = this.makeRequest('auth/login/', data_object);
+								console.log(response);
 								return (response.success) ? response.data : false;
 							};
 		/* 
@@ -146,7 +147,7 @@ function requestHandlerAPI(){
 		this.save_user_data_clientside = function(data){
 											var user_role = data.role;
 											if(user_role == 'administrator') user_role = 'subscriber';
-											this.ls.setItem('museo_log_info', 	JSON.stringify({
+											this.ls.setItem('dedalo_log_info', 	JSON.stringify({
 																					user_login: data.user_login,
 																					username: 	data.user_login,
 																					user_id: 	data.user_id,
@@ -204,10 +205,10 @@ function requestHandlerAPI(){
 							if(this.token !== undefined || this.token !== ''){
 
 								console.log("Looks like you already have a token, let's check if it is valid");
-								var museo_log_info = (typeof this.ls.getItem('museo_log_info') != undefined) ? JSON.parse(this.ls.getItem('museo_log_info')) : null;
-								if(!museo_log_info) return false;
+								var dedalo_log_info = (typeof this.ls.getItem('dedalo_log_info') != undefined) ? JSON.parse(this.ls.getItem('dedalo_log_info')) : null;
+								if(!dedalo_log_info) return false;
 
-									var user 		= museo_log_info.user_id;
+									var user 		= dedalo_log_info.user_id;
 									var data_object =   {
 															user_id : user, 
 															request_token : apiRH.get_request_token(),
@@ -215,6 +216,7 @@ function requestHandlerAPI(){
 														};
 									var response 	= this.makeRequest('auth/user/checkToken/', data_object);
 									var var_return 	= (response.success) ? true : false;
+									console.log(response);
 							}
 							return var_return;
 						};

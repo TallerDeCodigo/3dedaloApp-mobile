@@ -16,6 +16,20 @@
 				 async: false
 			});
 			app.registerPartials();
+			Handlebars.registerHelper('if_eq', function(a, b, opts) {
+			    if (a == b) {
+			        return opts.fn(this);
+			    } else {
+			        return opts.inverse(this);
+			    }
+			});
+			Handlebars.registerHelper('if_module', function(a, b, opts) {
+			    if (a%b == 0) {
+			        return opts.fn(this);
+			    } else {
+			        return opts.inverse(this);
+			    }
+			});
 			// localStorage init
 			this.ls 		= window.localStorage;
 			var log_info 	= JSON.parse(this.ls.getItem('dedalo_log_info'));
@@ -55,16 +69,14 @@
 		registerPartials: function() {
 			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header', 'comments', 'gallery_base'];
+			var filenames = ['header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
 			filenames.forEach(function (filename) {
-				$.ajax({
-		            url : 'views/partials/' + filename + '.hbs',
-		            success : function(response) {
-			                if (Handlebars.templates === undefined)
-			                    Handlebars.templates = {};
-			            Handlebars.templates[filename] = Handlebars.compile(response);
-		            }
-		        });
+				var request = new XMLHttpRequest();
+				request.open('GET', 'views/partials/' + filename + '.hbs',false);
+				request.send(null);
+				if (request.status === 200) 
+			    	Handlebars.registerPartial(filename, request.responseText);
+
 			});
 			
 		},
@@ -95,7 +107,7 @@
 			*  \___/_/   \_\__,_|\__|_| |_|
 			*/                              
 			try{
-				OAuth.initialize('7O8IRe-xiPNc0JrOXSv3rc90RmU');
+				OAuth.initialize('VWadBFs2rbk8esrvqSEFCyHGKnc');
 			}
 			catch(err){
 				// app.toast("Oauth error ocurred");
@@ -137,37 +149,72 @@
 				}
 				return true;
 		},
-		province_select_partial: function(){
-			return "\
-				<select id='user_province' name='user_province'>\
-					<option value='>Provincia/ciudad</option>\
-					{{#each .}}\
-						<option value='{{slug}}'>{{name}}</option>\
-					{{/each}}\
-				</select>";
-		},
-		render_login_content : function(){
-
-			$.getJSON(api_base_url+'content/login/', function(response){
-				var source   = $("#login_screen_template").html();
-				var template = Handlebars.compile(source);
-				$('#index_container').html( template(response.data) );
-			}).fail(function(err){
-				console.log(JSON.stringify(err));
+		render_header : function(){
+			$.getJSON(api_base_url+'auth/user/me/', function(response){
+				console.log(response);
+				var template = Handlebars.templates.header(response);
+				$('.content').append( template );
 			});
 		},
-		get_events_feed : function(offset, filter){
-
-			$.getJSON(api_base_url+user+'/events/feed/'+offset+'/'+filter , function(response){
+		render_menu : function(){
+			$.getJSON(api_base_url+'auth/'+user+'/me', function(response){
+				console.log(response);
+				var template = Handlebars.templates.header(response);
+				$('.main').prepend( template ).trigger('create');
+			});
+		},
+		render_main_feed : function(offset, filter){
+			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
+				console.log(response);
 				app.registerTemplate('feed');
 				var template = Handlebars.templates.feed(response);
-				$('.feed_container').html( template );
-				app.set_selected_filter(filter);
+				$('#content').append( template );
+				//app.set_selected_filter(filter);
 			}).fail(function(err){
 				console.log(err);
 			}).done(function(err){
-				app.render_header();
+				// app.render_header();
 			});
+		},
+		render_unlogged_feed : function(){
+
+			var source   = $("#unlogged_feed_template").html();
+			var template = Handlebars.compile(source);
+			$('.main').html( template({}) );
+			app.render_main_feed(0, 'all');
+		},
+		render_logged_feed : function(){
+
+			// $.getJSON(api_base_url+user+'/timeline/', function(response){
+				var source   = $("#logged_feed_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template({}) );
+			// })
+			//  .done(function(response){
+				app.render_main_feed(0, 'all');
+			// })
+			//  .fail(function(err){
+			// 	console.log(err);
+			// });
+		},
+		render_search_composite : function(){
+			$.getJSON(api_base_url+'content/enum/categories/')
+			 .done(function(response){
+				console.log(response);
+				var data 	 = { categories: response}; 
+				var source   = $("#search_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+				// app.render_search_categories();
+			})
+			 .fail(function(error){
+			 	console.log(error);
+			 });
+		},
+		render_search_categories : function(){
+
+			var template = Handlebars.templates.subheader(source);
+			$('.main').append( template({}) );
 		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */
@@ -193,12 +240,6 @@
 				app.render_header();
 			});
 			
-		},
-		render_header : function(){
-			$.getJSON(api_base_url+user+'/notifications', function(response){
-				var template = Handlebars.templates.header(response);
-				$('.main').prepend( template ).trigger('create');
-			});
 		},
 		render_event_minigallery: function(event_id, limit){
 			
@@ -469,19 +510,27 @@
 	*/
 	jQuery(document).ready(function($) {
 
-		// $( ".fixed_header" ).toolbar({ position: "fixed" });
 
 		/* Log In with a regular ol' account */
 		$('#login_form').submit(function(e){
 			app.showLoader();
 			e.preventDefault();
 			var data_login  	= app.getFormData('#login_form');
+			console.log(data_login);
 			var responsedata 	= apiRH.loginNative(data_login);
 			if(responsedata) {
+				console.log(responsedata);
 				apiRH.save_user_data_clientside(responsedata);
 				window.location.assign('feed.html?filter_feed=all');
 			}
 		});
+
+
+
+
+
+
+		// ----------------------------------------------------------------------
 
 		$('#register_us').on('tap', function(){
 			$('#register_form').slideToggle('fast');
@@ -492,38 +541,39 @@
 		});
 
 		/* Create a new account the old fashioned way */
-		$('#register_form').validate({
-			rules: {
-				user_login_reg: "required",
-				user_email_reg: {
-						required: true,
-						email: true
-					},
-				user_country: "required",
-				i_accept_terms : "required"
-			},
-			messages: {
-				user_login_reg: "Debes proporcionar un username",
-				user_email_reg: {
-						required: "Debes proporcionar un email",
-						email: "Por favor proporciona un email válido"
-					},
-				user_country: "Por favor selecciona tu país",
-				i_accept_terms: "Debes aceptar los términos y condiciones para continuar"
-			},
-			submitHandler: function(e){
-				var data_login  	= app.getFormData('#register_form');
-				data_login.user_password_reg = $('#user_password_reg').val();
-				var responsedata 	= apiRH.registerNative(data_login);
-				if(responsedata) {
-					apiRH.save_user_data_clientside(responsedata);
-					window.location.assign('feed.html?filter_feed=all');
-					return;
+		if($('#register_form').length)
+			$('#register_form').validate({
+				rules: {
+					user_login_reg: "required",
+					user_email_reg: {
+							required: true,
+							email: true
+						},
+					user_country: "required",
+					i_accept_terms : "required"
+				},
+				messages: {
+					user_login_reg: "Debes proporcionar un username",
+					user_email_reg: {
+							required: "Debes proporcionar un email",
+							email: "Por favor proporciona un email válido"
+						},
+					user_country: "Por favor selecciona tu país",
+					i_accept_terms: "Debes aceptar los términos y condiciones para continuar"
+				},
+				submitHandler: function(e){
+					var data_login  	= app.getFormData('#register_form');
+					data_login.user_password_reg = $('#user_password_reg').val();
+					var responsedata 	= apiRH.registerNative(data_login);
+					if(responsedata) {
+						apiRH.save_user_data_clientside(responsedata);
+						window.location.assign('feed.html?filter_feed=all');
+						return;
+					}
+					app.toast('Lo sentimos, el nombre de usuario ya existe.');
+					e.preventDefault();
 				}
-				app.toast('Lo sentimos, el nombre de usuario ya existe.');
-				e.preventDefault();
-			}
-		});
+			});
 
 		/* Log Out from the API */
 		$('body').on('click', '#logout', function(e){
