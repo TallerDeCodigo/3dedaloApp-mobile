@@ -54,7 +54,7 @@ function requestHandlerAPI(){
 															}
 												  };
 								var response = this.makeRequest('auth/login/', data_object);
-								console.log(response);
+
 								return (response.success) ? response.data : false;
 							};
 		/* 
@@ -148,12 +148,21 @@ function requestHandlerAPI(){
 											var user_role = data.role;
 											if(user_role == 'administrator') user_role = 'subscriber';
 											this.ls.setItem('dedalo_log_info', 	JSON.stringify({
-																					user_login: data.user_login,
-																					username: 	data.user_login,
-																					user_id: 	data.user_id,
-																					user_role: 	data.role,
+																					user_login: 	data.user_login,
+																					username: 		data.user_login,
+																					user_id: 		data.user_id,
+																					user_role: 		data.role,
 																					user_profile: 	data.profile_url,
 																				}));
+											/* Also save user ME info */
+											$.getJSON(api_base_url+data.user_login+'/me/')
+											 .done(function(response){
+											 	apiRH.ls.setItem('me', JSON.stringify(response));
+											 	apiRH.ls.setItem('me.logged', true);
+											})
+											 .fail(function(err){
+												console.log(err);
+											});
 									};
 		/* 
 		 * Request new passive token from the API 
@@ -216,7 +225,6 @@ function requestHandlerAPI(){
 														};
 									var response 	= this.makeRequest('auth/user/checkToken/', data_object);
 									var var_return 	= (response.success) ? true : false;
-									console.log(response);
 							}
 							return var_return;
 						};

@@ -1,5 +1,5 @@
 <div id="static">
-	{{#each featured}}
+	{{#each data.featured}}
         <div id="superior1" class="arriba fotos">
 				<a class="bigg link" href="{{link_base}}.html?id={{ID}}">
 					{{#if thumb_url}}
@@ -22,7 +22,7 @@
 				</a>
     {{/each}}
 
-{{#each pool}}
+{{#each data.pool}}
 	{{#if_module @index 4}}
 		</div>
 		<div {{#if_eq @index 0}}id="inferior1" class="abajo fotos"{{/if_eq}}{{#if_eq @index 4}}id="superior2" class="arriba fotos merged" style="display:none;"{{/if_eq}}{{#if_eq @index 8}}id="inferior2" class="abajo fotos"{{/if_eq}}{{#if_eq @index 12}}id="superior3" class="arriba fotos merged" style="display:none;"{{/if_eq}}{{#if_eq @index 16}}id="inferior3" class="abajo fotos"{{/if_eq}} class="abajo fotos">
@@ -72,7 +72,7 @@
 </div>
 </div>
 <div id="content-index" class="index">
-	<div class="section" id="section1">{{#each featured}}<a class="replica grd" href="{{link_base}}.html?id={{ID}}"></a>{{/each}}{{#each pool}}<a class="replica sml" href="{{link_base}}.html?id={{ID}}"></a>{{#if_eq @index 3}}</div>
+	<div class="section" id="section1">{{#each data.featured}}<a class="replica grd" href="{{link_base}}.html?id={{ID}}"></a>{{/each}}{{#each data.pool}}<a class="replica sml" href="{{link_base}}.html?id={{ID}}"></a>{{#if_eq @index 3}}</div>
 	<div class="section" id="section2">
 		{{/if_eq}}{{#if_eq @index 11}}</div>
 	<div class="section" id="section3">
