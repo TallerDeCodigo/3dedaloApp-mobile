@@ -69,7 +69,7 @@
 		registerPartials: function() {
 			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
+			var filenames = ['header', 'search_header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
 				request.open('GET', 'views/partials/' + filename + '.hbs',false);
@@ -525,6 +525,18 @@
 			}
 		});
 
+		/** Login with events **/
+		$(document).on('tap', '.login_button', function(){
+			
+			var provider = $(this).data('provider');
+			if(provider == 'facebook')
+				apiRH.loginOauth(provider, apiRH.loginCallbackFB);
+			if(provider == 'twitter')
+				apiRH.loginOauth(provider, apiRH.loginCallbackTW);
+			// if(provider == 'google_plus')
+			//     app.loginOauth(provider, loginCallbackGP);
+		});
+
 
 
 
@@ -790,17 +802,7 @@
 			return;
 		});
 
-		/** Login with events **/
-		$(document).on('tap', '.login_button', function(){
-			
-			var provider = $(this).data('provider');
-			if(provider == 'facebook')
-				apiRH.loginOauth(provider, apiRH.loginCallbackFB);
-			if(provider == 'twitter')
-				apiRH.loginOauth(provider, apiRH.loginCallbackTW);
-			// if(provider == 'google_plus')
-			//     app.loginOauth(provider, loginCallbackGP);
-		});
+		
 
 		/* Pagination Load more posts */
 		$(document).on('tap', '#load_more_posts', function(e){
