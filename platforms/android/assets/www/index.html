@@ -28,17 +28,21 @@
 		app.initialize();
 	</script>
 
-	<script id="unlogged_feed_template" type="text/x-handlebars-template">
+	<script id="feed_template" type="text/x-handlebars-template">
 			<div id="content" class="index">
 				{{> header}}
 								
 			</div>
-			{{> sidemenu}}
+			{{#if logged_user}}
+				{{> sidemenu_logged ../}}
+			{{else}}
+				{{> sidemenu}}
+			{{/if}}
 		
 	</script>
 
 	<script type="text/javascript">
-		app.render_unlogged_feed();
+		app.render_feed(0, 'all');
 	</script>
 	<script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="js/fullPage.js"></script>

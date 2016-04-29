@@ -232,25 +232,30 @@ footer {
 	height:50px;
 	background:#FFF;
 	text-align:center;
-	border-top:1px solid #E8E8E8;
 	z-index:10;
 }
 
 footer a {
 	position:relative;
 	display:inline-block;
-	width:23%;
+	width:19%;
 	text-align:center;
-	top:9px;
-	line-height:15px;
+	padding-top:9px;
+	line-height:30px;
 }
 
-footer a:nth-of-type(-n+3) {
+footer a:nth-of-type(-n+4) {
 	border-right:1px solid #E8E8E8;
 }
 
+footer a.always_selected,
+footer a.always_selected>.material-icons{
+	background-color: #1976D2;
+	color: #FFF; 
+}
+
 footer .material-icons {
-	color:#1976D2;
+	color: #1976D2;
 	font-size:200%;
 }
 
@@ -393,6 +398,18 @@ div.wrapper {
 	margin-top:-13px;
 	margin-left:-90px;
 	font-size:400%;
+}
+
+.profile_pic.round{
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	width: 66px;
+	height: 66px;
+	position: absolute;
+	margin-top: -13px;
+	margin-left: -90px;
+	font-size: 400%;
 }
 
 #user .footer {
@@ -1108,6 +1125,23 @@ div.wrapper {
 	font-size:87.5%;
 	margin-left:38px;
 }
+
+.search .message{
+	margin:20px;
+	color:#90CAF9;
+	font-size:14px;
+	letter-spacing:0.4px;
+}
+
+a.inline_link,
+.search a.inline_link{
+	background:none;
+	color:#1976D2;
+	width:initial;
+	height:initial;
+	margin:initial;
+	vertical-align:bottom;
+	text-decoration:underline;}
 
 #no-cat {
 	overflow-y:scroll;

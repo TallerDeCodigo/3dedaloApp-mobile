@@ -23,7 +23,6 @@
 	<script src="js/plugins.js"></script>
 	<script type="text/javascript">
 		/* Initialize app object and perform initial login check */
-		window.is_home = true;
 		app.initialize();
 	</script>
 
@@ -34,16 +33,43 @@
 			{{> subheader}}
 			<div id="no-cat" class="pages">
 				<section>
+				{{#if previous.count}}
 		    		<p>Previous Searches</p>
-					<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+		    		{{#each previous.pool}}
+					<a href="detail.html?id={{ID}}">
+						<img src="{{thumb_url}}">
+						<div>
+							{{#if designer_brand.profile_pic}}
+								<img src="{{designer_brand.profile_pic}}" alt="{{designer_brand.name}}" class="round profile_pic">
+							{{else}}
+								<i class="material-icons">account_circle</i>
+							{{/if}}
+							<h1>{{product_title}}</h1>
+							<span>{{designer_brand.name}}</span>
+						</div>
+					</a>
+					{{/each}}
+		    	{{else}}
+		    		<p>Previous Searches</p>
+		    		<p class="message"><a class="inline_link" id="account1">Log in</a> to see your previous search results here.</p>
+		    	{{/if}}
+		    	{{#if featured.count}}
 					<p>Featured Products</p>
-					<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+		    		{{#each featured.pool}}
+						<a href="detail.html?id={{ID}}">
+							<img src="{{thumb_url}}">
+							<div>
+								{{#if designer_brand.profile_pic}}
+									<img src="{{designer_brand.profile_pic}}" alt="{{designer_brand.name}}" class="round profile_pic">
+								{{else}}
+									<i class="material-icons">account_circle</i>
+								{{/if}}
+								<h1>{{product_title}}</h1>
+								<span>{{designer_brand.name}}</span>
+							</div>
+						</a>
+					{{/each}}
+		    	{{/if}}
 		    	</section>
 			</div>
 			<div id="con-cat" class="pages">
@@ -66,7 +92,7 @@
 			    	</section>
 		   		</li>
 		    	<li class="pagina" style='display:none'>
-		    		<section>
+		    		<section id="insert_namecat">
 						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
 						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
 						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>

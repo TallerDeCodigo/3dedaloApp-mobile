@@ -1,25 +1,18 @@
 <div class="wrapper" style="display:none;">
 	<div id="user">
-		<div class="logout" style="display:none">
-			<p>Sign in</p>
-			<input type="text" onfocus="if(this.value == 'E-mail') { this.value = ''; }" value="E-mail"><br>
-			<input type="text" onfocus="if(this.value == 'Password') { this.value = ''; }" value="Password">
-			<p>Forgot e-mail | Forgot password</p>
-			<p>New to Dedalo? Create an account</p>
-			<p>or</p>
-			<a href="#">Sign in with Facebook</a>
-			<a href="#">Sign in with Twitter</a>
-			<a href="#">Sign in with Google+</a>
-		</div>
 		<div class="login">
 			<div>
-				<i id="account" class="material-icons">account_circle</i>
-				<p>{{user_display}}</p>
+				{{#if profile_pic}}
+					<img src="{{profile_pic}}" alt="{{display_name}}" class="round profile_pic">
+				{{else}}
+					<i id="account" class="material-icons">account_circle</i>
+				{{/if}}
+				<p>{{display_name}}</p>
 			</div>
 			<a href="settings.html">Account</a>
 			<a href="#">Dashboard</a>
-			<a href="#">Products</a>
-			<a href="#">Sales</a>
+			{{!-- <a href="#">Products</a>
+			<a href="#">Sales</a> --}}
 			<a href="#">Following</a>
 		</div>
 		<div class="footer">

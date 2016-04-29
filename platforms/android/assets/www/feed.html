@@ -23,21 +23,25 @@
 	<script src="js/plugins.js"></script>
     <script type="text/javascript">
 		/* Initialize app object and perform initial login check */
-		window.is_home = false;
+		window.is_feed = true;
 		app.initialize();
 	</script>
 
-	<script id="logged_feed_template" type="text/x-handlebars-template">
+	<script id="feed_template" type="text/x-handlebars-template">
 			<div id="content" class="index">
 				{{> header}}
-								
+				{{logged_user}}
 			</div>
-			{{> sidemenu_logged}}
+			{{#if logged_user}}
+				{{> sidemenu_logged me}}
+			{{else}}
+				{{> sidemenu}}
+			{{/if}}
 		
 	</script>
 
 	<script type="text/javascript">
-		app.render_logged_feed();
+		app.render_feed(0, 'all');
 	</script>
 	<script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="js/fullPage.js"></script>
