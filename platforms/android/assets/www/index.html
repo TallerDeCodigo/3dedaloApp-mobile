@@ -31,10 +31,10 @@
 	<script id="feed_template" type="text/x-handlebars-template">
 			<div id="content" class="index">
 				{{> header}}
-								
+
 			</div>
 			{{#if logged_user}}
-				{{> sidemenu_logged ../}}
+				{{> sidemenu_logged me}}
 			{{else}}
 				{{> sidemenu}}
 			{{/if}}

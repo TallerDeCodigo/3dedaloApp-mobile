@@ -233,11 +233,12 @@ footer {
 	background:#FFF;
 	text-align:center;
 	z-index:10;
+	display:table;
 }
 
 footer a {
 	position:relative;
-	display:inline-block;
+	display:table-cell;
 	width:19%;
 	text-align:center;
 	padding-top:9px;
@@ -859,6 +860,23 @@ div.wrapper {
 	border-radius:3px;
 	margin:5px -8px 20px 20px;
 }
+
+.detail .profile_pic.round{
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border-radius:50%;
+	width:32px;
+	height:32px;
+	font-size:400%;
+	position:relative;
+	display:inline-block;
+	margin:initial;
+	vertical-align:middle;
+}
+.detail .side_profile{
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:8px;}
 
 /* SHOPPING CART */
 
