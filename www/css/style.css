@@ -79,6 +79,14 @@ header p {
 	line-height:58px;
 }
 
+.daheader #account1.profile_pic{
+	margin:initial;
+	left:initial;
+	width:36px;
+	height:36px;
+	
+}
+
 #barra {
 	position:relative;
 	left:70px;
@@ -405,12 +413,12 @@ div.wrapper {
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	width: 66px;
-	height: 66px;
 	position: absolute;
 	margin-top: -13px;
 	margin-left: -90px;
 	font-size: 400%;
+	height: 66px;
+	width: 66px;
 }
 
 #user .footer {
