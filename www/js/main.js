@@ -172,7 +172,7 @@
 
 			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
 				app.registerTemplate('feed');
-				app.registerTemplate('sidemenu_logged');
+				//app.registerTemplate('sidemenu_logged');
 			})
 			 .fail(function(err){
 				console.log(err);

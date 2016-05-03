@@ -1,9 +1,23 @@
+@font-face{font-family:roboto_light;src:url(fonts/roboto-light.eot);src:url(fonts/roboto-light.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-light.woff) format('woff'),url(fonts/roboto-light.ttf) format('truetype'),url(fonts/roboto-light.svg#roboto_light) format('svg');font-weight:400;font-style:normal}
+@font-face{font-family:roboto_medium;src:url(fonts/roboto-medium.eot);src:url(fonts/roboto-medium.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-medium.woff) format('woff'),url(fonts/roboto-medium.ttf) format('truetype'),url(fonts/roboto-medium.svg#roboto_medium) format('svg');font-weight:400;font-style:normal}
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
+       url(fonts/MaterialIcons-Regular.woff) format('woff'),
+       url(fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
 /* GENERAL */
 
 body {
 	background:#FFF;
 	margin:0;
-	font-family:'Roboto', sans-serif;
+	font-family:'roboto_medium', sans-serif;
 	font-weight:400;
 	font-size:16px;
 }
@@ -19,6 +33,31 @@ body {
 
 a {
 	text-decoration:none;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
 #content {
@@ -83,8 +122,7 @@ header p {
 	margin:initial;
 	left:initial;
 	width:36px;
-	height:36px;
-	
+	height:36px;	
 }
 
 #barra {
