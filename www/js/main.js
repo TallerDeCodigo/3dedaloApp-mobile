@@ -217,6 +217,23 @@
 			 	console.log(error);
 			 });
 		},
+		render_post : function(product_id){
+			
+			console.log('success!');
+			var meInfo 	= apiRH.ls.getItem('me');
+			var logged 	= apiRH.ls.getItem('me.logged');
+
+			$.getJSON(api_base_url+'products/'+product_id)
+			 .done(function(response){
+				var data = {me: JSON.parse(meInfo), data: response, logged_user: JSON.parse(logged)};
+				var source   = $("#post_template").html();
+				var template = Handlebars.compile(source);
+				$('.main_post').html( template(data) );
+			})
+			 .fail(function(error){
+			 	console.log(error);
+			 });
+		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */
 			$.getJSON(api_base_url+user+'/timeline/'+offset, function(response){
