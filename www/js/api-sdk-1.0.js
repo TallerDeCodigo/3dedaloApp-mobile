@@ -54,7 +54,7 @@ function requestHandlerAPI(){
 															}
 												  };
 								var response = this.makeRequest('auth/login/', data_object);
-
+								console.log(response);
 								return (response.success) ? response.data : false;
 							};
 		/* 
