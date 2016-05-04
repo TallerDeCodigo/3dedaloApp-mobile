@@ -34,12 +34,13 @@
 				<a href="#" onclick="history.back(-1)"><i id="back" class="material-icons">arrow_back</i></a><p></p>
 			</header>
 			<section>
-				<img class="define" src="images/1.png" />
+				<img class="define" src="{{thumb_url}}"/>
 			</section>
 
 			<section>
 				<h1>{{data.post_title}}</h1>
-				<p><i class="material-icons" >account_circle</i> Designer/Brand <span>DD/MM/YYYY</span></p>
+				<p><i class="material-icons" >account_circle</i> {{data.post_editor.name}} <span>{{data.post_date}}</span></p>
+				
 			</section>
 			<section>
 				<p>{{{data.post_content}}}</p>
