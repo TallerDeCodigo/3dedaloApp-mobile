@@ -36,17 +36,17 @@ a {
 }
 
 .material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Material Icons'!important;
+  font-weight: normal!important;
+  font-style: normal!important;
   font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
+  display: inline-block!important;
+  line-height: 1!important;
+  text-transform: none!important;
+  letter-spacing: normal!important;
+  word-wrap: normal!important;
+  white-space: nowrap!important;
+  direction: ltr!important;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
@@ -95,6 +95,9 @@ header #account1 {
 	top:11px;
 	right:15px;
 	color:#90CAF9;
+	margin:initial;
+	left:initial;
+	position:absolute;
 }
 
 header #photo {
@@ -639,6 +642,17 @@ div.wrapper {
 	border-bottom:1px solid #E8E8E8;
 }
 
+.post section.post_head {
+	position:relative;
+	display:inline-block;
+	width:100%;
+	background:#FFF;
+	border-bottom:1px solid #E8E8E8;
+	padding-bottom: 10px;
+}
+
+
+
 .post section:nth-of-type(1) {
 	margin-top:56px;
 	max-height:550px;
@@ -668,9 +682,11 @@ div.wrapper {
 	line-height:5px;
 	color:#90CAF9;
 	margin-left:0px;
-	margin-top:-40px;
+
 	margin-bottom:8px;
 }
+
+.post section>p.side_profile.date{display:block;font-size:14px;color:#BFBDBD;padding-left:0.6rem;line-height:1rem;}
 
 .post section:nth-of-type(2) .material-icons {
 	position:relative;
@@ -691,6 +707,25 @@ div.wrapper {
 
 .post section:nth-of-type(3) p {
 	margin-top:23px;
+}
+
+.post .profile_pic.round{
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border-radius:50%;
+	width:32px;
+	height:32px;
+	font-size:240%;
+	margin:initial;
+	vertical-align:middle;
+	margin-left: 18px;
+	position:relative;
+	display:inline-block;
+}
+.post .side_profile{
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:8px!important;
 }
 
 /* DETAIL */
@@ -1637,7 +1672,7 @@ div.gm-style-iw {
     left:-9999px;
     right:-9999px;
     margin:auto;
-    opacity:0.6;
+    opacity:0.75;
 }
 
 .small {
@@ -1657,7 +1692,7 @@ div.gm-style-iw {
 	width:115%;
     
     margin:auto;
-    opacity:0.45;
+    opacity:0.7;
 }
 
 .link div:nth-of-type(1) {

@@ -27,14 +27,15 @@
     </feature>
     <access origin="https://oauth.io" />
     <allow-intent href="market:*" />
-    <splash density="land-hdpi" src="res/android/splash-land-hdpi.png" />
-    <splash density="land-ldpi" src="res/android/splash-land-ldpi.png" />
-    <splash density="land-mdpi" src="res/android/splash-land-mdpi.png" />
-    <splash density="land-xhdpi" src="res/android/splash-land-xhdpi.png" />
-    <splash density="port-hdpi" src="res/android/splash-port-hdpi.png" />
-    <splash density="port-ldpi" src="res/android/splash-port-ldpi.png" />
-    <splash density="port-mdpi" src="res/android/splash-port-mdpi.png" />
-    <splash density="port-xhdpi" src="res/android/splash-port-xhdpi.png" />
+    <splash density="port-hdpi" src="res/android/splash-hdpi.png" />
+    <splash density="port-ldpi" src="res/android/splash-ldpi.png" />
+    <splash density="port-mdpi" src="res/android/splash-mdpi.png" />
+    <splash density="port-xhdpi" src="res/android/splash-xhdpi.png" />
+    <icon density="ldpi" src="res/android/icon_ldpi.png" />
+    <icon density="mdpi" src="res/android/icon_mdpi.png" />
+    <icon density="hdpi" src="res/android/icon_hdpi.png" />
+    <icon density="xhdpi" src="res/android/icon_xhdpi.png" />
+    <icon density="xxhdpi" src="res/android/icon_xxhdpi.png" />
     <name>3Dedalo</name>
     <description>
         Dedalo i...
