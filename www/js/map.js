@@ -1,6 +1,6 @@
 (function() {
         
-    if(!!navigator.geolocation) {
+    // if(!!navigator.Geolocation || !!navigator.Geolocation) {
         var map;
         var mapOptions = {
             zoom: 16,
@@ -79,6 +79,6 @@
 
         });  
     
-    }
+    // }
 })();
 

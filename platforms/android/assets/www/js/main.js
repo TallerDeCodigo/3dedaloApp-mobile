@@ -172,7 +172,7 @@
 
 			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
 				app.registerTemplate('feed');
-				app.registerTemplate('sidemenu_logged');
+				//app.registerTemplate('sidemenu_logged');
 			})
 			 .fail(function(err){
 				console.log(err);
@@ -200,6 +200,18 @@
 			 .fail(function(error){
 			 	console.log(error);
 			 });
+		},
+		render_map : function(){
+			// $.getJSON(api_base_url+'content/search-composite/')
+			//  .done(function(response){
+				// console.log(response);
+				var source   = $("#map_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template({}) );
+			// })
+			//  .fail(function(error){
+			//  	console.log(error);
+			//  });
 		},
 		render_detail : function(product_id){
 			

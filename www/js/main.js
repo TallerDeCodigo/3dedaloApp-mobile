@@ -201,6 +201,18 @@
 			 	console.log(error);
 			 });
 		},
+		render_map : function(){
+			// $.getJSON(api_base_url+'content/search-composite/')
+			//  .done(function(response){
+				// console.log(response);
+				var source   = $("#map_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template({}) );
+			// })
+			//  .fail(function(error){
+			//  	console.log(error);
+			//  });
+		},
 		render_detail : function(product_id){
 			
 			var meInfo 	= apiRH.ls.getItem('me');
