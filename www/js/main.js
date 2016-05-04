@@ -53,7 +53,7 @@
 		registerPartials: function() {
 			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header', 'search_header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
+			var filenames = ['header', 'history_header', 'search_header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
 				request.open('GET', 'views/partials/' + filename + '.hbs',false);
@@ -125,6 +125,22 @@
 			if(id == 'deviceready' && typeof navigator.splashscreen != 'undefined'){
 				navigator.splashscreen.hide();
 			}
+		},
+		gatherEnvironment: function(optional_data, history_title) {
+			
+			/* Gather environment information */
+			var meInfo 	= apiRH.ls.getItem('me');
+			var logged 	= apiRH.ls.getItem('me.logged');
+			var parsed 	= {me: JSON.parse(meInfo), logged_user: JSON.parse(logged)};
+			
+			if(optional_data){
+				parsed['data'] = optional_data;
+				if(history_title)
+					parsed['header_title'] = history_title;
+				return parsed;
+			}
+			return {me: JSON.parse(meInfo), logged_user: JSON.parse(logged)};
+
 		},
 		getUrlVars: function() {
 			var vars = {};
@@ -220,7 +236,7 @@
 
 			$.getJSON(api_base_url+'products/'+product_id)
 			 .done(function(response){
-				var data = {me: JSON.parse(meInfo), data: response, logged_user: JSON.parse(logged)};
+				var data = app.gatherEnvironment(response, "Printables");
 				var source   = $("#detail_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
@@ -229,18 +245,15 @@
 			 	console.log(error);
 			 });
 		},
-		render_post : function(product_id){
-			
-			console.log('success!');
-			var meInfo 	= apiRH.ls.getItem('me');
-			var logged 	= apiRH.ls.getItem('me.logged');
+		render_post : function(post_id){
 
-			$.getJSON(api_base_url+product_id)
+			/* Send header_title for it renders history_header */
+			$.getJSON(api_base_url+'content/'+post_id)
 			 .done(function(response){
-				var data = {me: JSON.parse(meInfo), data: response, logged_user: JSON.parse(logged)};
+				var data = app.gatherEnvironment(response, "Now reading");
 				var source   = $("#post_template").html();
 				var template = Handlebars.compile(source);
-				$('.main_post').html( template(data) );
+				$('.main').html( template(data) );
 			})
 			 .fail(function(error){
 			 	console.log(error);

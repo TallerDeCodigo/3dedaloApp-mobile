@@ -36,17 +36,17 @@ a {
 }
 
 .material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Material Icons'!important;
+  font-weight: normal!important;
+  font-style: normal!important;
   font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
+  display: inline-block!important;
+  line-height: 1!important;
+  text-transform: none!important;
+  letter-spacing: normal!important;
+  word-wrap: normal!important;
+  white-space: nowrap!important;
+  direction: ltr!important;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
@@ -95,6 +95,9 @@ header #account1 {
 	top:11px;
 	right:15px;
 	color:#90CAF9;
+	margin:initial;
+	left:initial;
+	position:absolute;
 }
 
 header #photo {
@@ -683,6 +686,8 @@ div.wrapper {
 	margin-bottom:8px;
 }
 
+.post section>p.side_profile.date{display:block;font-size:14px;color:#BFBDBD;padding-left:0.6rem;line-height:1rem;}
+
 .post section:nth-of-type(2) .material-icons {
 	position:relative;
 	top:6px;
@@ -711,11 +716,11 @@ div.wrapper {
 	width:32px;
 	height:32px;
 	font-size:240%;
-	position:relative;
-	display:inline-block;
 	margin:initial;
 	vertical-align:middle;
 	margin-left: 18px;
+	position:relative;
+	display:inline-block;
 }
 .post .side_profile{
 	display:inline-block;
@@ -1667,7 +1672,7 @@ div.gm-style-iw {
     left:-9999px;
     right:-9999px;
     margin:auto;
-    opacity:0.6;
+    opacity:0.75;
 }
 
 .small {
@@ -1687,7 +1692,7 @@ div.gm-style-iw {
 	width:115%;
     
     margin:auto;
-    opacity:0.45;
+    opacity:0.7;
 }
 
 .link div:nth-of-type(1) {
