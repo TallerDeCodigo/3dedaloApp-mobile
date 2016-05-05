@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
-	<title>DEDALO</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-	<script type="text/javascript" src="js/functions.js"></script>
-</head>
-<body>
-<div id="content" class="post">
-	<header><a href="index.html"><img width="134" height="32" src="images/logo.svg" /></a><i id="account1" class="material-icons">account_circle</i></header>
-	<section>
-		<img class="define" src="images/1.png" />
-	</section>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		</head>
+	<body>
+		<section class="main">
+			<!-- Template will be inserted here -->
 
-	<section>
-		<h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam magna non erat semper</h1>
-		<p><i class="material-icons" >account_circle</i> Designer/Brand <span>DD/MM/YYYY</span></p>
-	</section>
-	<section>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut condimentum auctor vestibulum. Quisque vitae feugiat ligula. Suspendisse nec massa et neque feugiat convallis eu vel nunc.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut justo felis. Suspendisse at gravida tortor. Nunc accumsan ultrices blandit. Ut vehicula elit id mattis suscipit. Curabitur in bibendum ipsum. Praesent porttitor tortor a leo placerat, ac sodales leo varius.</p>
-		<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam non ultricies dui. Maecenas maximus maximus scelerisque. Vestibulum consectetur urna vel eros aliquam, euismod malesuada tellus euismod. Vivamus tortor nisl, condimentum et congue ac, feugiat eget erat.</p>
-	</section>
-	<footer>
-	<a href="search.html"><i class="material-icons">search</i></a>
-	<a href="notifications.html"><i class="material-icons">notifications</i></a>
-	<a href="map.html"><i class="material-icons">explore</i></a>
-	<a href="cart.html"><i class="material-icons">shopping_cart</i></a>
-	</footer>
-</div>
-<div class="wrapper" style="display:none;">
-	<div id="user">
-		<div class="logout" style="display:none">
-			<p>Sign in</p>
-			<input type="text" onfocus="if(this.value == 'E-mail') { this.value = ''; }" value="E-mail"><br>
-			<input type="text" onfocus="if(this.value == 'Password') { this.value = ''; }" value="Password">
-			<p><a class="underline1" href="#">Forgot password</a></p>
-			<p>New to Dedalo?<a class="underline" href="settings.html">Create an account</a></p>
-			<p>or</p>
-			<a href="#">Sign in with Facebook</a>
-			<a href="#">Sign in with Twitter</a>
-			<a href="#">Sign in with Google+</a>
+		</section>
+	</body>
+
+	<!-- Load Scripts -->
+	<!-- Load Scripts -->
+    <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		app.initialize();
+	</script>
+
+	<script id="post_template" type="text/x-handlebars-template">
+
+		<div id="content" class="post">
+
+			{{> history_header}}
+			<section>
+				<img src="{{data.thumb_url}}"/>
+			</section>
+
+			<section class="post_head">
+				<h1>{{data.post_title}}</h1>
+				<p class="side_profile date">{{data.post_date}}</p>
+				{{#if data.thumb_url}}
+					<img src="{{data.post_editor.profile_pic}}" class="profile_pic round"><p class="side_profile">{{data.post_editor.name}}</p>
+				{{else}}
+					<p><i class="material-icons" >account_circle</i> {{data.post_editor.name}}</p>
+				{{/if}}
+			</section>
+			<section>
+				<p>{{{data.post_content}}}</p>
+			</section>
+			
 		</div>
-		<div class="login">
-			<div><i id="account" class="material-icons">account_circle</i><p>Lorem Ipsum Dolor Sit Amet</p></div>
-			<a href="settings.html">Account</a>
-			<a href="followers.html">Dashboard</a>
-			<a href="#">Products</a>
-			<a href="#">Sales</a>
-			<a href="followers.html">Following</a>
-		</div>
-		<div class="footer">
-		<p><a href="http://3dedalo.org/"><span>About</span> <img width="134" height="32" src="images/logo.svg" /></a></p>
-		<p><a href="http://3dedalo.org/">Terms and conditions</a> | <a href="http://3dedalo.org/">Privacy policies</a></p>
-		</div>
-	</div>
-	<div class="separate"></div>
-</div>
-</body>
+		{{#if logged_user}}
+			{{> sidemenu_logged me}}
+		{{else}}
+			{{> sidemenu}}
+		{{/if}}
+	</script>
+
+	<script type="text/javascript">
+		var GET = app.getUrlVars();
+		app.render_post(GET.id);
+	</script>
+
+	<script type='text/javascript' src='js/swipe.js'></script>
+	<script type='text/javascript' src='js/callswipe2.js'></script>
+	<script type="text/javascript" src="js/functions.js"></script>
 </html>

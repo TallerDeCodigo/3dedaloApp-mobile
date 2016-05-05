@@ -1,9 +1,22 @@
+@font-face{font-family:roboto_light;src:url(fonts/roboto-light.eot);src:url(fonts/roboto-light.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-light.woff) format('woff'),url(fonts/roboto-light.ttf) format('truetype'),url(fonts/roboto-light.svg#roboto_light) format('svg');font-weight:400;font-style:normal;}
+@font-face{font-family:roboto_medium;src:url(fonts/roboto-medium.eot);src:url(fonts/roboto-medium.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-medium.woff) format('woff'),url(fonts/roboto-medium.ttf) format('truetype'),url(fonts/roboto-medium.svg#roboto_medium) format('svg');font-weight:400;font-style:normal;}
+@font-face {
+  font-family: 'MaterialIcons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('☺︎'),
+       url(fonts/MaterialIcons-Regular.ttf) format('woff'),
+       url(fonts/MaterialIcons-Regular.woff) format('woff'),
+       url(fonts/MaterialIcons-Regular.otf) format('opentype'),
+       url(fonts/MaterialIcons-Regular.svg) format('svg');
+}
+
 /* GENERAL */
 
 body {
 	background:#FFF;
 	margin:0;
-	font-family:'Roboto', sans-serif;
+	font-family:'roboto_medium', sans-serif;
 	font-weight:400;
 	font-size:16px;
 }
@@ -19,6 +32,49 @@ body {
 
 a {
 	text-decoration:none;
+}
+
+.material-icons {
+  font-family: 'MaterialIcons'!important;
+  font-weight: normal!important;
+  font-style: normal!important;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block!important;
+  line-height: 1!important;
+  text-transform: none!important;
+  letter-spacing: normal!important;
+  word-wrap: normal!important;
+  white-space: nowrap!important;
+  direction: ltr!important;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+/*Loader*/
+.spinner{
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.29);
+	pointer-events: none;
+}
+
+.spinner>img{
+	display: block;
+	margin: 45vh auto 0 auto;
 }
 
 #content {
@@ -56,6 +112,9 @@ header #account1 {
 	top:11px;
 	right:15px;
 	color:#90CAF9;
+	margin:initial;
+	left:initial;
+	position:absolute;
 }
 
 header #photo {
@@ -77,6 +136,13 @@ header p {
 	left:70px;
 	color:#FFF;
 	line-height:58px;
+}
+
+.daheader #account1.profile_pic{
+	margin:initial;
+	left:initial;
+	width:36px;
+	height:36px;	
 }
 
 #barra {
@@ -232,25 +298,31 @@ footer {
 	height:50px;
 	background:#FFF;
 	text-align:center;
-	border-top:1px solid #E8E8E8;
 	z-index:10;
+	display:table;
 }
 
 footer a {
 	position:relative;
-	display:inline-block;
-	width:23%;
+	display:table-cell;
+	width:19%;
 	text-align:center;
-	top:9px;
-	line-height:15px;
+	padding-top:9px;
+	line-height:30px;
 }
 
-footer a:nth-of-type(-n+3) {
+footer a:nth-of-type(-n+4) {
 	border-right:1px solid #E8E8E8;
 }
 
+footer a.always_selected,
+footer a.always_selected>.material-icons{
+	background-color: #1976D2;
+	color: #FFF; 
+}
+
 footer .material-icons {
-	color:#1976D2;
+	color: #1976D2;
 	font-size:200%;
 }
 
@@ -393,6 +465,18 @@ div.wrapper {
 	margin-top:-13px;
 	margin-left:-90px;
 	font-size:400%;
+}
+
+.profile_pic.round{
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	position: absolute;
+	margin-top: -13px;
+	margin-left: -90px;
+	font-size: 400%;
+	height: 66px;
+	width: 66px;
 }
 
 #user .footer {
@@ -575,6 +659,17 @@ div.wrapper {
 	border-bottom:1px solid #E8E8E8;
 }
 
+.post section.post_head {
+	position:relative;
+	display:inline-block;
+	width:100%;
+	background:#FFF;
+	border-bottom:1px solid #E8E8E8;
+	padding-bottom: 10px;
+}
+
+
+
 .post section:nth-of-type(1) {
 	margin-top:56px;
 	max-height:550px;
@@ -604,9 +699,11 @@ div.wrapper {
 	line-height:5px;
 	color:#90CAF9;
 	margin-left:0px;
-	margin-top:-40px;
+
 	margin-bottom:8px;
 }
+
+.post section>p.side_profile.date{display:block;font-size:14px;color:#BFBDBD;padding-left:0.6rem;line-height:1rem;}
 
 .post section:nth-of-type(2) .material-icons {
 	position:relative;
@@ -627,6 +724,25 @@ div.wrapper {
 
 .post section:nth-of-type(3) p {
 	margin-top:23px;
+}
+
+.post .profile_pic.round{
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border-radius:50%;
+	width:32px;
+	height:32px;
+	font-size:240%;
+	margin:initial;
+	vertical-align:middle;
+	margin-left: 18px;
+	position:relative;
+	display:inline-block;
+}
+.post .side_profile{
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:8px!important;
 }
 
 /* DETAIL */
@@ -842,6 +958,23 @@ div.wrapper {
 	border-radius:3px;
 	margin:5px -8px 20px 20px;
 }
+
+.detail .profile_pic.round{
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border-radius:50%;
+	width:32px;
+	height:32px;
+	font-size:400%;
+	position:relative;
+	display:inline-block;
+	margin:initial;
+	vertical-align:middle;
+}
+.detail .side_profile{
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:8px;}
 
 /* SHOPPING CART */
 
@@ -1108,6 +1241,23 @@ div.wrapper {
 	font-size:87.5%;
 	margin-left:38px;
 }
+
+.search .message{
+	margin:20px;
+	color:#90CAF9;
+	font-size:14px;
+	letter-spacing:0.4px;
+}
+
+a.inline_link,
+.search a.inline_link{
+	background:none;
+	color:#1976D2;
+	width:initial;
+	height:initial;
+	margin:initial;
+	vertical-align:bottom;
+	text-decoration:underline;}
 
 #no-cat {
 	overflow-y:scroll;
@@ -1539,7 +1689,7 @@ div.gm-style-iw {
     left:-9999px;
     right:-9999px;
     margin:auto;
-    opacity:0.6;
+    opacity:0.75;
 }
 
 .small {
@@ -1557,12 +1707,9 @@ div.gm-style-iw {
 	min-height:100%;
 	height:auto;
 	width:115%;
-    top:-9999px;
-    bottom:-9999px;
-    left:-9999px;
-    right:-9999px;
+    
     margin:auto;
-    opacity:0.6;
+    opacity:0.7;
 }
 
 .link div:nth-of-type(1) {
@@ -1598,12 +1745,12 @@ div.gm-style-iw {
 }
 
 .small h1 {
-	font-size:90%;
+	font-size:18px;
 	margin-bottom:-2px;
 }
 
 .small span {
-	font-size:87.5%;
+	font-size:14px;
 }
 
 .link h1 {
@@ -1631,7 +1778,7 @@ div.gm-style-iw {
 .link h2 {
 	position:relative;
 	display:inline-block;
-	font-size:112.5%;
+	font-size:16px;
 	padding:5px;
 	background:#90CAF9;
 	padding:2px 6px;

@@ -277,6 +277,35 @@ module.exports = [
         "merges": [
             "OAuth"
         ]
+    },
+    {
+        "file": "plugins/nl.x-services.plugins.toast/www/Toast.js",
+        "id": "nl.x-services.plugins.toast.Toast",
+        "pluginId": "nl.x-services.plugins.toast",
+        "clobbers": [
+            "window.plugins.toast"
+        ]
+    },
+    {
+        "file": "plugins/nl.x-services.plugins.toast/test/tests.js",
+        "id": "nl.x-services.plugins.toast.tests",
+        "pluginId": "nl.x-services.plugins.toast"
+    },
+    {
+        "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
+        "id": "cordova-plugin-console.console",
+        "pluginId": "cordova-plugin-console",
+        "clobbers": [
+            "console"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-console/www/logger.js",
+        "id": "cordova-plugin-console.logger",
+        "pluginId": "cordova-plugin-console",
+        "clobbers": [
+            "cordova.logger"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -290,7 +319,9 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-inappbrowser": "1.4.0",
-    "com.oauthio.plugins.oauthio": "0.2.4"
+    "com.oauthio.plugins.oauthio": "0.2.4",
+    "nl.x-services.plugins.toast": "2.5.0",
+    "cordova-plugin-console": "1.0.3"
 }
 // BOTTOM OF METADATA
 });

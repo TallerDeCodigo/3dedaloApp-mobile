@@ -1,6 +1,21 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "file": "plugins/com.oauthio.plugins.oauthio/dist/oauth.js",
+        "id": "com.oauthio.plugins.oauthio.OAuth",
+        "merges": [
+            "OAuth"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
         "id": "cordova-plugin-camera.Camera",
         "clobbers": [
@@ -213,33 +228,31 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/nl.x-services.plugins.toast/www/Toast.js",
+        "id": "nl.x-services.plugins.toast.Toast",
         "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
+            "window.plugins.toast"
         ]
     },
     {
-        "file": "plugins/com.oauthio.plugins.oauthio/dist/oauth.js",
-        "id": "com.oauthio.plugins.oauthio.OAuth",
-        "merges": [
-            "OAuth"
-        ]
+        "file": "plugins/nl.x-services.plugins.toast/test/tests.js",
+        "id": "nl.x-services.plugins.toast.tests"
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "cordova-plugin-inappbrowser": "1.4.0",
+    "com.oauthio.plugins.oauthio": "0.2.4",
     "cordova-plugin-compat": "1.0.0",
     "cordova-plugin-camera": "2.2.0",
+    "cordova-plugin-console": "1.0.3",
     "cordova-plugin-file": "4.2.0",
     "cordova-plugin-file-transfer": "1.5.1",
     "cordova-plugin-geolocation": "2.2.0",
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-whitelist": "1.2.2",
-    "cordova-plugin-inappbrowser": "1.4.0",
-    "com.oauthio.plugins.oauthio": "0.2.4"
+    "nl.x-services.plugins.toast": "2.5.0"
 };
 // BOTTOM OF METADATA
 });

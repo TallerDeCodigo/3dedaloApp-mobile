@@ -559,25 +559,24 @@
 			app.showLoader();
 			e.preventDefault();
 			var data_login  	= app.getFormData('#login_form');
-			console.log(data_login);
 			var responsedata 	= apiRH.loginNative(data_login);
 			if(responsedata) {
 				console.log(responsedata);
 				apiRH.save_user_data_clientside(responsedata);
 				window.location.assign('index.html?filter_feed=all');
+				return;
 			}
+			app.toast('Tu email o contraseña no son válidos.');
 		});
 
 		/** Login with events **/
-		$(document).on('tap', '.login_button', function(){
+		$(document).on('click', '.login_button', function(){
 			
 			var provider = $(this).data('provider');
 			if(provider == 'facebook')
 				apiRH.loginOauth(provider, apiRH.loginCallbackFB);
 			if(provider == 'twitter')
 				apiRH.loginOauth(provider, apiRH.loginCallbackTW);
-			// if(provider == 'google_plus')
-			//     app.loginOauth(provider, loginCallbackGP);
 		});
 
 
@@ -635,9 +634,11 @@
 			/* Requesting logout from server */
 			var response = apiRH.logOut({user_login : user, request_token : apiRH.get_request_token() });
 			if(response.success){
-				app.toast('Hasta pronto! Tu sesión ha sido cerrada');
-				app.ls.removeItem('dedalo_log_info');
-				app.ls.removeItem('request_token');
+				app.toast('Session ended, see you soon!');
+					app.ls.removeItem('dedalo_log_info');
+					app.ls.removeItem('request_token');
+					app.ls.removeItem('me.logged');
+					app.ls.removeItem('me');
 				window.location.assign('index.html');
 				return;
 			}

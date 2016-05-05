@@ -10,7 +10,9 @@
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
+
     <access origin="*" />
+
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -18,42 +20,43 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-navigation href="*://*.googleapis.com/*"/>
+
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
+
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
 
     <platform name="android">
-        <splash src="res/android/splash-hdpi.png" density="port-hdpi"/>
-        <splash src="res/android/splash-ldpi.png" density="port-ldpi"/>
-        <splash src="res/android/splash-mdpi.png" density="port-mdpi"/>
-        <splash src="res/android/splash-xhdpi.png" density="port-xhdpi"/>
+        <splash src="res/screen/android/splash-hdpi.png" density="port-hdpi"/>
+        <splash src="res/screen/android/splash-ldpi.png" density="port-ldpi"/>
+        <splash src="res/screen/android/splash-mdpi.png" density="port-mdpi"/>
+        <splash src="res/screen/android/splash-xhdpi.png" density="port-xhdpi"/>
     </platform>
 
     <platform name="android">
-        <icon src="res/android/icon_ldpi.png" density="ldpi" />
-        <icon src="res/android/icon_mdpi.png" density="mdpi" />
-        <icon src="res/android/icon_hdpi.png" density="hdpi" />
-        <icon src="res/android/icon_xhdpi.png" density="xhdpi" />
-        <icon src="res/android/icon_xxhdpi.png" density="xxhdpi" />
+        <icon src="res/screen/android/icon_ldpi.png" density="ldpi" />
+        <icon src="res/screen/android/icon_mdpi.png" density="mdpi" />
+        <icon src="res/screen/android/icon_hdpi.png" density="hdpi" />
+        <icon src="res/screen/android/icon_xhdpi.png" density="xhdpi" />
+        <icon src="res/screen/android/icon_xxhdpi.png" density="xxhdpi" />
      </platform>
 
     <platform name="ios">
         <!-- images are determined by width and height. The following are supported -->
-        <splash src="res/ios/Default~iphone.png" width="320" height="480"/>
-        <splash src="res/ios/Default@2x~iphone.png" width="640" height="960"/>
-        <splash src="res/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
-        <splash src="res/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
-        <splash src="res/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
-        <splash src="res/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
-        <splash src="res/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
-        <splash src="res/ios/Default-667h.png" width="750" height="1334"/>
-        <splash src="res/ios/Default-736h.png" width="1242" height="2208"/>
-        <splash src="res/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
+        <splash src="res/screen/ios/Default~iphone.png" width="320" height="480"/>
+        <splash src="res/screen/ios/Default@2x~iphone.png" width="640" height="960"/>
+        <splash src="res/screen/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
+        <splash src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+        <splash src="res/screen/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
+        <splash src="res/screen/ios/Default-667h.png" width="750" height="1334"/>
+        <splash src="res/screen/ios/Default-736h.png" width="1242" height="2208"/>
     </platform>
+    <preference name="Orientation" value="portrait" />
 
-    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="FadeSplashScreenDuration" value="1500"/>
+    <preference name="SplashScreenDelay" value="3500" />
 </widget>

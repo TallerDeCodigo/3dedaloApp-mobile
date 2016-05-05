@@ -27,6 +27,12 @@
         },
         "com.oauthio.plugins.oauthio": {
             "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "nl.x-services.plugins.toast": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "org.dedalo.app"
         }
     },
     "dependent_plugins": {

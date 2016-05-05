@@ -18,7 +18,7 @@
 			});
 			app.registerPartials();
 			app.registerHelpers();
-			// localStorage init
+			/* localStorage init */
 			this.ls 		= window.localStorage;
 			var log_info 	= JSON.parse(this.ls.getItem('dedalo_log_info'));
 							window.user 	= (log_info) ? log_info.user_login : '';
@@ -570,15 +570,13 @@
 		});
 
 		/** Login with events **/
-		$(document).on('tap', '.login_button', function(){
+		$(document).on('click', '.login_button', function(){
 			
 			var provider = $(this).data('provider');
 			if(provider == 'facebook')
 				apiRH.loginOauth(provider, apiRH.loginCallbackFB);
 			if(provider == 'twitter')
 				apiRH.loginOauth(provider, apiRH.loginCallbackTW);
-			// if(provider == 'google_plus')
-			//     app.loginOauth(provider, loginCallbackGP);
 		});
 
 

@@ -12,24 +12,12 @@
 		initialize: function() {
 			this.bindEvents();
 			/* IMPORTANT to set requests to be syncronous */
+			/* TODO test all requests without the following code 'cause of deprecation */
 			$.ajaxSetup({
 				 async: false
 			});
 			app.registerPartials();
-			Handlebars.registerHelper('if_eq', function(a, b, opts) {
-			    if (a == b) {
-			        return opts.fn(this);
-			    } else {
-			        return opts.inverse(this);
-			    }
-			});
-			Handlebars.registerHelper('if_module', function(a, b, opts) {
-			    if (a%b == 0) {
-			        return opts.fn(this);
-			    } else {
-			        return opts.inverse(this);
-			    }
-			});
+			app.registerHelpers();
 			// localStorage init
 			this.ls 		= window.localStorage;
 			var log_info 	= JSON.parse(this.ls.getItem('dedalo_log_info'));
@@ -54,22 +42,18 @@
 					return;
 				}else{
 					/* Token is not valid, user needs to authenticate */
-					console.log("Your token is not valid anymore (or has not been activated yet)");
-					// window.location.assign('index.html');
+					console.log("Your token is not valid anymore (or has not been validated yet)");
 					return;
 				}
 			}
 			
-			/* DEBUG Executing robots request first of all */
-			// console.log(JSON.stringify(apiRH.getRequest('robots', null)));
 			/* Requesting passive token if no token is previously stored */
 			console.log(apiRH.request_token().get_request_token());
-			// window.location.assign('index.html');
 		},
 		registerPartials: function() {
 			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
+			var filenames = ['header', 'history_header', 'search_header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
 				request.open('GET', 'views/partials/' + filename + '.hbs',false);
@@ -89,6 +73,23 @@
 		            Handlebars.templates[name] = Handlebars.compile(response);
 	            }
 	        });
+	        return;
+		},
+		registerHelpers : function() {
+		    Handlebars.registerHelper('if_eq', function(a, b, opts) {
+			    if (a == b) {
+			        return opts.fn(this);
+			    } else {
+			        return opts.inverse(this);
+			    }
+			});
+			Handlebars.registerHelper('if_module', function(a, b, opts) {
+			    if (a%b == 0) {
+			        return opts.fn(this);
+			    } else {
+			        return opts.inverse(this);
+			    }
+			});
 	        return;
 		},
 		bindEvents: function() {
@@ -125,6 +126,22 @@
 				navigator.splashscreen.hide();
 			}
 		},
+		gatherEnvironment: function(optional_data, history_title) {
+			
+			/* Gather environment information */
+			var meInfo 	= apiRH.ls.getItem('me');
+			var logged 	= apiRH.ls.getItem('me.logged');
+			var parsed 	= {me: JSON.parse(meInfo), logged_user: JSON.parse(logged)};
+			
+			if(optional_data){
+				parsed['data'] = optional_data;
+				if(history_title)
+					parsed['header_title'] = history_title;
+				return parsed;
+			}
+			return {me: JSON.parse(meInfo), logged_user: JSON.parse(logged)};
+
+		},
 		getUrlVars: function() {
 			var vars = {};
 			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -157,64 +174,90 @@
 			});
 		},
 		render_menu : function(){
+
 			$.getJSON(api_base_url+'auth/'+user+'/me', function(response){
 				console.log(response);
 				var template = Handlebars.templates.header(response);
 				$('.main').prepend( template ).trigger('create');
 			});
 		},
-		render_main_feed : function(offset, filter){
+		render_feed : function(offset, filter){
+			var data 	= {};
+			var meInfo 	= apiRH.ls.getItem('me');
+			var logged 	= apiRH.ls.getItem('me.logged');
+
 			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
-				console.log(response);
 				app.registerTemplate('feed');
-				var template = Handlebars.templates.feed(response);
-				$('#content').append( template );
-				//app.set_selected_filter(filter);
-			}).fail(function(err){
+				//app.registerTemplate('sidemenu_logged');
+			})
+			 .fail(function(err){
 				console.log(err);
-			}).done(function(err){
-				// app.render_header();
-			});
-		},
-		render_unlogged_feed : function(){
-
-			var source   = $("#unlogged_feed_template").html();
-			var template = Handlebars.compile(source);
-			$('.main').html( template({}) );
-			app.render_main_feed(0, 'all');
-		},
-		render_logged_feed : function(){
-
-			// $.getJSON(api_base_url+user+'/timeline/', function(response){
-				var source   = $("#logged_feed_template").html();
-				var template = Handlebars.compile(source);
-				$('.main').html( template({}) );
-			// })
-			//  .done(function(response){
-				app.render_main_feed(0, 'all');
-			// })
-			//  .fail(function(err){
-			// 	console.log(err);
-			// });
-		},
-		render_search_composite : function(){
-			$.getJSON(api_base_url+'content/enum/categories/')
+			})
 			 .done(function(response){
-				console.log(response);
-				var data 	 = { categories: response}; 
-				var source   = $("#search_template").html();
+			 	var data = {me: JSON.parse(meInfo), data: response, logged_user: JSON.parse(logged)};
+			 	var source   = $("#feed_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
-				// app.render_search_categories();
+				var template = Handlebars.templates.feed(data);
+			 	console.log(data);
+				$('#content').append( template );
+				//app.set_selected_filter(filter);
+			});
+
+		},
+		render_search_composite : function(){
+			$.getJSON(api_base_url+'content/search-composite/')
+			 .done(function(response){
+				console.log(response);
+				var source   = $("#search_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(response) );
 			})
 			 .fail(function(error){
 			 	console.log(error);
 			 });
 		},
-		render_search_categories : function(){
+		render_map : function(){
+			// $.getJSON(api_base_url+'content/search-composite/')
+			//  .done(function(response){
+				// console.log(response);
+				var source   = $("#map_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template({}) );
+			// })
+			//  .fail(function(error){
+			//  	console.log(error);
+			//  });
+		},
+		render_detail : function(product_id){
+			
+			var meInfo 	= apiRH.ls.getItem('me');
+			var logged 	= apiRH.ls.getItem('me.logged');
 
-			var template = Handlebars.templates.subheader(source);
-			$('.main').append( template({}) );
+			$.getJSON(api_base_url+'products/'+product_id)
+			 .done(function(response){
+				var data = app.gatherEnvironment(response, "Printables");
+				var source   = $("#detail_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+			})
+			 .fail(function(error){
+			 	console.log(error);
+			 });
+		},
+		render_post : function(post_id){
+
+			/* Send header_title for it renders history_header */
+			$.getJSON(api_base_url+'content/'+post_id)
+			 .done(function(response){
+				var data = app.gatherEnvironment(response, "Now reading");
+				var source   = $("#post_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+			})
+			 .fail(function(error){
+			 	console.log(error);
+			 });
 		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */
@@ -516,13 +559,24 @@
 			app.showLoader();
 			e.preventDefault();
 			var data_login  	= app.getFormData('#login_form');
-			console.log(data_login);
 			var responsedata 	= apiRH.loginNative(data_login);
 			if(responsedata) {
 				console.log(responsedata);
 				apiRH.save_user_data_clientside(responsedata);
-				window.location.assign('feed.html?filter_feed=all');
+				window.location.assign('index.html?filter_feed=all');
+				return;
 			}
+			app.toast('Tu email o contraseña no son válidos.');
+		});
+
+		/** Login with events **/
+		$(document).on('click', '.login_button', function(){
+			
+			var provider = $(this).data('provider');
+			if(provider == 'facebook')
+				apiRH.loginOauth(provider, apiRH.loginCallbackFB);
+			if(provider == 'twitter')
+				apiRH.loginOauth(provider, apiRH.loginCallbackTW);
 		});
 
 
@@ -580,9 +634,11 @@
 			/* Requesting logout from server */
 			var response = apiRH.logOut({user_login : user, request_token : apiRH.get_request_token() });
 			if(response.success){
-				app.toast('Hasta pronto! Tu sesión ha sido cerrada');
-				app.ls.removeItem('dedalo_log_info');
-				app.ls.removeItem('request_token');
+				app.toast('Session ended, see you soon!');
+					app.ls.removeItem('dedalo_log_info');
+					app.ls.removeItem('request_token');
+					app.ls.removeItem('me.logged');
+					app.ls.removeItem('me');
 				window.location.assign('index.html');
 				return;
 			}
@@ -790,17 +846,7 @@
 			return;
 		});
 
-		/** Login with events **/
-		$(document).on('tap', '.login_button', function(){
-			
-			var provider = $(this).data('provider');
-			if(provider == 'facebook')
-				apiRH.loginOauth(provider, apiRH.loginCallbackFB);
-			if(provider == 'twitter')
-				apiRH.loginOauth(provider, apiRH.loginCallbackTW);
-			// if(provider == 'google_plus')
-			//     app.loginOauth(provider, loginCallbackGP);
-		});
+		
 
 		/* Pagination Load more posts */
 		$(document).on('tap', '#load_more_posts', function(e){

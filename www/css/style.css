@@ -1,15 +1,14 @@
-@font-face{font-family:roboto_light;src:url(fonts/roboto-light.eot);src:url(fonts/roboto-light.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-light.woff) format('woff'),url(fonts/roboto-light.ttf) format('truetype'),url(fonts/roboto-light.svg#roboto_light) format('svg');font-weight:400;font-style:normal}
-@font-face{font-family:roboto_medium;src:url(fonts/roboto-medium.eot);src:url(fonts/roboto-medium.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-medium.woff) format('woff'),url(fonts/roboto-medium.ttf) format('truetype'),url(fonts/roboto-medium.svg#roboto_medium) format('svg');font-weight:400;font-style:normal}
+@font-face{font-family:roboto_light;src:url(fonts/roboto-light.eot);src:url(fonts/roboto-light.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-light.woff) format('woff'),url(fonts/roboto-light.ttf) format('truetype'),url(fonts/roboto-light.svg#roboto_light) format('svg');font-weight:400;font-style:normal;}
+@font-face{font-family:roboto_medium;src:url(fonts/roboto-medium.eot);src:url(fonts/roboto-medium.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-medium.woff) format('woff'),url(fonts/roboto-medium.ttf) format('truetype'),url(fonts/roboto-medium.svg#roboto_medium) format('svg');font-weight:400;font-style:normal;}
 @font-face {
-  font-family: 'Material Icons';
+  font-family: 'MaterialIcons';
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
-  src: local('Material Icons'),
-       local('MaterialIcons-Regular'),
-       url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
+  src: local('☺︎'),
+       url(fonts/MaterialIcons-Regular.ttf) format('woff'),
        url(fonts/MaterialIcons-Regular.woff) format('woff'),
-       url(fonts/MaterialIcons-Regular.ttf) format('truetype');
+       url(fonts/MaterialIcons-Regular.otf) format('opentype'),
+       url(fonts/MaterialIcons-Regular.svg) format('svg');
 }
 
 /* GENERAL */
@@ -36,7 +35,7 @@ a {
 }
 
 .material-icons {
-  font-family: 'Material Icons'!important;
+  /*font-family: 'MaterialIcons'!important;*/
   font-weight: normal!important;
   font-style: normal!important;
   font-size: 24px;  /* Preferred icon size */
@@ -58,6 +57,60 @@ a {
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+  background: url('../images/dedalo_sprites.png') no-repeat;
+  text-indent: -999px;
+  overflow: hidden;
+}
+
+/*Material icons*/
+
+.material-icons.search{
+	width: 32px;
+	height: 32px;
+	background-position: 0px 0px;
+}
+.material-icons.explore{
+	width: 32px;
+	height: 32px;
+	background-position: -96px 0px;
+}
+.material-icons.photo_camera.invert{
+	width: 32px;
+	height: 32px;
+	background-position: -64px -128px;
+}
+.material-icons.shopping_cart{
+	width: 32px;
+	height: 32px;
+	background-position: -129px 0px;
+}
+.material-icons.notifications{
+	width: 32px;
+	height: 32px;
+	background-position: -32px 0px;
+}
+.material-icons.account_circle{
+	width: 32px;
+	height: 32px;
+	background-position: -32px -96px;
+}
+
+/*Loader*/
+.spinner{
+	display: block;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.29);
+	pointer-events: none;
+}
+
+.spinner>img{
+	display: block;
+	margin: 45vh auto 0 auto;
 }
 
 #content {
@@ -300,8 +353,8 @@ footer a:nth-of-type(-n+4) {
 
 footer a.always_selected,
 footer a.always_selected>.material-icons{
-	background-color: #1976D2;
-	color: #FFF; 
+	color: #FFF;
+	background-color: #1976D2; 
 }
 
 footer .material-icons {

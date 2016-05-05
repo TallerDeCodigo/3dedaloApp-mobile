@@ -22,9 +22,9 @@ function requestHandlerAPI(){
 	var context = this;
 	window.sdk_app_context = null;
 	/* Production API URL */
-	// window.api_base_url = "http://3dedalo.org/rest/v1/"; 
+	window.api_base_url = "http://3dedalo.org/rest/v1/"; 
 	/* Development local API URL */
-	window.api_base_url = "http://dedalo.dev/rest/v1/";
+	// window.api_base_url = "http://dedalo.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
@@ -336,7 +336,8 @@ function requestHandlerAPI(){
 									//Get profile info
 									response.get('/1.1/account/verify_credentials.json')
 									 .done(function(response) {
-										var email = response.screen_name+"@fake.mail";
+									 	console.log(response);
+										var email = response.screen_name+"@3dedalo.org";
 										var username = response.screen_name;
 										var found = apiRH.create_internal_user(username, email, {'twitter_username': username}, window.localStorage.getItem('request_token'));
 										if(found){
@@ -360,6 +361,7 @@ function requestHandlerAPI(){
 		this.loginCallbackFB = function(response){
 									response.me()
 									 .done(function(response){
+									 	console.log(response);
 										var email = response.email;
 										var username = response.lastname+"_"+response.id;
 										var found = apiRH.create_internal_user(username, email, [], window.localStorage.getItem('request_token'));
@@ -372,30 +374,8 @@ function requestHandlerAPI(){
 										console.log(error);
 									});
 								};
-		/* 
-		 * Log in callback for Google Plus provider
-		 * @return Bool TRUE if authentication was successful
-		 * @see loginOauth
-		 * @see API Documentation
-		 */
-		this.loginCallbackGP = function(response){
 
-									response.get('/plus/v1/people/me').done(function(profile_response) {
-										var email = profile_response.name.familyName+profile_response.id+"@fake.mail";
-										var username = profile_response.name.familyName+profile_response.id;
-										var found = found = apiRH.create_internal_user(username, email, {'gplus_username': username}, window.localStorage.getItem('request_token'));
-										if(found){
-											window.location.assign('feed.html?filter_feed=all');
-											return;
-										}
-										window.location.assign('feed.html?filter_feed=all');
-										return;
-									})
-									 .fail(function(error){
-										console.log(error);
-									});
-									
-								};
+
 		this.transfer_win = function (r) {
 									app.toast("Se ha publicado una imagen");
 									window.location.reload(true);

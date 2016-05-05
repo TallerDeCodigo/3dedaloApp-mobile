@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="org.dedalo.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <access origin="https://oauth.io" />
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
@@ -22,20 +26,19 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="InAppBrowser">
-        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    <feature name="Toast">
+        <param name="android-package" value="nl.xservices.plugins.Toast" />
     </feature>
-    <access origin="https://oauth.io" />
     <allow-intent href="market:*" />
-    <splash density="port-hdpi" src="res/android/splash-hdpi.png" />
-    <splash density="port-ldpi" src="res/android/splash-ldpi.png" />
-    <splash density="port-mdpi" src="res/android/splash-mdpi.png" />
-    <splash density="port-xhdpi" src="res/android/splash-xhdpi.png" />
-    <icon density="ldpi" src="res/android/icon_ldpi.png" />
-    <icon density="mdpi" src="res/android/icon_mdpi.png" />
-    <icon density="hdpi" src="res/android/icon_hdpi.png" />
-    <icon density="xhdpi" src="res/android/icon_xhdpi.png" />
-    <icon density="xxhdpi" src="res/android/icon_xxhdpi.png" />
+    <splash density="port-hdpi" src="res/screen/android/splash-hdpi.png" />
+    <splash density="port-ldpi" src="res/screen/android/splash-ldpi.png" />
+    <splash density="port-mdpi" src="res/screen/android/splash-mdpi.png" />
+    <splash density="port-xhdpi" src="res/screen/android/splash-xhdpi.png" />
+    <icon density="ldpi" src="res/screen/android/icon_ldpi.png" />
+    <icon density="mdpi" src="res/screen/android/icon_mdpi.png" />
+    <icon density="hdpi" src="res/screen/android/icon_hdpi.png" />
+    <icon density="xhdpi" src="res/screen/android/icon_xhdpi.png" />
+    <icon density="xxhdpi" src="res/screen/android/icon_xxhdpi.png" />
     <name>3Dedalo</name>
     <description>
         Dedalo i...
@@ -52,5 +55,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-navigation href="*://*.googleapis.com/*" />
-    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="FadeSplashScreenDuration" value="1500" />
+    <preference name="SplashScreenDelay" value="3500" />
 </widget>

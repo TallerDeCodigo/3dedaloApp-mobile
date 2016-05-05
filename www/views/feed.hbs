@@ -3,9 +3,9 @@
         <div id="superior1" class="arriba fotos">
 				<a class="bigg link" href="{{link_base}}.html?id={{ID}}">
 					{{#if thumb_url}}
-						<img src="{{thumb_url}}">
+						<img src="{{thumb_url}}"/>
 					{{else}} 
-						<img src="images/placeholder.png">
+						<img src="images/placeholder.png"/>
 					{{/if}}
 					<div>
 						<i class="material-icons">account_circle</i>
@@ -25,7 +25,7 @@
 {{#each data.pool}}
 	{{#if_module @index 4}}
 		</div>
-		<div {{#if_eq @index 0}}id="inferior1" class="abajo fotos"{{/if_eq}}{{#if_eq @index 4}}id="superior2" class="arriba fotos merged" style="display:none;"{{/if_eq}}{{#if_eq @index 8}}id="inferior2" class="abajo fotos"{{/if_eq}}{{#if_eq @index 12}}id="superior3" class="arriba fotos merged" style="display:none;"{{/if_eq}}{{#if_eq @index 16}}id="inferior3" class="abajo fotos"{{/if_eq}} class="abajo fotos">
+		<div {{#if_eq @index 0}}id="inferior1" class="abajo fotos"{{/if_eq}} {{#if_eq @index 4}}id="superior2" class="arriba fotos merged" style="display:none;"{{/if_eq}} {{#if_eq @index 8}}id="inferior2" class="abajo fotos"{{/if_eq}} {{#if_eq @index 12}}id="superior3" class="arriba fotos merged" style="display:none;"{{/if_eq}} {{#if_eq @index 16}}id="inferior3" class="abajo fotos"{{/if_eq}} class="abajo fotos">
 			<a class="small link" href="{{link_base}}.html?id={{ID}}">
 				{{#if thumb_url}}
 					<img src="{{thumb_url}}">
