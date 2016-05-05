@@ -42,9 +42,9 @@
 				    		{{/each}}
 						</ul>
 					</div>
-					<div id="overswipe"><span><i class="material-icons" >favorite_border</i> 0</span><span><i class="material-icons" >file_download</i> 0</span><span><i class="material-icons" >remove_red_eye</i> 0</span></div>
-					<a class="navegar" onclick="slider.prev();return false;" href="#"><i class="material-icons" >keyboard_arrow_left</i></a>
-					<a class="navegar" onclick="slider.next();return false;" href="#"><i class="material-icons" >keyboard_arrow_right</i></a>
+					<div id="overswipe"><span><i class="material-icons favorite_border" ></i> 0</span><span><i class="material-icons file_download" ></i> 0</span><span><i class="material-icons" >remove_red_eye</i> 0</span></div>
+					<a class="navegar" onclick="slider.prev();return false;" href="#"><i class="material-icons keyboard_arrow_left" ></i></a>
+					<a class="navegar" onclick="slider.next();return false;" href="#"><i class="material-icons keyboard_arrow_right" ></i></a>
 				</section>
 		    {{/if}}
 			
@@ -54,13 +54,13 @@
 				{{#if data.thumb_url}}
 					<img src="{{data.designer_brand.profile_pic}}" class="profile_pic round"><p class="side_profile">{{data.designer_brand.name}}</p>
 				{{else}}
-					<p><i class="material-icons" >account_circle</i> {{data.designer_brand.name}}</p>
+					<p><i class="material-icons account_circle" ></i> {{data.designer_brand.name}}</p>
 				{{/if}}
 			</div>
 			<div>
 				<span>$ {{data.product_price}}</span>
-				<p><a href="#"><i class="material-icons" >file_download</i> Add to cart</a></p>
-				<p><a href="#" class="techBtn"><i class="material-icons" >info</i> Technical</a></p>
+				<p><a href="#"><i class="material-icons file_download" ></i> Add to cart</a></p>
+				<p><a href="#" class="techBtn"><i class="material-icons info" ></i> Technical</a></p>
 			</div><br>
 			<div>
 				<p>{{{data.product_description}}}</p>
@@ -75,11 +75,11 @@
 				</section>
 			{{/if }}
 			<section id="technical">
-				<h2><i class="material-icons" >info</i> Technical Info</h2>
+				<h2><i class="material-icons info" ></i> Technical Info</h2>
 				{{#if data.technical.info}}
 					<p>{{{data.technical.info}}}</p>
 				{{/if}}
-				<h2><i class="material-icons" >print</i> Print Settings</h2>
+				<h2><i class="material-icons print" ></i> Print Settings</h2>
 				{{#if data.printer.type}}
 					<p><b>Printer:</b> {{data.printer.type}}<br>
 				{{/if}}
@@ -93,12 +93,12 @@
 					<b>Infill:</b> {{data.printer.infill}}<br></p>
 				{{/if}}
 
-				<h2><i class="material-icons" >mode_edit</i> Notes</h2>
+				<h2><i class="material-icons mode_edit" ></i> Notes</h2>
 				<p>{{data.technical.notes}}</p>
 			</section>
 			{{#if data.tags.count}}
 				<section>
-					<h2><i class="material-icons" >label</i> Tags</h2>
+					<h2><i class="material-icons label" ></i> Tags</h2>
 					{{#each data.tags.pool}}
 						<a href="#">{{name}}</a>
 					{{/each}}
@@ -106,14 +106,14 @@
 			{{/if}}
 			{{#if data.design_tools.count}}
 				<section>
-					<h2><i class="material-icons" >build</i> Design Tools</h2>
+					<h2><i class="material-icons build" ></i> Design Tools</h2>
 					{{#each data.design_tools.pool}}
 						<a href="#">{{name}}</a>
 					{{/each}}
 				</section>
 			{{/if}}
 			<section>
-				<h2><i class="material-icons" >copyright</i> License</h2>
+				<h2><i class="material-icons copyright" ></i> License</h2>
 				<img src="images/license.png" />
 			</section>
 		</div>

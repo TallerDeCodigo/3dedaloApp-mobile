@@ -69,6 +69,9 @@ a {
 	height: 32px;
 	background-position: 0px 0px;
 }
+.material-icons.search.invert{
+	background-position: 0px -129px;
+}
 .material-icons.explore{
 	width: 32px;
 	height: 32px;
@@ -93,6 +96,19 @@ a {
 	width: 32px;
 	height: 32px;
 	background-position: -32px -96px;
+}
+.material-icons.account_circle.invert{
+	background-position: -192px -128px;
+}
+.material-icons.account_circle.big{
+	width: 49px;
+	height: 49px;
+	background-position: -4px -299px;
+}
+.material-icons.arrow_back{
+	width: 32px;
+	height: 32px;
+	background-position: -224px -128px;
 }
 
 /*Loader*/
@@ -1763,8 +1779,7 @@ div.gm-style-iw {
 
 .link .material-icons {
 	float:left;
-	height:100px;
-	margin-right:3px;
+	margin:0 3px 50px 0;
 }
 
 .bigg .material-icons {
