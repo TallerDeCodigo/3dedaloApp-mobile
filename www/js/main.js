@@ -188,7 +188,6 @@
 
 			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
 				app.registerTemplate('feed');
-				//app.registerTemplate('sidemenu_logged');
 			})
 			 .fail(function(err){
 				console.log(err);
@@ -201,7 +200,6 @@
 				var template = Handlebars.templates.feed(data);
 			 	console.log(data);
 				$('#content').append( template );
-				//app.set_selected_filter(filter);
 			});
 
 		},
