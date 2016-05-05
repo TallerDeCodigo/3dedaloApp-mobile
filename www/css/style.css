@@ -110,6 +110,25 @@ a {
 	height: 32px;
 	background-position: -224px -128px;
 }
+.material-icons.send{width:26px;height:26px;background-position:-66px -195px;}
+.material-icons.info{width:22px;height:22px;background-position:-37px -37px;}
+.material-icons.file_download{width:22px;height:22px;background-position:-5px -37px;}
+.material-icons.print.medium{width:26px;height:26px;background-position:-99px -35px;vertical-align:baseline;}
+.material-icons.info.medium{width: 26px;height: 26px;background-position: -67px -35px;vertical-align: baseline;;}
+.material-icons.mode_edit.medium{width:26px;height:26px;background-position:-131px -35px;}
+.material-icons.label.medium{width: 22px;height: 22px;background-position: -37px -37px;}
+.material-icons.buils.medium{width: 22px;height: 22px;background-position: -37px -37px;}
+.material-icons.copyright.medium{width:26px;height:26px;background-position:-163px -35px;}
+.material-icons.remove_red_eye{width:26px;height:26px;background-position:-163px -35px;}
+.material-icons.keyboard_arrow_left{width:26px;height:26px;background-position:-37px -163px;}
+.material-icons.keyboard_arrow_right{width:26px;height:26px;background-position:-66px -163px;}
+
+.material-icons.favorite_border.invert{width:26px;height:26px;background-position:-99px -163px;}
+.material-icons.file_download.invert{width:26px;height:26px;background-position:-163px -131px;}
+.material-icons.remove_red_eye.invert{width:26px;height:26px;background-position:-131px -163px;}
+
+
+.detail .add_to_cart{display:block;}
 
 /*Loader*/
 .spinner{
@@ -444,7 +463,7 @@ div.wrapper {
 #user .login_form input.icon_hack{
 	padding:0;
 	border:0;
-	background-color:#A2A2A2;
+	background-color:#3E3E3E;
 	width:42px;
 	height:42px;
 	-webkit-border-radius: 50%;
@@ -901,14 +920,15 @@ div.wrapper {
 .detail section:nth-of-type(2) div:nth-of-type(1) {
 	margin-top:20px;
 	margin-left:18px;
-	color:#1976D2;
 	min-width:230px;
 	width:60%;
+	vertical-align:top;
 }
 
 .detail section:nth-of-type(2) div:nth-of-type(2) {
 	color:#1976D2;
-	width:90px;
+	width:110px;
+	margin-top:20px;
 }
 
 .detail section:nth-of-type(2) div:nth-of-type(2) p:nth-of-type(1) {
@@ -952,7 +972,7 @@ div.wrapper {
 }
 
 .detail h1 {
-	font-size:125%;
+	font-size:110%;
 }
 
 .detail section:nth-of-type(2) div:nth-of-type(2) span {

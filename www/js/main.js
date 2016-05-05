@@ -51,18 +51,24 @@
 			console.log(apiRH.request_token().get_request_token());
 		},
 		registerPartials: function() {
-			var template = null;
 			/* Add files to be loaded here */
-			var filenames = ['header', 'history_header', 'search_header', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
+			var filenames = ['header', 'history_header', 'search_header', 'feed', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
-				request.open('GET', 'views/partials/' + filename + '.hbs',false);
+				request.open('GET', 'views/partials/' + filename + '.hbs', false);
 				request.send(null);
 				if (request.status === 200) 
 			    	Handlebars.registerPartial(filename, request.responseText);
 
 			});
-			
+		},
+		registerPartial: function(filename) {
+			var request = new XMLHttpRequest();
+			request.open('GET', 'views/partials/' + filename + '.hbs', false);
+			request.send(null);
+			if (request.status === 200) 
+			    	Handlebars.registerPartial(filename, request.responseText);
+			return;
 		},
 		registerTemplate : function(name) {
 		    $.ajax({
@@ -127,7 +133,6 @@
 			}
 		},
 		gatherEnvironment: function(optional_data, history_title) {
-			
 			/* Gather environment information */
 			var meInfo 	= apiRH.ls.getItem('me');
 			var logged 	= apiRH.ls.getItem('me.logged');
@@ -157,13 +162,11 @@
 		isObjEmpty: function (obj) {
 
 				if (obj == null) return true;
-
 				if (obj.length > 0)    return false;
 				if (obj.length === 0)  return true;
 
-				for (var key in obj) {
-						if (hasOwnProperty.call(obj, key)) return false;
-				}
+				for (var key in obj) 
+					if (hasOwnProperty.call(obj, key)) return false;
 				return true;
 		},
 		render_header : function(){
@@ -174,7 +177,6 @@
 			});
 		},
 		render_menu : function(){
-
 			$.getJSON(api_base_url+'auth/'+user+'/me', function(response){
 				console.log(response);
 				var template = Handlebars.templates.header(response);
@@ -182,26 +184,23 @@
 			});
 		},
 		render_feed : function(offset, filter){
-			var data 	= {};
-			var meInfo 	= apiRH.ls.getItem('me');
-			var logged 	= apiRH.ls.getItem('me.logged');
-
+			app.showLoader();
 			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
-				app.registerTemplate('feed');
 			})
 			 .fail(function(err){
 				console.log(err);
+				app.hideLoader();
+				app.toast("No hay conexión")
 			})
 			 .done(function(response){
-			 	var data = {me: JSON.parse(meInfo), data: response, logged_user: JSON.parse(logged)};
 			 	var source   = $("#feed_template").html();
 				var template = Handlebars.compile(source);
-				$('.main').html( template(data) );
-				var template = Handlebars.templates.feed(data);
-			 	console.log(data);
-				$('#content').append( template );
+				$('.main').html( template(app.gatherEnvironment(response)) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
 			});
-
+			
 		},
 		render_search_composite : function(){
 			$.getJSON(api_base_url+'content/search-composite/')
@@ -228,16 +227,17 @@
 			//  });
 		},
 		render_detail : function(product_id){
-			
-			var meInfo 	= apiRH.ls.getItem('me');
-			var logged 	= apiRH.ls.getItem('me.logged');
 
 			$.getJSON(api_base_url+'products/'+product_id)
 			 .done(function(response){
+			 	console.log(response);
 				var data = app.gatherEnvironment(response, "Printables");
 				var source   = $("#detail_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
 			})
 			 .fail(function(error){
 			 	console.log(error);
@@ -252,6 +252,9 @@
 				var source   = $("#post_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
 			})
 			 .fail(function(error){
 			 	console.log(error);
@@ -462,6 +465,7 @@
 			$('#spinner').show();
 		},
 		hideLoader: function(){
+			console.log($('#spinner'));
 			$('#spinner').hide();
 		},
 		toast: function(message, bottom){
