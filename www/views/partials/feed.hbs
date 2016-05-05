@@ -8,10 +8,10 @@
 						<img src="images/placeholder.png"/>
 					{{/if}}
 					<div>
-						{{#if productos.thumb_url}}
-							<img src="{{designer_brand.profile_pic}}" class="profile_pic round small" />
+						{{#if designer_brand.profile_pic}}
+							<img src="{{designer_brand.profile_pic}}" class="profile_pic round" />
 						{{else}}
-							<i class="material-icons account_circle invert" ></i>
+							<i class="material-icons account_circle big invert" ></i>
 						{{/if}}
 						<h1>{{product_title}}</h1>
 						<span>{{designer_brand.name}}</span>
@@ -39,7 +39,7 @@
 				{{/if}}
 				{{#if productos}}
 					<div>
-						{{#if productos.thumb_url}}
+						{{#if designer_brand.profile_pic}}
 							<img src="{{designer_brand.profile_pic}}" class="profile_pic round small" />
 						{{else}}
 							<i class="material-icons account_circle invert" ></i>

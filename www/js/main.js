@@ -465,7 +465,6 @@
 			$('#spinner').show();
 		},
 		hideLoader: function(){
-			console.log($('#spinner'));
 			$('#spinner').hide();
 		},
 		toast: function(message, bottom){
