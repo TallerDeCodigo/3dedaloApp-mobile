@@ -365,9 +365,9 @@ function requestHandlerAPI(){
 									 	console.log(response);
 										var email = response.email;
 										var username = response.lastname+"_"+response.id;
-										var found = apiRH.create_internal_user(username, email, [], window.localStorage.getItem('request_token'));
-										if(found)
-											return app.toast('El usuario ya existe');
+										var found = apiRH.create_internal_user(username, email, {fbId: response.id, avatar: response.avatar, name: response.firstname, last_name: response.lastname}, window.localStorage.getItem('request_token'));
+										// if(found)
+										// 	return app.toast('El usuario ya existe');
 										window.location.assign('feed.html?filter_feed=all');
 										return;
 									})
