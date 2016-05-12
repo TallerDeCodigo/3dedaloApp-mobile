@@ -59,5 +59,4 @@
 
     <preference name="FadeSplashScreenDuration" value="1500"/>
     <preference name="SplashScreenDelay" value="3500" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
 </widget>

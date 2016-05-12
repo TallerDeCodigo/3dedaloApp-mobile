@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	    <script type="text/javascript" src="js/functions.js"></script>
+	</head>
+
+	<body style="background:#212121">
+		<section class="main">
+			<!-- Template will be inserted here -->
+		</section>
+	</body>
+
+	<!-- Load Scripts -->
+	<script src="js/handlebars-runtime.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		app.initialize();
+	</script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script id="create_user_template" type="text/x-handlebars-template">
+		
+		<div id="content" class="settings">
+			{{> history_header}}
+			<section>
+				<table><tr><td><i class="material-icons">account_circle</i> Personal Info</td></tr></table>
+				<br><img id="img-id" src="images/photo.png" /><br>
+				<input type="text" onfocus="if(this.value == 'Name') { this.value = ''; }" value="Name"><br>
+				<input type="text" onfocus="if(this.value == 'Lastname') { this.value = ''; }" value="Lastname"><br>
+				<input type="text" onfocus="if(this.value == 'E-mail') { this.value = ''; }" value="E-mail"><br>
+				<input type="text" onfocus="if(this.value == 'Password') { this.value = ''; }" value="Password"><br>
+				<input type="text" onfocus="if(this.value == 'Confirm password') { this.value = ''; }" value="Confirm password"><br>
+				<input type="text" onfocus="if(this.value == 'Bio') { this.value = ''; }" value="Bio"><br>
+				
+				<br><a class="submit" href="#">Start!</a>
+			</section>
+		</div>
+
+	</script>
+
+	<script type="text/javascript">
+		app.render_create_user();
+		app.showLoader();
+	</script>
+	<script type="text/javascript" src="js/functions.js"></script>
+
+</html>

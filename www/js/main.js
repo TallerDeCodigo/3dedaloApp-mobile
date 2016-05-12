@@ -142,11 +142,11 @@
 			
 			if(optional_data){
 				parsed['data'] = optional_data;
-				if(history_title)
-					parsed['header_title'] = history_title;
 				return parsed;
 			}
-			return {me: JSON.parse(meInfo), logged_user: JSON.parse(logged)};
+			if(history_title)
+				parsed['header_title'] = history_title;
+			return parsed;
 
 		},
 		getUrlVars: function() {
@@ -263,6 +263,17 @@
 			 .fail(function(error){
 			 	console.log(error);
 			 });
+		},
+		render_create_user : function(){
+
+			/* Send header_title for it renders history_header */
+			var data = app.gatherEnvironment(null, "Create account");
+			var source   = $("#create_user_template").html();
+			var template = Handlebars.compile(source);
+			$('.main').html( template(data) );
+			setTimeout(function(){
+				app.hideLoader();
+			}, 2000);
 		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */
