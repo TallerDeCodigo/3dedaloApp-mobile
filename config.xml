@@ -12,13 +12,13 @@
     <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
 
     <access origin="*" />
-
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="http://*/*" />
     <allow-navigation href="*://*.googleapis.com/*"/>
 
     <platform name="android">
@@ -59,4 +59,5 @@
 
     <preference name="FadeSplashScreenDuration" value="1500"/>
     <preference name="SplashScreenDelay" value="3500" />
+    <gap:plugin name="org.apache.cordova.splashscreen" />
 </widget>
