@@ -22,9 +22,9 @@ function requestHandlerAPI(){
 	var context = this;
 	window.sdk_app_context = null;
 	/* Production API URL */
-	window.api_base_url = "http://3dedalo.org/rest/v1/"; 
+	// window.api_base_url = "http://3dedalo.org/rest/v1/"; 
 	/* Development local API URL */
-	// window.api_base_url = "http://dedalo.dev/rest/v1/";
+	window.api_base_url = "http://dedalo.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
@@ -64,12 +64,13 @@ function requestHandlerAPI(){
 		 */
 		this.registerNative =  function(data_login){
 								var data = {
-												username 	: data_login.user_login_reg, 
-												email 		: data_login.user_email_reg, 
+												username 	: data_login.user_email, 
+												email 		: data_login.user_email,
 												attrs 		: {
-																password: data_login.user_password_reg,
-																country: data_login.user_country,
-																province: data_login.user_province,
+																password: data_login.user_pwd,
+																bio: data_login.user_province,
+																name 		: data_login.user_name, 
+																last_name 	: data_login.user_last_name, 
 																request_token: apiRH.get_request_token()
 															  }
 											};

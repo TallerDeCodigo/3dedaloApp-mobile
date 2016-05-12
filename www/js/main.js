@@ -595,6 +595,23 @@
 				apiRH.loginOauth(provider, apiRH.loginCallbackTW);
 		});
 
+		/* Log In with a regular ol' account */
+		$('#create_account_form').submit(function(e){
+			app.showLoader();
+			e.preventDefault();
+			var data_login  	= app.getFormData('#create_account_form');
+			console.log(data_login);
+			var responsedata 	= apiRH.registerNative(data_login);
+			if(responsedata) {
+				console.log(responsedata);
+				apiRH.save_user_data_clientside(responsedata);
+				// window.location.assign('index.html?filter_feed=all');
+				return;
+			}
+			app.toast('Hubo un error al crear tu cuenta, intenta nuevamente.');
+			return;
+		});
+
 
 
 

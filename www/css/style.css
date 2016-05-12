@@ -887,7 +887,7 @@ div.gm-style-iw {padding-left:13px;
 }
 
 
-.settings .submit {position:relative;display:inline-block;margin:20px 0px 30px;padding:5px 9px;background:#9ED1FA;color:#1976D2;border-radius:2px;
+.settings .submit {position:relative;display:inline-block;margin:20px 0px 30px;padding:5px 9px;background:#9ED1FA;color:#1976D2;border-radius:2px;width:62px;
 }
 
 
@@ -2627,6 +2627,26 @@ div.gm-style-iw {
 	outline:none;
 	border:none;
 	border-bottom:1px solid #757575;
+}
+
+.settings ::-webkit-input-placeholder {
+    color: #757575;
+    padding: 6px 2px;
+}
+
+.settings :-moz-placeholder { /* Firefox 18- */
+    color: #757575;
+    padding: 6px 2px;  
+}
+
+.settings ::-moz-placeholder {  /* Firefox 19+ */
+    color: #757575;
+    padding: 6px 2px;  
+}
+
+.settings :-ms-input-placeholder {  
+    color: #757575;
+    padding: 6px 2px;  
 }
 
 .settings table {
