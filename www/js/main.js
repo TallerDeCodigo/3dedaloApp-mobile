@@ -16,6 +16,7 @@
 			$.ajaxSetup({
 				 async: false
 			});
+			window.loggedIn = false;
 			app.registerPartials();
 			app.registerHelpers();
 			/* localStorage init */
@@ -24,7 +25,8 @@
 							window.user 	= (log_info) ? log_info.user_login : '';
 							window.user_id 	= (log_info) ? log_info.user_id : '';
 							window.user_role = (log_info) ? log_info.user_role : '';
-
+			if(log_info)
+				loggedIn = true;
 			/* Initialize API request handler */
 			window.apiRH = new requestHandlerAPI().construct(app);
 
@@ -198,6 +200,8 @@
 				$('.main').html( template(app.gatherEnvironment(response)) );
 				setTimeout(function(){
 					app.hideLoader();
+					if(!loggedIn)
+						$('#account1').trigger('click');
 				}, 2000);
 			});
 			

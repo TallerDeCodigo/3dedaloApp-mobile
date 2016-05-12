@@ -1127,7 +1127,7 @@ div.gm-style-iw {padding-left:13px;
 }
 
 
-.small h1 {font-size:18px;margin-bottom:-2px;
+.small h1 {font-size:16px;margin-bottom:-2px;letter-spacing:0.6px;
 }
 
 
@@ -1251,7 +1251,7 @@ a {
 
   /* Support for IE. */
   font-feature-settings: 'liga';
-  background: url('../images/dedalo_sprites.png') no-repeat;
+  background: url('../images/dedalo_sprites.svg') no-repeat;
   text-indent: -999px;
   overflow: hidden;
 }
@@ -2948,7 +2948,7 @@ div.gm-style-iw {
 
 .bigg .profile_pic{
 	float: left;
-    margin: initial;
+    margin: 0 5px 0 0;
     top: initial;
     bottom: initial;
     left: initial;
