@@ -124,11 +124,9 @@ function requestHandlerAPI(){
 													};
 											console.log(JSON.stringify(data));
 											response = this.makeRequest('auth/user/', data);
-											/* Save user data client side */
-											console.log('Save client side');
-											exists  = this.getRequest('user/exists/', username);
-											console.log(JSON.stringify(exists));
-											this.save_user_data_clientside(exists.data);
+											/* End handshake with server by validating token and getting 'me' data */
+											context.endHandshake(username);
+
 											/* Validate token */
 											data = {
 														user_id     : 'none',
@@ -147,7 +145,7 @@ function requestHandlerAPI(){
 		 */
 		this.save_user_data_clientside = function(data){
 											var user_role = data.role;
-											if(user_role == 'administrator') user_role = 'subscriber';
+											if(user_role == 'administrator') user_role = 'maker';
 											this.ls.setItem('dedalo_log_info', 	JSON.stringify({
 																					user_login: 	data.user_login,
 																					username: 		data.user_login,
@@ -366,12 +364,8 @@ function requestHandlerAPI(){
 										var email = response.email;
 										var username = response.lastname+"_"+response.id;
 										var found = apiRH.create_internal_user(username, email, {fbId: response.id, avatar: response.avatar+'?type=normal', name: response.firstname, last_name: response.lastname}, window.localStorage.getItem('request_token'));
-										
-										var exists  = context.getRequest('user/exists/'+ username, null);
-										console.log(exists);
-										if(exists.success){
-											context.save_user_data_clientside(exists.data);
-										}
+										/* End handshake with server by validating token and getting 'me' data */
+										context.endHandshake(username);
 
 										window.location.assign('feed.html?filter_feed=all');
 										return;
@@ -381,6 +375,19 @@ function requestHandlerAPI(){
 									});
 								};
 
+		this.endHandshake = function(user_login){
+								var exists  = context.getRequest('user/exists/'+ user_login, null);
+								if(exists.success){
+									/* Validate token */
+									data = {
+												user_id     : 'none',
+												token       : apiRH.get_request_token(),
+												validate_id   : (exists.data.user_id) ? exists.data.user_id : 'none'
+											};
+									response = this.makeRequest('user/validateToken/', data);
+									context.save_user_data_clientside(exists.data);
+								}
+							};
 
 		this.transfer_win = function (r) {
 									app.toast("Se ha publicado una imagen");
