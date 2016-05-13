@@ -902,6 +902,8 @@ div.gm-style-iw {padding-left:13px;
 .settings section p {margin:10px 25px;
 }
 
+.settings .profile_pic.change_pic{display:block;margin:0 auto;float:none;position:relative;}
+
 
 .choosed {position:relative;display:inline-block;margin:5px 6px 5px;padding:3px 7px;background:none;color:#757575;border:1px solid #757575;border-radius:2px;
 }

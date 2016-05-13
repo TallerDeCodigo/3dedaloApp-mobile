@@ -1,89 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
-	<title>DEDALO</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
-</head>
-<body style="background:#212121">
-<div id="content" class="settings">
-	<header><a href="#" onclick="history.back(-1)"><i id="back" class="material-icons">arrow_back</i></a><p>Create account</p></header>
-	<section>
-		<table><tr><td><i class="material-icons">account_circle</i> Personal Info</td></tr></table>
-		<br><img id="img-id" src="images/photo.png" /><br>
-		<input type="text" onfocus="if(this.value == 'Name') { this.value = ''; }" value="Name"><br>
-		<input type="text" onfocus="if(this.value == 'Lastname') { this.value = ''; }" value="Lastname"><br>
-		<input type="text" onfocus="if(this.value == 'E-mail') { this.value = ''; }" value="E-mail"><br>
-		<input type="text" onfocus="if(this.value == 'Password') { this.value = ''; }" value="Password"><br>
-		<input type="text" onfocus="if(this.value == 'Confirm password') { this.value = ''; }" value="Confirm password"><br>
-		<input type="text" onfocus="if(this.value == 'Bio') { this.value = ''; }" value="Bio"><br>
-		<table>
-			<tr>
-				<td><i class="material-icons">local_shipping</i> Shipping</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td class="shipp"><i class="material-icons">adjust</i> Home</td>
-				<td><i class="material-icons">mode_edit</i></td>
-				<td><i class="material-icons">delete</i></td>
-			</tr>
-			<tr>
-				<td class="shipp"><i class="material-icons">panorama_fish_eye</i> Work</td>
-				<td><i class="material-icons">mode_edit</i></td>
-				<td><i class="material-icons">delete</i></td>
-			</tr>
-			<tr>
-				<td><a href="address.html"><i class="material-icons">control_point</i> Add Address</a></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td><i class="material-icons">credit_card</i> Payment</td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td class="paym"><i class="material-icons">adjust</i> Visa 1234</td>
-				<td><i class="material-icons">mode_edit</i></td>
-				<td><i class="material-icons">delete</i></td>
-			</tr>
-			<tr>
-				<td class="paym"><i class="material-icons">panorama_fish_eye</i> Mastercard 3456</td>
-				<td><i class="material-icons">mode_edit</i></td>
-				<td><i class="material-icons">delete</i></td>
-			</tr>
-			<tr>
-				<td class="paym"><i class="material-icons">panorama_fish_eye</i> Amex 6789</td>
-				<td><i class="material-icons">mode_edit</i></td>
-				<td><i class="material-icons">delete</i></td>
-			</tr>
-			<tr>
-				<td class="paym"><i class="material-icons">panorama_fish_eye</i> Paypal</td>
-				<td><i class="material-icons">mode_edit</i></td>
-				<td><i class="material-icons">delete</i></td>
-			</tr>
-			<tr>
-				<td><a href="card.html"><i class="material-icons">control_point</i> Add Card</a></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
-		<br><a class="submit" href="#">SAVE</a>
-	</section>
-	<footer>
-	<a href="search.html"><i class="material-icons">search</i></a>
-	<a href="notifications.html"><i class="material-icons">notifications</i></a>
-	<a href="map.html"><i class="material-icons">explore</i></a>
-	<a href="cart.html"><i class="material-icons">shopping_cart</i></a>
-	</footer>
-</div>
-</body>
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	    <script type="text/javascript" src="js/functions.js"></script>
+	</head>
+
+	<body style="background:#212121">
+		<section class="main">
+			<!-- Template will be inserted here -->
+		</section>
+	</body>
+
+	<!-- Load Scripts -->
+	<script src="js/handlebars-runtime.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		app.initialize();
+	</script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script id="settings_template" type="text/x-handlebars-template">
+		
+		<div id="content" class="settings">
+			{{> history_header_nouser}}
+			<section>
+				<form id="settings_form">
+					<table><tr><td><i class="material-icons account_circle small"></i> Personal Info</td></tr></table>
+
+					{{#if me.profile_pic}}
+						<img id="settings_image" src="{{me.profile_pic}}" class="profile_pic round change_pic">
+					{{else}}
+						<br><img id="img-id" src="images/photo.png" /><br>
+					{{/if}}
+					<input type="text" name="user_name" type="text" placeholder="Name" value="{{data.first_name}}"><br>
+					<input type="text" name="user_last_name" type="text" placeholder="Lastname" value="{{data.last_name}}"><br>
+					<input type="text" name="user_email" type="text" placeholder="E-mail" value="{{data.email}}"><br>
+					<input type="text" name="user_bio" type="text" placeholder="Bio (Tell us about you)" value="{{data.bio}}"><br>
+					<input type="password" name="user_pwd" type="text" placeholder="Password" value=""><br>
+					<input type="password" name="user_rpt_pwd" type="text" placeholder="Confirm password" value=""><br>
+					<!-- <table>
+						<tr>
+							<td><i class="material-icons">local_shipping</i> Shipping</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td class="shipp"><i class="material-icons">adjust</i> Home</td>
+							<td><i class="material-icons">mode_edit</i></td>
+							<td><i class="material-icons">delete</i></td>
+						</tr>
+						<tr>
+							<td class="shipp"><i class="material-icons">panorama_fish_eye</i> Work</td>
+							<td><i class="material-icons">mode_edit</i></td>
+							<td><i class="material-icons">delete</i></td>
+						</tr>
+						<tr>
+							<td><a href="address.html"><i class="material-icons">control_point</i> Add Address</a></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td><i class="material-icons">credit_card</i> Payment</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td class="paym"><i class="material-icons">adjust</i> Visa 1234</td>
+							<td><i class="material-icons">mode_edit</i></td>
+							<td><i class="material-icons">delete</i></td>
+						</tr>
+						<tr>
+							<td class="paym"><i class="material-icons">panorama_fish_eye</i> Mastercard 3456</td>
+							<td><i class="material-icons">mode_edit</i></td>
+							<td><i class="material-icons">delete</i></td>
+						</tr>
+						<tr>
+							<td class="paym"><i class="material-icons">panorama_fish_eye</i> Amex 6789</td>
+							<td><i class="material-icons">mode_edit</i></td>
+							<td><i class="material-icons">delete</i></td>
+						</tr>
+						<tr>
+							<td class="paym"><i class="material-icons">panorama_fish_eye</i> Paypal</td>
+							<td><i class="material-icons">mode_edit</i></td>
+							<td><i class="material-icons">delete</i></td>
+						</tr>
+						<tr>
+							<td><a href="card.html"><i class="material-icons">control_point</i> Add Card</a></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table> -->
+					<br><input type="submit" class="submit" value="Start!" >
+				</form>
+			</section>
+		</div>
+
+	</script>
+
+	<script type="text/javascript">
+		app.render_settings();
+		app.showLoader();
+	</script>
+	<script type="text/javascript" src="js/functions.js"></script>
+
 </html>

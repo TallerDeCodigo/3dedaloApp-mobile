@@ -22,9 +22,9 @@ function requestHandlerAPI(){
 	var context = this;
 	window.sdk_app_context = null;
 	/* Production API URL */
-	// window.api_base_url = "http://3dedalo.org/rest/v1/"; 
+	window.api_base_url = "http://3dedalo.org/rest/v1/"; 
 	/* Development local API URL */
-	window.api_base_url = "http://dedalo.dev/rest/v1/";
+	// window.api_base_url = "http://dedalo.dev/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
@@ -473,8 +473,8 @@ function requestHandlerAPI(){
 					destinationType: this.photoDestinationType.FILE_URI,
 					sourceType: sourcetype,
 					mediaType: navigator.camera.MediaType.ALLMEDIA  });
-			if(destination == 'event')
-				navigator.camera.getPicture(context.fileselect_win, context.fileselect_fail, { quality: 50,
+			if(destination == 'search')
+				navigator.camera.getPicture(context.fileselect_win, context.fileselect_fail, { quality: 100,
 						destinationType: this.photoDestinationType.FILE_URI,
 						sourceType: sourcetype,
 						mediaType: navigator.camera.MediaType.ALLMEDIA  });

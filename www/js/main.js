@@ -54,7 +54,7 @@
 		},
 		registerPartials: function() {
 			/* Add files to be loaded here */
-			var filenames = ['header', 'history_header', 'search_header', 'feed', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
+			var filenames = ['header', 'history_header', 'history_header_nouser', 'search_header', 'feed', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
 				request.open('GET', 'views/partials/' + filename + '.hbs', false);
@@ -142,7 +142,7 @@
 			
 			if(optional_data){
 				parsed['data'] = optional_data;
-				return parsed;
+				//return parsed;
 			}
 			if(history_title)
 				parsed['header_title'] = history_title;
@@ -274,6 +274,25 @@
 			setTimeout(function(){
 				app.hideLoader();
 			}, 2000);
+		},
+		render_settings : function(){
+			/* Send header_title for it renders history_header */
+			console.log(api_base_url+user+'/me/');
+			$.getJSON(api_base_url+user+'/me/')
+			 .done(function(response){
+			 	console.log(response);
+				/* Send header_title for it renders history_header */
+				var data = app.gatherEnvironment(response, "Account settings");
+				var source   = $("#settings_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
+			})
+			  .fail(function(err){
+		  		console.log(err);
+		  	});
 		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */
@@ -610,6 +629,11 @@
 			}
 			app.toast('Hubo un error al crear tu cuenta, intenta nuevamente.');
 			return;
+		});
+
+
+		$('#search_by_photo').click(function(){
+			app.get_file_from_device('search', 'camera');
 		});
 
 
