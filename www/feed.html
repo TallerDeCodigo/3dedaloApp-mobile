@@ -21,11 +21,11 @@
 	<script src="js/plugins.js"></script>
     <script type="text/javascript">
 		/* Initialize app object and perform initial login check */
+		console.log("loading????");
 		window.is_feed = true;
 		app.initialize();
 	</script>
-	<script type="text/javascript" src="cordova.js"></script>
-	<script id="feed_template" type="text/x-handlebars-template">
+		<script id="feed_template" type="text/x-handlebars-template">
 			<div id="content" class="index">
 				{{> header}}
 				{{> feed data}}

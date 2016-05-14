@@ -209,10 +209,11 @@
 		render_search_composite : function(){
 			$.getJSON(api_base_url+'content/search-composite/')
 			 .done(function(response){
-				console.log(response);
+				response.search_active =  true;
+				var data = app.gatherEnvironment(response);
 				var source   = $("#search_template").html();
 				var template = Handlebars.compile(source);
-				$('.main').html( template(response) );
+				$('.main').html( template(data) );
 			})
 			 .fail(function(error){
 			 	console.log(error);
@@ -222,9 +223,10 @@
 			// $.getJSON(api_base_url+'content/search-composite/')
 			//  .done(function(response){
 				// console.log(response);
+				var data = {explore_active: true};
 				var source   = $("#map_template").html();
 				var template = Handlebars.compile(source);
-				$('.main').html( template({}) );
+				$('.main').html( template(data) );
 			// })
 			//  .fail(function(error){
 			//  	console.log(error);
@@ -293,6 +295,17 @@
 			  .fail(function(err){
 		  		console.log(err);
 		  	});
+		},
+		render_notifications : function(){
+			/* Send header_title for it renders history_header */
+			var data = app.gatherEnvironment(null, "Notifications");
+			data.notifications_active = true;
+			var source   = $("#notifications_template").html();
+			var template = Handlebars.compile(source);
+			$('.main').html( template(data) );
+			setTimeout(function(){
+				app.hideLoader();
+			}, 2000);
 		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */
