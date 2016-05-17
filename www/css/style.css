@@ -550,12 +550,14 @@ div.wrapper {
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
-	position: absolute;
 	margin-top: -13px;
 	margin-left: -90px;
 	font-size: 400%;
-	height: 66px;
-	width: 66px;
+	height: 92px;
+	width: 92px;
+	position: relative;
+	display: block;
+	margin: 0 auto;
 }
 
 #user .footer {
@@ -1507,6 +1509,7 @@ div.gm-style-iw {
 	background:#9ED1FA;
 	color:#1976D2;
 	border-radius:2px;
+	width:60px;
 }
 
 .adder section input:nth-of-type(3), .adder section input:nth-of-type(4), .adder section input:nth-of-type(5) {
@@ -1523,7 +1526,7 @@ div.gm-style-iw {
 	margin:10px 25px;
 }
 
-.choosed {
+.cat-choose {
 	position:relative;
 	display:inline-block;
 	margin:5px 6px 5px;
@@ -1534,7 +1537,7 @@ div.gm-style-iw {
 	border-radius:2px;
 }
 
-.cat-choose {
+.choosed{
 	background:#9ED1FA;
 	color:#FFF;
 	border:1px solid #9ED1FA;

@@ -8,7 +8,7 @@
 	</head>
 
 	<body>
-		<section class="main">
+		<section class="main" id="mainFeed">
 			<!-- Template will be inserted here -->
 		</section>
 	</body>
@@ -21,7 +21,6 @@
 	<script src="js/plugins.js"></script>
     <script type="text/javascript">
 		/* Initialize app object and perform initial login check */
-		console.log("loading????");
 		window.is_feed = true;
 		app.initialize();
 	</script>
@@ -29,19 +28,20 @@
 			<div id="content" class="index">
 				{{> header}}
 				{{> feed data}}
+				{{> footer}}
 			</div>
 			{{#if logged_user}}
 				{{> sidemenu_logged me}}
 			{{else}}
 				{{> sidemenu}}
 			{{/if}}
-		
 	</script>
 
 	<script type="text/javascript">
 		app.render_feed(0, 'all');
 		app.showLoader();
 	</script>
+
 	<script type="text/javascript" src="js/functions.js"></script>
 	<script type="text/javascript" src="js/fullPage.js"></script>
 </html>

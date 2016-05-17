@@ -5,17 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
 		<title>DEDALO</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
-		<title>DEDALO</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-	    <script type="text/javascript" src="js/functions.js"></script>
 	</head>
 
 	<body style="background:#212121">
@@ -25,6 +14,7 @@
 	</body>
 
 	<!-- Load Scripts -->
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="js/handlebars-runtime.js"></script>
 	<script src="js/api-sdk-1.0.js"></script>
 	<script src="js/main.js"></script>
@@ -34,7 +24,6 @@
 		/* Initialize app object and perform initial login check */
 		app.initialize();
 	</script>
-	<script type="text/javascript" src="cordova.js"></script>
 	<script id="settings_template" type="text/x-handlebars-template">
 		
 		<div id="content" class="settings">
@@ -52,8 +41,9 @@
 					<input type="text" name="user_last_name" type="text" placeholder="Lastname" value="{{data.last_name}}"><br>
 					<input type="text" name="user_email" type="text" placeholder="E-mail" value="{{data.email}}"><br>
 					<input type="text" name="user_bio" type="text" placeholder="Bio (Tell us about you)" value="{{data.bio}}"><br>
-					<input type="password" name="user_pwd" type="text" placeholder="Password" value=""><br>
-					<input type="password" name="user_rpt_pwd" type="text" placeholder="Confirm password" value=""><br>
+					<br><p>Change your password</p>
+					<input type="password" name="user_pwd" type="text" placeholder="New password" value=""><br>
+					<input type="password" name="user_rpt_pwd" type="text" placeholder="Confirm new password" value=""><br>
 					<!-- <table>
 						<tr>
 							<td><i class="material-icons">local_shipping</i> Shipping</td>
@@ -108,7 +98,7 @@
 							<td></td>
 						</tr>
 					</table> -->
-					<br><input type="submit" class="submit" value="Start!" >
+					<br><input type="submit" class="submit" value="Save" >
 				</form>
 			</section>
 		</div>

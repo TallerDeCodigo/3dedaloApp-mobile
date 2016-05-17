@@ -195,9 +195,12 @@
 				app.toast("No hay conexión")
 			})
 			 .done(function(response){
+				var data = app.gatherEnvironment(response);
+					data.home_active = true;
+					console.log(data);
 			 	var source   = $("#feed_template").html();
 				var template = Handlebars.compile(source);
-				$('.main').html( template(app.gatherEnvironment(response)) );
+				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
 					if(!loggedIn)
@@ -210,7 +213,7 @@
 			$.getJSON(api_base_url+'content/search-composite/')
 			 .done(function(response){
 				response.search_active =  true;
-				var data = app.gatherEnvironment(response);
+				var data 	 = app.gatherEnvironment(response);
 				var source   = $("#search_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
@@ -279,7 +282,6 @@
 		},
 		render_settings : function(){
 			/* Send header_title for it renders history_header */
-			console.log(api_base_url+user+'/me/');
 			$.getJSON(api_base_url+user+'/me/')
 			 .done(function(response){
 			 	console.log(response);
@@ -306,6 +308,23 @@
 			setTimeout(function(){
 				app.hideLoader();
 			}, 2000);
+		},
+		render_dashboard : function(){
+			$.getJSON(api_base_url+user+'/dashboard/')
+			 .done(function(response){
+			 	/* Send header_title for it renders history_header */
+				var data = app.gatherEnvironment(response, "Dashboard");
+			 	console.log(data);
+				var source   = $("#dashboard_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
+			})
+			  .fail(function(err){
+		  		console.log(err);
+		  	});
 		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */
@@ -647,6 +666,22 @@
 
 		$('#search_by_photo').click(function(){
 			app.get_file_from_device('search', 'camera');
+		});
+
+		/* Category follow events */
+		$(document).on('click', '.follow_category', function(e){
+			e.preventDefault();
+			var $context 	= $(this);
+			var cat_id 		= $(this).data('id');
+			var response 	= apiRH.makeRequest(user+'/categories/follow/', {'cat_id': cat_id});
+			e.stopPropagation();
+			if(response.success){
+				app.toast('Category followed');
+				$context.removeClass('follow_category').addClass('unfollow_category choosed');
+				e.stopPropagation();
+				return;
+			}
+			return app.toast('Oops! ocurrió un error');
 		});
 
 

@@ -246,18 +246,22 @@ $(window).load(function(){
 
 });
 
-$(document).on('click', '.choosed', function() {
-    if ($(this).hasClass( "cat-choose" )) {
-        $(this).removeClass( "cat-choose" );
-    } else {
-        $(this).addClass( "cat-choose" );
-    }
-});
 
-$(document).on('click', '.usuario', function() {
-    if ($(this).hasClass( "following" )) {
-        $(this).removeClass( "following" );
-    } else {
-        $(this).addClass( "following" );
-    }
-});
+
+/***** EVENTS *****/
+
+    $(document).on('click', '.cat-choose', function() {
+        if ($(this).hasClass( "choosed" )) {
+            $(this).removeClass( "choosed" );
+        } else {
+            $(this).addClass( "choosed" );
+        }
+    });
+
+    $(document).on('click', '.usuario', function() {
+        if ($(this).hasClass( "following" )) {
+            $(this).removeClass( "following" );
+        } else {
+            $(this).addClass( "following" );
+        }
+    });
