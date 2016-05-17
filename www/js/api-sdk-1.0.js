@@ -363,7 +363,7 @@ function requestHandlerAPI(){
 									 	console.log(response);
 										var email = response.email;
 										var username = response.lastname+"_"+response.id;
-										var found = apiRH.create_internal_user(username, email, {fbId: response.id, avatar: response.avatar+'?type=normal', name: response.firstname, last_name: response.lastname}, window.localStorage.getItem('request_token'));
+										var found = apiRH.create_internal_user(username, email, {fbId: response.id, avatar: response.avatar+'?type=large', name: response.firstname, last_name: response.lastname}, window.localStorage.getItem('request_token'));
 										/* End handshake with server by validating token and getting 'me' data */
 										context.endHandshake(username);
 

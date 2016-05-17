@@ -33,7 +33,7 @@
 				<p id="dashboard1">
 				{{#if data.categories.count}}
 					{{# each data.categories.pool}}
-						<a class="{{#if followed}} choosed unfollow_category {{else}} follow_category {{/if}} cat-choose" href="#">{{name}}</a>
+						<a class="{{#if followed}} choosed unfollow_category {{else}} follow_category {{/if}} cat-choose" data-id="{{ID}}" href="#">{{name}}</a>
 					{{/each}}
 				</p>
 					<br>
@@ -52,7 +52,7 @@
 						<br>
 						<a id="segundo" class="more" style="margin-bottom:30px"><i class="material-icons">refresh</i> MORE</a>
 					{{else}}
-						<p class="message">Sorry, no categories</p>
+						<p class="message">Sorry, no users</p>
 					{{/if}}
 				</p>
 				

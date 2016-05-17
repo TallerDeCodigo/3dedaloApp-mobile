@@ -249,19 +249,32 @@ $(window).load(function(){
 
 
 /***** EVENTS *****/
-
-    $(document).on('click', '.cat-choose', function() {
-        if ($(this).hasClass( "choosed" )) {
-            $(this).removeClass( "choosed" );
-        } else {
-            $(this).addClass( "choosed" );
+    
+    /* Category follow events */
+    $(document).on('click', '.follow_category', function(e){
+        e.preventDefault();
+        var $context    = $(this);
+        var cat_id      = $(this).data('id');
+        var response    = apiRH.makeRequest(user+'/categories/follow/', {'cat_id': cat_id});
+        e.stopPropagation();
+        if(response.success){
+            e.stopPropagation();
+            $context.removeClass('follow_category').addClass('unfollow_category choosed');
+            return  app.toast('Category followed');
         }
+        return app.toast('Oops! something happened');
     });
 
-    $(document).on('click', '.usuario', function() {
-        if ($(this).hasClass( "following" )) {
-            $(this).removeClass( "following" );
-        } else {
-            $(this).addClass( "following" );
+    $(document).on('click', '.unfollow_category', function(e){
+        e.preventDefault();
+        var $context    = $(this);
+        var cat_id      = $(this).data('id');
+        var response    = apiRH.makeRequest(user+'/categories/unfollow/', {'cat_id': cat_id});
+        e.stopPropagation();
+        if(response.success){
+            e.stopPropagation();
+            $context.removeClass('unfollow_category choosed').addClass('follow_category');
+            return app.toast('Category unfollowed');
         }
+        return app.toast('Oops! something happened');
     });
