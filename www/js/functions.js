@@ -232,11 +232,6 @@ $(window).load(function(){
             $("#dashboard1 a").addClass( "choosed" );
         });
 
-        $("#segundo").click(function(){
-            var extra1 = '<a><img src="images/users/'+Math.floor((Math.random() * 9) + 1)+'.png"></a><a><img src="images/users/'+Math.floor((Math.random() * 9) + 1)+'.png"></a><a><img src="images/users/'+Math.floor((Math.random() * 9) + 1)+'.png"></a><a><img src="images/users/'+Math.floor((Math.random() * 9) + 1)+'.png"></a><a><img src="images/users/'+Math.floor((Math.random() * 9) + 1)+'.png"></a>';
-            $("#dashboard2").append(extra1);
-            $("#dashboard2 a").addClass( "usuario" );
-        });
 
         $(".techBtn").click(function(){
             $("body").animate({scrollTop: 740}, 400);
@@ -277,4 +272,24 @@ $(window).load(function(){
             return app.toast('Category unfollowed');
         }
         return app.toast('Oops! something happened');
+    });
+
+    /*** User follow events ***/
+    $('body').on('click', '.follow_user', function(){
+        var user_id = $(this).data('id');
+        var response = apiRH.makeRequest(user+'/follow', {'user_id': user_id});
+        if(response.success){
+            $(this).removeClass('follow_user').addClass('unfollow_user following');
+            app.toast("Ahora sigues un nuevo maker.");
+            return;
+        }
+    });
+
+    $('body').on('click', '.unfollow_user', function(){
+        var user_id = $(this).data('id');
+        var response = apiRH.makeRequest(user+'/unfollow', {'user_id': user_id});
+        if(response.success){
+            $(this).removeClass('unfollow_user following').addClass('follow_user');
+            return;
+        }
     });

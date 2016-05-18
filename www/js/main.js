@@ -736,55 +736,6 @@
 			return;
 		});
 
-		/* Get provinces select 
-		 * Happens on register and profile updating
-		 *
-		 */
-		$("body").on("change", "#user_country", function(){
-			var country = $(this).val();
-			var args = {};
-				args.country = country;
-			var response = apiRH.getRequest('assets/provinces/'+encodeURIComponent(JSON.stringify(args)), null);
-			if(response.success){
-				var source   = app.province_select_partial();
-				var template = Handlebars.compile(source);
-				$('#insert_select').append( template(response.pool) ).trigger("create");
-			}
-			return;
-		});
-
-		//UNSCHEDULE VIA CLOSE BUTTON
-		$('body').on('click', 'a.close', function(){
-			var event_id = $(this).data('id');
-			var response = apiRH.makeRequest(user+'/unschedule', {'evento_id': event_id});
-			if(response){
-				$(this).parent().slideUp('fast');
-				$(this).parent().slideUp('fast');
-			}
-			
-		});
-
-		
-		// FOLLOW/UNFOLLOW CATEGORIES
-		$('body').on('tap', '.select_me', function(e){
-
-			if(!$(this).hasClass('selected')){
-				var data = $(this).data('id');
-				var response = apiRH.makeRequest(user+'/categories/follow', {'cat_id' : data});
-				if(response){
-					$(this).addClass('selected');
-					e.stopPropagation();
-					return;
-				}
-			}
-			var data = $(this).data('id');
-			var response = apiRH.makeRequest(user+'/categories/unfollow', {'cat_id' : data});
-			if(response){
-				$(this).removeClass('selected');
-				e.stopPropagation();
-				return;
-			}
-		});
 
 		//MARK NOTIFICATION AS READ
 		$('.main').on('tap', '.each_notification a', function(e){
@@ -802,114 +753,10 @@
 			
 		});
 
-		//SCHEDULE EVENT
-		$('body').on('click', '.schedule_this', function(){
-			app.showLoader();
-			var context_id = $(this).data('id');
-			var response = apiRH.makeRequest(user+'/schedule', {'evento_id': context_id});
-			if(response){
-				$(this).removeClass('schedule_this').addClass('active unschedule_this').html("<i class='fa fa-calendar'></i><i class='fa fa-check superscript'></i>");
-				app.toast("Se agendó un nuevo evento");
-				app.hideLoader();
-			}
-		});
+	
 
-		//UNSCHEDULE EVENT
-		$('body').on('click', '.unschedule_this', function(){
-			app.showLoader();
-			var context_id = $(this).data('id');
-			var response = apiRH.makeRequest(user+'/unschedule', {'evento_id': context_id});
-			if(response){
-				$(this).removeClass('active unschedule_this').addClass('schedule_this').find(".superscript").remove();
-				app.toast("Se eliminó un evento de tu agenda");
-				app.hideLoader();
-			}
-		});
+	//-----------------------------------------------------------
 
-		/* TO DO: Check request, returns old value and we have to substract or add the follow */
-
-		var update_follow_count = function(user_nice, type){
-			if($('#'+type+'_follower_count').length == 0) return;
-			var response = apiRH.getRequest('user/'+user_nice+'/follower_count/'+type, null);
-			var string = '';
-			if(type == 'museografo')
-				string = '<span>Museógrafos</span>';
-			if(type == 'venue')
-				string = '<span>Venues</span>';
-			if(type == 'artista')
-				string = '<span>Artistas</span>';
-			$('#'+type+'_follower_count').html(response+string);
-			return;
-		};
-
-		//FOLLOW USER
-		$('body').on('click', '#follow_user', function(){
-			var _class	= $(this).hasClass('special_icon') ? true : false;
-			var user_id = $(this).data('id');
-			var _user_role = $(this).data('userrole');
-			var _user_login = $(this).data('userlogin');
-			var friendly_role = (_user_role && _user_role != '') ? $(this).data('userrole') : 'usuario';
-				friendly_role = (friendly_role == 'suscriptor') ? 'museógrafo' : friendly_role;
-			var dedalo_log_info = window.localStorage.getItem('dedalo_log_info');
-			if(user_role == 'administrator' || user_role == 'administrador')
-				user_role = 'suscriptor';
-			var response = apiRH.makeRequest(user+'/follow', {'user_id': user_id, type: user_role});
-			if(response.success){
-				if(!_class){
-					/* Profile follow 'switch' */
-					$(this).removeClass('follow_user').addClass('unfollow_user').attr('id', 'unfollow_user').html('Dejar de seguir');
-					app.toast("Ahora sigues un nuevo "+friendly_role+".");
-					/* Update the number of followers */
-					update_follow_count(_user_login, friendly_role);
-					return;
-				}
-				/* Inline follow 'switch' */
-				$(this).removeClass('follow_user').addClass('unfollow_user').attr('id', 'unfollow_user').html('<i class="fa fa-user"></i> <i class="fa fa-check superscript"></i>');
-				app.toast("Ahora sigues un nuevo "+friendly_role+".");
-				return;
-			}
-		});
-
-		//UNFOLLOW USER
-		$('body').on('click', '#unfollow_user', function(){
-
-			var _class	= $(this).hasClass('special_icon') ? true : false;
-			var user_id = $(this).data('id');
-			var _user_role = $(this).data('userrole');
-			var _user_login = $(this).data('userlogin');
-			var friendly_role = (_user_role && _user_role != '') ? $(this).data('userrole') : 'usuario';
-				friendly_role = (friendly_role == 'suscriptor') ? 'museógrafo' : friendly_role;
-			
-			var response = apiRH.makeRequest(user+'/unfollow', {'user_id': user_id});
-			if(response.success){
-				if(!_class){
-					$(this).removeClass('unfollow_user').addClass('follow_user').attr('id', 'follow_user').html('Seguir');
-					app.toast("Has dejado de seguir un "+friendly_role);
-					/* Correct value should be -1 for the increment parameter */
-					update_follow_count(_user_login, friendly_role);
-					return;
-				}
-				/* Inline follow 'switch' */
-				$(this).removeClass('unfollow_user').addClass('follow_user').attr('id', 'follow_user').html('<i class="fa fa-user"></i> <i class="fa fa-plus superscript"></i>');
-				app.toast("Has dejado de seguir un "+friendly_role);
-				// update_unfollow_count(friendly_role);
-				return;
-			}
-		});
-
-
-		/*
-		 * Recomend to user
-		 */
-		$('body').on('submit', '#recomend_to', function(e){
-			e.preventDefault();
-			var data = app.getFormData('#recomend_to');
-			var response = apiRH.makeRequest(user+'/recomend', {'evento_id': data.event_id,'user_reco': data.user_rec,'mensaje': data.comment});
-			if(response){
-				$('.close_dialog').trigger('click');
-				app.toast("Invitación enviada!");
-			}
-		});
 
 		/*
 		 * Update user profile events
@@ -956,29 +803,7 @@
 			e.stopPropagation();
 		});
 
-		/* Mark event as attended */
-		$('#attend_event').on('tap', function(){
-			var post_id = $(this).data('eventid');
-			var response = apiRH.makeRequest(user+'/events/attend', {'post_ID': post_id});
-			if(response.success)
-				$(this).removeClass('attend_event').addClass('attended_event').html('Asistido <i class="fa fa-check-square-o">');
-			return;
-		});
-
-		/* Trigger event gallery from thumb */
-		$('body').on('tap','.gallery_thumb', function(e){
-			if($(this).hasClass('user')){
-				app.trigger_user_gallery($(this).data('index'));
-				setTimeout( user_gallery.init(), 600);
-				e.preventDefault();
-				return;
-			}
-			app.trigger_event_gallery($(this).data('index'));
-			setTimeout( event_gallery.init(), 600);
-			e.preventDefault();
-			return;
-		});
-
+	
 		/* Insert new comment in event */
 		$('#comment_button').on('tap', function(){
 			var post_id = $('#hidden_event_id').val();
