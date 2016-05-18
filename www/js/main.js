@@ -611,7 +611,7 @@
 		}
 	};
 
-	 /*      _                                       _                        _       
+   /*      _                                       _                        _       
 	*   __| | ___   ___ _   _ _ __ ___   ___ _ __ | |_   _ __ ___  __ _  __| |_   _ 
 	*  / _` |/ _ \ / __| | | | '_ ` _ \ / _ \ '_ \| __| | '__/ _ \/ _` |/ _` | | | |
 	* | (_| | (_) | (__| |_| | | | | | |  __/ | | | |_  | | |  __/ (_| | (_| | |_| |
@@ -668,21 +668,6 @@
 			app.get_file_from_device('search', 'camera');
 		});
 
-		/* Category follow events */
-		$(document).on('click', '.follow_category', function(e){
-			e.preventDefault();
-			var $context 	= $(this);
-			var cat_id 		= $(this).data('id');
-			var response 	= apiRH.makeRequest(user+'/categories/follow/', {'cat_id': cat_id});
-			e.stopPropagation();
-			if(response.success){
-				app.toast('Category followed');
-				$context.removeClass('follow_category').addClass('unfollow_category choosed');
-				e.stopPropagation();
-				return;
-			}
-			return app.toast('Oops! ocurrió un error');
-		});
 
 
 

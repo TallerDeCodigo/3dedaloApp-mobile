@@ -45,12 +45,12 @@
 				
 				<table><tr><td>Choose from users to follow</td></tr></table>
 				<p id="dashboard2">
-					{{#if users.count}}
-						{{# each users.pool}}
-							<a class="usuario"><img src="images/users/1.png"></a>
+					{{#if data.makers.count}}
+						{{# each data.makers.pool}}
+							<a class="usuario {{#if followed}} following {{/if}}"><img src="{{profile_pic}}"></a>
 						{{/each}}
 						<br>
-						<a id="segundo" class="more" style="margin-bottom:30px"><i class="material-icons">refresh</i> MORE</a>
+						<a id="segundo" class="more" style="margin-bottom:30px"><i class="material-icons refresh"></i> MORE</a>
 					{{else}}
 						<p class="message">Sorry, no users</p>
 					{{/if}}
