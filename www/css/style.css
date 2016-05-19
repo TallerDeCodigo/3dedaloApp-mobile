@@ -1075,7 +1075,24 @@ div.wrapper {
 .detail .side_profile{
 	display:inline-block;
 	vertical-align:middle;
-	margin-left:8px;}
+	margin-left:8px;
+}
+/*.detail .table{
+	display: table;
+	width: 100%!important;
+}
+.detail .table_cell{
+	display: table-cell;
+}
+.detail .table_cell:nth-of-type(2){
+	display: table-cell;
+	padding-left: 2vw;
+}
+.detail .full_width{
+	display: block!important;
+	float: none;
+	clear: both;
+}*/
 
 /* SHOPPING CART */
 

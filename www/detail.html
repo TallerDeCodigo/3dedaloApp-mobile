@@ -49,24 +49,26 @@
 				</section>
 		    {{/if}}
 			
-			<section>
-			<div>
-				<h1>{{data.product_title}}</h1><br>
-				{{#if data.thumb_url}}
-					<img src="{{data.designer_brand.profile_pic}}" class="profile_pic round"><p class="side_profile">{{data.designer_brand.name}}</p>
-				{{else}}
-					<p><i class="material-icons account_circle" ></i> {{data.designer_brand.name}}</p>
-				{{/if}}
-			</div>
-			<div>
-				<span>$ {{data.product_price}}</span>
-				<p><a href="#" class="add_to_cart"><i class="material-icons file_download" ></i> Add to cart</a></p>
-				<p><a href="#" class="techBtn"><i class="material-icons info" ></i> Technical</a></p>
-			</div><br>
-			<div>
-				<p>{{{data.product_description}}}</p>
-			</div>
+			<section class="table">
+				<div class="table_cell">
+					<h1>{{data.product_title}}</h1><br>
+					{{#if data.thumb_url}}
+						<img src="{{data.designer_brand.profile_pic}}" class="profile_pic round"><p class="side_profile">{{data.designer_brand.name}}</p>
+					{{else}}
+						<p><i class="material-icons account_circle" ></i> {{data.designer_brand.name}}</p>
+					{{/if}}
+				</div>
+				<div class="table_cell">
+					<span>$ {{data.product_price}}</span>
+					<p><a href="#" class="add_to_cart"><i class="material-icons file_download" ></i> Add to cart</a></p>
+					<p><a href="#" class="techBtn"><i class="material-icons info" ></i> Technical</a></p>
+				</div>
+				<br>
 			</section>
+			<section class="full_width">
+				<p>{{{data.product_description}}}</p>
+			</section>
+			
 			{{#if data.by_same_maker.count}}
 				<section>
 					<h2>By same maker</h2>
