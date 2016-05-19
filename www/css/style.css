@@ -120,6 +120,11 @@ a {
 	height: 24px;
 	background-position: -100px -68px;
 }
+.material-icons.photo_camera{
+	width: 24px;
+	height: 24px;
+	background-position: -100px -68px;
+}
 
 .material-icons.send{width:26px;height:26px;background-position:-66px -195px;}
 .material-icons.info{width:22px;height:22px;background-position:-37px -37px;}
@@ -1296,6 +1301,7 @@ div.wrapper {
 	height:auto;
 	opacity:0.6;
 	margin-bottom:-4px;
+	display:block;
 }
 
 .search section a {
@@ -1307,7 +1313,7 @@ div.wrapper {
 	width:50%;
 	height:22.3%;
 	max-height:310px;
-	margin:0px -4px -4px 0px;
+	vertical-align:top;
 }
 
 .search section a div:nth-of-type(1) {

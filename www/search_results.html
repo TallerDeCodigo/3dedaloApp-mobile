@@ -5,10 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
 		<title>DEDALO</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-	    <script type="text/javascript" src="js/functions.js"></script>
 	</head>
 
 	<body>
@@ -16,11 +12,14 @@
 			<!-- Template will be inserted here -->
 		</section>
 	</body>
-
+	
+	<!-- Load Scripts -->
+	<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="js/handlebars-runtime.js"></script>
 	<script src="js/api-sdk-1.0.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/plugins.js"></script>
+	
 	<script type="text/javascript">
 		/* Initialize app object and perform initial login check */
 		app.initialize();
@@ -30,19 +29,46 @@
 		<div id="content" class="search">
 			{{> search_header}}
 
-			{{> subheader}}
+			{{> subheader data}}
 			<div id="no-cat" class="pages">
 				<section>
+				{{#if logged_user}}
+		    		<!-- <p>Previous Searches</p>
+		    		{{#each data.previous.pool}}
+					<a href="detail.html?id={{ID}}">
+						<img src="{{thumb_url}}">
+						<div>
+							{{#if designer_brand.profile_pic}}
+								<img src="{{designer_brand.profile_pic}}" alt="{{designer_brand.name}}" class="round profile_pic">
+							{{else}}
+								<i class="material-icons">account_circle</i>
+							{{/if}}
+							<h1>{{product_title}}</h1>
+							<span>{{designer_brand.name}}</span>
+						</div>
+					</a>
+					{{/each}} -->
+		    	{{else}}
 		    		<p>Previous Searches</p>
-					<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=5"><img src="images/5.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+		    		<p class="message"><a class="inline_link" id="account1">Log in</a> to see your previous search results here.</p>
+		    	{{/if}}
+		    	{{#if data.featured.count}}
 					<p>Featured Products</p>
-					<a href="detail.html?id=6"><img src="images/6.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=7"><img src="images/7.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=8"><img src="images/8.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
-					<a href="detail.html?id=9"><img src="images/9.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
+		    		{{#each data.featured.pool}}
+						<a href="detail.html?id={{ID}}" class="small link">
+							<img src="{{thumb_url}}">
+							<div>
+								{{#if designer_brand.profile_pic}}
+									<img src="{{designer_brand.profile_pic}}" alt="{{designer_brand.name}}" class="round profile_pic">
+								{{else}}
+									<i class="material-icons">account_circle</i>
+								{{/if}}
+								<h1>{{product_title}}</h1>
+								<span>{{designer_brand.name}}</span>
+							</div>
+						</a>
+					{{/each}}
+		    	{{/if}}
 		    	</section>
 			</div>
 			<div id="con-cat" class="pages">
@@ -65,7 +91,7 @@
 			    	</section>
 		   		</li>
 		    	<li class="pagina" style='display:none'>
-		    		<section>
+		    		<section id="insert_namecat">
 						<a href="detail.html?id=2"><img src="images/2.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
 						<a href="detail.html?id=3"><img src="images/3.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
 						<a href="detail.html?id=4"><img src="images/4.png"><div><i class="material-icons">account_circle</i><h1>Product Name</h1><span>Designer/Brand</span></div></a>
@@ -123,11 +149,14 @@
 	</script>
 
 	<script type="text/javascript">
-		app.render_search_composite();
+		var GET = app.getUrlVars();
+		app.showLoader();
+		app.render_search_results(GET.s);
 	</script>
 
 	<script type='text/javascript' src='js/swipe.js'></script>
 	<script type='text/javascript' src='js/callswipe1.js'></script>
+	<script type="text/javascript" src="js/functions.js"></script>
 
 
 </html>

@@ -29,12 +29,12 @@
 		<div id="content" class="search">
 			{{> search_header}}
 
-			{{> subheader}}
+			{{> subheader data}}
 			<div id="no-cat" class="pages">
 				<section>
-				{{#if previous.count}}
-		    		<p>Previous Searches</p>
-		    		{{#each previous.pool}}
+				{{#if logged_user}}
+		    		<!-- <p>Previous Searches</p>
+		    		{{#each data.previous.pool}}
 					<a href="detail.html?id={{ID}}">
 						<img src="{{thumb_url}}">
 						<div>
@@ -47,15 +47,15 @@
 							<span>{{designer_brand.name}}</span>
 						</div>
 					</a>
-					{{/each}}
+					{{/each}} -->
 		    	{{else}}
 		    		<p>Previous Searches</p>
 		    		<p class="message"><a class="inline_link" id="account1">Log in</a> to see your previous search results here.</p>
 		    	{{/if}}
-		    	{{#if featured.count}}
+		    	{{#if data.featured.count}}
 					<p>Featured Products</p>
-		    		{{#each featured.pool}}
-						<a href="detail.html?id={{ID}}">
+		    		{{#each data.featured.pool}}
+						<a href="detail.html?id={{ID}}" class="small link">
 							<img src="{{thumb_url}}">
 							<div>
 								{{#if designer_brand.profile_pic}}

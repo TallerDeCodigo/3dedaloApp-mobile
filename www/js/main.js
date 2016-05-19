@@ -210,13 +210,30 @@
 			
 		},
 		render_search_composite : function(){
-			$.getJSON(api_base_url+'content/search-composite/')
+			$.getJSON(api_base_url+user+'/content/search-composite/')
 			 .done(function(response){
+			 	console.log(response);
 				response.search_active =  true;
 				var data 	 = app.gatherEnvironment(response);
+					data.search_active = true;
 				var source   = $("#search_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
+			})
+			 .fail(function(error){
+			 	console.log(error);
+			 });
+		},
+		render_search_results : function(){
+			$.getJSON(api_base_url+'content/search/')
+			 .done(function(response){
+			 	console.log(response);
+				// response.search_active =  true;
+				// var data 	 = app.gatherEnvironment(response);
+				// 	data.search_active = true;
+				// var source   = $("#search_template").html();
+				// var template = Handlebars.compile(source);
+				// $('.main').html( template(data) );
 			})
 			 .fail(function(error){
 			 	console.log(error);
@@ -668,22 +685,6 @@
 			app.get_file_from_device('search', 'camera');
 		});
 
-
-
-
-
-
-
-		// ----------------------------------------------------------------------
-
-		$('#register_us').on('tap', function(){
-			$('#register_form').slideToggle('fast');
-			$(".login_area").slideToggle('fast');
-			$('.add_text').text($('.add_text').text()+' regístrate con nosotros');
-			$(this).remove();
-			return;
-		});
-
 		/* Create a new account the old fashioned way */
 		if($('#register_form').length)
 			$('#register_form').validate({
@@ -737,6 +738,13 @@
 		});
 
 
+
+
+
+		// ----------------------------------------------------------------------
+
+
+
 		//MARK NOTIFICATION AS READ
 		$('.main').on('tap', '.each_notification a', function(e){
 			e.preventDefault();
@@ -756,34 +764,6 @@
 	
 
 	//-----------------------------------------------------------
-
-
-		/*
-		 * Update user profile events
-		 */
-		$('body').on('submit', '#modify_profile', function(e){
-			e.preventDefault();
-			/* IMPORTANT! getFormData returns an array, we have to parse into a JSON object before making the PUT call */
-			var data = app.getFormData('#modify_profile');
-
-			if(data.password_nuevo && data.password_nuevo !== ''){
-				if(data.password_nuevo == data.password_again){
-					var response = apiRH.putRequest('user/'+user+"/password/" , data);
-					if(!response.success){
-						app.toast('There was an error saving your password');
-						return false;
-					}
-				}
-				app.toast('Tus passwords no coinciden');
-			}
-			// var response = apiRH.putRequest('user/'+user+'/' , data);
-			var response = apiRH.putRequest('user/'+user+'/' , data);
-			if(response.success)
-				app.toast('Tu información ha sido actualizada');
-			return;
-		});
-
-		
 
 		/* Pagination Load more posts */
 		$(document).on('tap', '#load_more_posts', function(e){
