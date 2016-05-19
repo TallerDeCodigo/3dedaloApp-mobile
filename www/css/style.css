@@ -123,7 +123,7 @@ a {
 .material-icons.photo_camera{
 	width: 24px;
 	height: 24px;
-	background-position: -100px -68px;
+	background-position: -68px -132px;
 }
 
 .material-icons.send{width:26px;height:26px;background-position:-66px -195px;}
@@ -610,6 +610,10 @@ div.wrapper {
 	overflow:hidden;
 	background:#FFF;
 }
+.pages.search_results{
+	top: 56px;
+}
+
 
 #mask {
 	position:relative;

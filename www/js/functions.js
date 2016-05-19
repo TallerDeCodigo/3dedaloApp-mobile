@@ -318,28 +318,3 @@ $(window).load(function(){
             app.toast('Profile updated successfully');
         return;
     });
-
-    /*
-     * Search from header form
-     */
-    $('body').on('submit', '#search_form', function(e){
-        e.preventDefault();
-        /* IMPORTANT! getFormData returns an array, we have to parse into a JSON object before making the PUT call */
-        var data = app.getFormData('#search_form');
-
-        // if(data.password_nuevo && data.password_nuevo !== ''){
-        //  if(data.password_nuevo == data.password_again){
-        //      var response = apiRH.putRequest('user/'+user+"/password/" , data);
-        //      if(!response.success){
-        //          app.toast('There was an error saving your password');
-        //          return false;
-        //      }
-        //  }
-        //  app.toast('Tus passwords no coinciden');
-        // }
-        // var response = apiRH.putRequest('user/'+user+'/' , data);
-        var response = apiRH.makeRequest('user/'+user+'/' , data);
-        if(response.success)
-            app.toast('Profile updated successfully');
-        return;
-    });

@@ -224,16 +224,16 @@
 			 	console.log(error);
 			 });
 		},
-		render_search_results : function(){
-			$.getJSON(api_base_url+'content/search/')
+		render_search_results : function(search_term){
+			$.getJSON(api_base_url+'content/search/'+search_term)
 			 .done(function(response){
-			 	console.log(response);
-				// response.search_active =  true;
-				// var data 	 = app.gatherEnvironment(response);
-				// 	data.search_active = true;
-				// var source   = $("#search_template").html();
-				// var template = Handlebars.compile(source);
-				// $('.main').html( template(data) );
+				var data 	 = app.gatherEnvironment(response.data);
+					data.search_active = true;
+					data.search_term = search_term;
+					console.log(data);
+				var source   = $("#search_results_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
 			})
 			 .fail(function(error){
 			 	console.log(error);
