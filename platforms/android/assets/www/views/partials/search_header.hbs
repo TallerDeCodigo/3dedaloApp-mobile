@@ -1,0 +1,11 @@
+<header class="big">
+	<a href="#" onclick="history.back(-1)"><i id="back" class="material-icons arrow_back"></i></a>
+	<div id="barra">
+		<i class="material-icons search invert"></i>
+		<form id="search_form" action="search_results.html" method="GET">
+			<input type="text" name="s" onfocus="if(this.value == 'Search') { this.value = ''; }$(this).css('color','#FFF');" value="{{#if search_term}}{{search_term}}{{else}}Search{{/if}}" style="color: rgb(255, 255, 255);">
+			<input type="submit" value="">
+		</form>
+	</div>
+	<i id="photo" class="material-icons search photo_camera"></i>
+</header>

@@ -506,12 +506,12 @@ div.wrapper {
 	background-position:7px;
 }
 
-.media:nth-of-type(2) {
+.media:nth-of-type(3) {
 	background:#0C9EDA url("../images/twitter.png") no-repeat;
 	background-position:7px;
 }
 
-.media:nth-of-type(3) {
+.media:nth-of-type(2) {
 	background:#C63C2A url("../images/plus.png") no-repeat;
 	background-position:7px;
 }

@@ -244,6 +244,50 @@ $(window).load(function(){
 
 
 /***** EVENTS *****/
+
+
+    /* Log In with a regular ol' account */
+    $('#login_form').submit(function(e){
+        app.showLoader();
+        e.preventDefault();
+        var data_login      = app.getFormData('#login_form');
+        var responsedata    = apiRH.loginNative(data_login);
+        if(responsedata) {
+            console.log(responsedata);
+            apiRH.save_user_data_clientside(responsedata);
+            window.location.assign('feed.html?filter_feed=all');
+            return;
+        }
+        app.toast('Tu email o contraseña no son válidos.');
+    });
+
+    /** Login with events **/
+    $(document).on('click', '.login_button', function(){
+        
+        var provider = $(this).data('provider');
+        if(provider == 'facebook')
+            apiRH.loginOauth(provider, apiRH.loginCallbackFB);
+        if(provider == 'google')
+            apiRH.loginOauth(provider, apiRH.loginCallbackGP);
+    });
+
+    /* Log In with a regular ol' account */
+    $('#create_account_form').submit(function(e){
+        e.preventDefault();
+        app.showLoader();
+        var data_login      = app.getFormData('#create_account_form');
+        var responsedata    = apiRH.registerNative(data_login);
+        if(responsedata) {
+            app.toast('Welcome to 3Dedalo');
+            apiRH.save_user_data_clientside(responsedata);
+            window.location.assign('feed.html?filter_feed=all');
+            app.hideLoader();
+            return;
+        }
+        app.toast('Sorry, we couldn\'t create your account, please try again.');
+        // app.hideLoader();
+        return;
+    });
     
     /* Category follow events */
     $(document).on('click', '.follow_category', function(e){
@@ -280,7 +324,7 @@ $(window).load(function(){
         var response = apiRH.makeRequest(user+'/follow', {'user_id': user_id});
         if(response.success){
             $(this).removeClass('follow_user').addClass('unfollow_user following');
-            app.toast("Ahora sigues un nuevo maker.");
+            app.toast("You are now following this maker");
             return;
         }
     });
@@ -318,3 +362,8 @@ $(window).load(function(){
             app.toast('Profile updated successfully');
         return;
     });
+
+
+    $('.trigger_getphoto').on('click', function(e){
+        app.get_file_from_device('profile', 'gallery');
+    })

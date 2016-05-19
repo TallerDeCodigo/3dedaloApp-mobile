@@ -7,6 +7,7 @@ function requestHandlerAPI(){
 
 	/*** Attributes ***/
 	this.token = null;
+	this.upload_ready = false;
 	this.version = "1.0";
 	this.app_build = "1.0.2";
 	this.device_model = (typeof device != 'undefined') ? device.model : 'not set';
@@ -75,7 +76,8 @@ function requestHandlerAPI(){
 															  }
 											};
 								var response = this.makeRequest('auth/user/', data);
-								console.log(response);
+								if(response.success)
+									initializeProfileFileTransfer();
 								return (response.success) ? response.data : false;
 							};
 		/* 
@@ -360,19 +362,17 @@ function requestHandlerAPI(){
 		 * @see loginOauth
 		 * @see API Documentation
 		 */
-		this.loginCallbackTW = function(response){
+		this.loginCallbackGP = function(response){
 									//Get profile info
-									response.get('/1.1/account/verify_credentials.json')
+									response.me()
 									 .done(function(response) {
-									 	console.log(response);
-										var email = response.screen_name+"@3dedalo.org";
-										var username = response.screen_name;
-										var found = apiRH.create_internal_user(username, email, {'twitter_username': username}, window.localStorage.getItem('request_token'));
-										if(found){
-											app.toast('El usuario ya existe');
-											return;
-										}
-										app.toast('Bienvenido');
+										console.log(response);
+										var email = response.email;
+										var username = response.lastname+"_"+response.id;
+										var found = apiRH.create_internal_user(username, email, {gpId: response.id, avatar: response.avatar, name: response.firstname, last_name: response.lastname}, window.localStorage.getItem('request_token'));
+										/* End handshake with server by validating token and getting 'me' data */
+										context.endHandshake(username);
+
 										window.location.assign('feed.html?filter_feed=all');
 										return;
 									})
@@ -423,8 +423,9 @@ function requestHandlerAPI(){
 									window.location.reload(true);
 								};
 		this.profile_transfer_win = function (r) {
-									app.toast("Imagen de perfil modificada");
-									window.location.reload(true);
+									// app.toast("Imagen de perfil modificada");
+									// window.location.reload(true);
+									return true;
 								};
 		this.transfer_fail = function (error) {
 								console.log(error);
@@ -455,24 +456,40 @@ function requestHandlerAPI(){
 									ft.upload(fileURL, encodeURI(api_base_url+"transfers/"+user+"/event_upload/"+event_id+"/"), context.transfer_win, context.transfer_fail, this.transfer_options);
 								};
 		/*
-		 * Initialize Profile File transfer
+		 * Prepare params for Profile File transfer
 		 * @param fileURL
-		 * TO DO: use client data in server
 		 */
-		this.initializeProfileFileTransfer = function(fileURL){
+		this.prepareProfileFileTransfer = function(fileURL){
 									app.showLoader();
 									this.transfer_options = new FileUploadOptions();
+									this.transfer_options.fileUrl = fileURL;
 									this.transfer_options.fileKey = "file";
 									this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
 									this.transfer_options.mimeType = "image/jpeg";
 
 									var params = {};
 										params.client = "app";
-
 									this.transfer_options.params = params;
+									this.upload_ready = true;
+									app.hideLoader();
+								};
 
-									var ft = new FileTransfer();
-									ft.upload(fileURL, encodeURI(api_base_url+"transfers/"+user+"/profile/"), context.profile_transfer_win, context.transfer_fail, this.transfer_options);
+
+		/**
+		 * Initialize Profile File transfer
+		 * @param fileURL
+		 * @see prepareProfileTransfer MUST be executed before
+		 */
+		this.initializeProfileFileTransfer = function(){
+									if(this.upload_ready){
+										var ft = new FileTransfer();
+										ft.upload(  this.transfer_options.fileUrl, 
+													encodeURI(api_base_url+"transfers/"+user+"/profile/"), 
+													context.profile_transfer_win, 
+													context.transfer_fail, 
+													this.transfer_options
+												);
+									}
 								};
 		this.fileselect_win = function (r) {
 								if(!r && r == '')
@@ -481,11 +498,11 @@ function requestHandlerAPI(){
 							};
 		this.profileselect_win = function (r) {
 								if(!r && r == '')
-									return;
-								context.initializeProfileFileTransfer(r);
+									
+									return context.prepareProfileFileTransfer(r);
 							};
 		this.fileselect_fail = function (error) {
-								alert("An error has occurred: " + error);
+								app.toast("An error has occurred: " + error);
 							};
 		/*
 		 * @param String destination Upload destination Options: "profile", "event"
