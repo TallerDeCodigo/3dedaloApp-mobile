@@ -19,7 +19,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="https://3dedalo.org/" />
+    <allow-navigation href="https://3dedalo.org/*" />
     <allow-navigation href="*://*.googleapis.com/*"/>
 
     <platform name="android">
@@ -32,7 +32,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <allow-intent href="https://3dedalo.org/rest/v1/*" />
-        <allow-intent href="https://3dedalo.org/" />
+        <allow-intent href="https://3dedalo.org/*" />
+        <allow-intent href="http://3dedalo.org/*" />
         <allow-navigation href="*://*.googleapis.com/*"/>
     </platform>
 

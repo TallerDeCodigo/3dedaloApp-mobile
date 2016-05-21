@@ -190,7 +190,7 @@
 			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
 			})
 			 .fail(function(err){
-				console.log(err);
+				console.log(JSON.stringify(err));
 				app.hideLoader();
 				app.toast("Failed connecting to our servers, please check your Internet connection.")
 			})
@@ -333,6 +333,24 @@
 				var data = app.gatherEnvironment(response, "Dashboard");
 			 	console.log(data);
 				var source   = $("#dashboard_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
+			})
+			  .fail(function(err){
+		  		console.log(err);
+		  	});
+		},
+		render_maker : function(maker_id){
+			$.getJSON(api_base_url+user+'/maker/'+maker_id)
+			 .done(function(response){
+			 	console.log(response);
+			 	/* Send header_title for it renders history_header */
+				var data = app.gatherEnvironment(response, "Maker profile");
+			 	console.log(data);
+				var source   = $("#maker_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
 				setTimeout(function(){
