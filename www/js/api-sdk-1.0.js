@@ -136,7 +136,7 @@ function requestHandlerAPI(){
 														validate_id   : (window.localStorage.getItem('user_id')) ? window.localStorage.getItem('user_id') : 'none'
 													};
 											response = this.makeRequest('user/validateToken/', data);
-											app.toast("Usuario creado exitosamente, bienvenido");
+											app.toast("User registered,\n ¡Welcome!");
 											var_return = (response.success) ? true : false;
 											return var_return;
 									};
