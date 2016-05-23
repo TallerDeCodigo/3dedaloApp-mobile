@@ -346,11 +346,27 @@
 		render_maker : function(maker_id){
 			$.getJSON(api_base_url+user+'/maker/'+maker_id)
 			 .done(function(response){
-			 	console.log(response);
 			 	/* Send header_title for it renders history_header */
 				var data = app.gatherEnvironment(response, "Maker profile");
 			 	console.log(data);
 				var source   = $("#maker_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
+			})
+			  .fail(function(err){
+		  		console.log(err);
+		  	});
+		},
+		render_taxonomy : function(term_id, tax_name){
+			$.getJSON(api_base_url+'content/taxonomy/'+tax_name+'/'+term_id)
+			 .done(function(response){
+			 	/* Send header_title for it renders history_header */
+			 	var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
+				var data = app.gatherEnvironment(response, header_title);
+				var source   = $("#tax_archive_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
 				setTimeout(function(){

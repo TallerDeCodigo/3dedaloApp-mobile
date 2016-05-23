@@ -104,7 +104,7 @@
 				<section class="tag_container">
 					<h2><i class="material-icons label medium" ></i> Tags</h2>
 					{{#each data.tags.pool}}
-						<a href="#">{{name}}</a>
+						<a href="tax-archive.html?id={{ID}}&type=category">{{name}}</a>
 					{{/each}}
 				</section>
 			{{/if}}
@@ -112,7 +112,7 @@
 				<section class="tag_container">
 					<h2><i class="material-icons build medium" ></i> Design Tools</h2>
 					{{#each data.design_tools.pool}}
-						<a href="#">{{name}}</a>
+						<a href="tax-archive.html?id={{ID}}&type=design-tools">{{name}}</a>
 					{{/each}}
 				</section>
 			{{/if}}
