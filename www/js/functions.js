@@ -234,7 +234,8 @@ $(window).load(function(){
 
 
         $(".techBtn").click(function(){
-            $("body").animate({scrollTop: 740}, 400);
+            var topAdjusted = $('#technical').position().top;
+            $("body").animate({scrollTop: topAdjusted-50}, 400);
         });
 
     });
