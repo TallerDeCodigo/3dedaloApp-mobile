@@ -41,16 +41,28 @@
 				{{else}}
 					<i class="material-icons account_circle big" ></i>
 				{{/if}}
-				<p class="user_name">{{data.profile.user_display}}</p>
-				<p><i class="material-icons star"></i><i class="material-icons star"></i><i class="material-icons star"></i></p>
-				{{#if data.profile.address}}
-					{{data.profile.address}}
-				{{/if}}
-				{{# if data.profile.categories.count}}
-					{{# each data.profile.categories.pool}}
-						<a href="#">{{name}}</a>
-					{{/ each}}
-				{{/if}}
+				<section class="profile_info">
+					<p class="user_name">{{data.profile.user_display}}</p>
+					<p class="rating_container">
+						<i class="material-icons star mini on"></i>
+						<i class="material-icons star mini on"></i>
+						<i class="material-icons star mini on"></i>
+					</p>
+					{{#if data.profile.address}}
+						{{data.profile.address}}
+					{{/if}}
+					{{#if data.profile.bio}}
+						<section class="bio">
+						{{{data.profile.bio}}}
+						</section>
+					{{/if}}
+					<div class="clearfix"></div>
+					{{# if data.profile.categories.count}}
+						{{# each data.profile.categories.pool}}
+							<a href="#">{{name}}</a>
+						{{/ each}}
+					{{/if}}
+				</section>
 			</section>
 			{{> footer}}
 		</div>

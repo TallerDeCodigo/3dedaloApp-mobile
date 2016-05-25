@@ -295,6 +295,11 @@
 				for(var j = 0; j<app.marker2.length; j++){
 					app.marker2[j].setMap(null);
 				}
+			if(app.marker3.length)
+				for(var k = 0; k<app.marker3.length; k++){
+					app.marker3[k].setMap(null);
+				}
+
 			$.getJSON(api_base_url+'around/'+user+'/makers/printer'+'?@='+position.coords.latitude+','+position.coords.longitude , function(response){
 			})
 			 .fail(function(err){
@@ -337,12 +342,17 @@
 		}, 
 		onlyscan: function(position, map) {
 			app.showLoader();
+			app.registerTemplate('partials/maker_map');
 			var image = 'images/marker.png';
 			var theResponse = null;
 			var scanner = [];
 			if(app.marker1.length)
 				for(var j = 0; j<app.marker1.length; j++){
 					app.marker1[j].setMap(null);
+				}
+			if(app.marker3.length)
+				for(var k = 0; k<app.marker3.length; k++){
+					app.marker3[k].setMap(null);
 				}
 			$.getJSON(api_base_url+'around/'+user+'/makers/scanner'+'?@='+position.coords.latitude+','+position.coords.longitude , function(response){
 			})
@@ -360,15 +370,19 @@
 					app.marker2.push(new google.maps.Marker({ position: scanner[i], map: map, icon: image }));
 					app.marker2[i].addListener('click', 
 												function() { 
-													$.getJSON(api_base_url+user+'/maker/'+theResponse.pool[i].ID)
+													app.showLoader();
+													var context = this;
+													$.getJSON(api_base_url+'min/'+user+'/maker/'+context.ref_id)
 													 .done(function(response){
-													 	var data = {profile: response.profile, distance: theResponse.pool[i].distance}
+													 	var data = {profile: response.profile, distance: context.distance_to};
 														var template = Handlebars.templates['partials/maker_map'];
 														$('#insert_info').html( template(data) );
 														$("#info-maker").fadeIn();
+														app.hideLoader();
 													})
 													 .fail(function(error){
-													 	console.log(error);
+													 	app.toast("Oops! couldn't get maker details");
+													 	app.hideLoader();
 													 });
 												});
 					app.marker2[i].setVisible(true);
@@ -384,11 +398,16 @@
 			app.registerTemplate('partials/maker_map');
 			var theResponse = null;
 			var image = 'images/marker.png';
-			var printer = [];
-			if(app.marker3.length)
-				for(var j = 0; j<app.marker3.length; j++){
-					app.marker3[j].setMap(null);
+			var witship = [];
+			if(app.marker1.length)
+				for(var j = 0; j<app.marker1.length; j++){
+					app.marker1[j].setMap(null);
 				}
+			if(app.marker2.length)
+				for(var k = 0; k<app.marker2.length; k++){
+					app.marker2[k].setMap(null);
+				}
+
 			$.getJSON(api_base_url+'around/'+user+'/makers/shipping'+'?@='+position.coords.latitude+','+position.coords.longitude , function(response){
 			})
 			 .fail(function(err){
@@ -399,8 +418,8 @@
 			 	theResponse = response;
 			 	var i;		 	
 				for(i = 0; i<response.count-1; i++){
-					printer.push(new google.maps.LatLng(response.pool[i].latitude, response.pool[i].longitude));
-					app.marker3.push(new google.maps.Marker({ position: printer[i], map: map, icon: image }));
+					witship.push(new google.maps.LatLng(response.pool[i].latitude, response.pool[i].longitude));
+					app.marker3.push(new google.maps.Marker({ position: witship[i], map: map, icon: image }));
 					app.marker3[i].ref_id = parseInt(theResponse.pool[i].ID);
 					app.marker3[i].distance_to = theResponse.pool[i].distance;
 					app.marker3[i].addListener('click', 
