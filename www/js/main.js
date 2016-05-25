@@ -367,6 +367,8 @@
 				for( i = 0; i<response.count-1; i++){
 					scanner.push(new google.maps.LatLng(response.pool[i].latitude, 
 														response.pool[i].longitude));
+					app.marker2[i].ref_id = parseInt(theResponse.pool[i].ID);
+					app.marker2[i].distance_to = theResponse.pool[i].distance;
 					app.marker2.push(new google.maps.Marker({ position: scanner[i], map: map, icon: image }));
 					app.marker2[i].addListener('click', 
 												function() { 
