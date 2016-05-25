@@ -126,6 +126,15 @@ a {
 	height: 24px;
 	background-position: -68px -132px;
 }
+.material-icons.star.mini{
+	width: 20px;
+	height: 20px;
+	opacity: 0.5;
+	background-position: -230px -231px;
+}
+.material-icons.star.mini.on{
+	opacity: 1;
+}
 
 .material-icons.send{width:26px;height:26px;background-position:-66px -195px;}
 .material-icons.info{width:22px;height:22px;background-position:-37px -37px;}
@@ -153,7 +162,7 @@ a {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	z-index: 999;
+	z-index: 999999999;
 	top: 0;
 	left: 0;
 	background-color: rgba(0, 0, 0, 0.29);
@@ -1441,17 +1450,24 @@ div.gm-style-iw {
 	box-shadow:0px 0px 1px #666;
 }
 
+#info-maker .profile_pic.small{
+	margin:0;
+	width:32px;
+	height:32px;
+	display:inline-block;
+	vertical-align:middle;
+}
+
 #info-maker div {
 	position:absolute;
 	top:8px;
 }
 
 #info-maker div:nth-of-type(1) {
-	width:40%;
-	left:4%;
-	margin-left:40px;
+	width:70%;
 	text-align:left;
 	color:#1976D2;
+	left:4%;
 }
 
 #info-maker div:nth-of-type(1) .material-icons {
@@ -1468,6 +1484,9 @@ div.gm-style-iw {
 	font-size:75%;
 	color:#757575;
 }
+
+.geoloc_me{}
+.geoloc_me h3{font-size:12px;letter-spacing:0.6px;}
 
 /* ACCOUNT SETTINGS */
 

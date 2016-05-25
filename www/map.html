@@ -32,23 +32,28 @@
 		<div id="content" class="map">
 			{{>search_header}}
 			<div class="subheader" style="text-align:center">
-				<a id="allBtn" class="cats1 select">ALL</a><a id="printBtn" class="cats1">PRINTER</a><a id="scanBtn" class="cats1">SCANNER</a><a id="shipBtn" class="cats1">+SHIP</a>
+				<!-- <a id="allBtn" class="cats1 select">ALL</a> -->
+				<a id="printBtn" class="cats1">PRINTER</a>
+				<a id="scanBtn" class="cats1">SCANNER</a>
+				<a id="shipBtn" class="cats1">+SHIP</a>
 			</div>
 			<div id="no-cat" class="pages">
 				<section>
 		    		<div id="map"></div>
-		    		<a href="maker.html"><div id="info-maker" style="display:none"><div><i class="material-icons">account_circle</i>Lorem Ipsum<br>Dolor Sit Amet</div><div><i class="material-icons">star</i><i class="material-icons">star</i><i class="material-icons">star</i><br>3 km. de Col. del Valle</div></div></a>
+		    		<section id="insert_info" class="insert_info">
+		    			
+		    		</section>
 		    	</section>
 			</div>
 			{{>footer}}
 		</div>
+			{{> dom_assets}}
 	</script>
 	
 	<script type="text/javascript">
 		app.render_map();
 	</script>
     <script type="text/javascript" src="js/functions.js"></script>
-	<script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/google.js"></script>
 
 </html>
