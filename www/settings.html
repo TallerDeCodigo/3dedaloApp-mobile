@@ -30,7 +30,7 @@
 		<div id="content" class="settings">
 			{{> history_header_nouser}}
 			<section>
-				<form id="settings_form">
+				<form id="settings_form" class="settings_form">
 					<table><tr><td><i class="material-icons account_circle small"></i> Personal Info</td></tr></table>
 
 					{{#if me.profile_pic}}
@@ -38,13 +38,31 @@
 					{{else}}
 						<br><img id="img-id" src="images/photo.png" /><br>
 					{{/if}}
-					<input type="text" name="user_first_name" type="text" placeholder="Name" value="{{data.first_name}}"><br>
-					<input type="text" name="user_last_name" type="text" placeholder="Lastname" value="{{data.last_name}}"><br>
-					<input type="text" name="user_email" type="text" placeholder="E-mail" value="{{data.email}}"><br>
-					<input type="text" name="user_bio" type="text" placeholder="Bio (Tell us about you)" value="{{data.bio}}"><br>
+					<input type="text" name="user_first_name" placeholder="Name" value="{{data.first_name}}"><br>
+					<input type="text" name="user_last_name" placeholder="Lastname" value="{{data.last_name}}"><br>
+					<input type="text" name="user_email" placeholder="E-mail" value="{{data.email}}"><br>
+					<input type="text" name="user_bio" placeholder="Bio (Tell us about you)" value="{{data.bio}}"><br>
 					<br><p>Change your password</p>
-					<input type="password" name="user_pwd" type="text" placeholder="New password" value=""><br>
-					<input type="password" name="user_rpt_pwd" type="text" placeholder="Confirm new password" value=""><br>
+					<input type="password" name="user_pwd" placeholder="New password" value=""><br>
+					<input type="password" name="user_rpt_pwd" placeholder="Confirm new password" value="">
+					<br>
+					<section class="options">
+						<div class="roundedTwo inline_check">
+							<input type="checkbox" name="become_printer" id="become_printer" value="true" {{#if data.is_printer}}checked{{/if}}>
+							<label for="become_printer"></label>
+						</div>
+						<label class="inline_check">Become a printer *</label>
+						<br>
+
+						<div class="roundedTwo inline_check">
+							<input type="checkbox" name="become_scanner" id="become_scanner" value="true" {{#if data.is_scanner}}checked{{/if}}>
+							<label for="become_scanner"></label>
+						</div>
+						<label class="inline_check">Become a scanner *</label>
+						<br>
+						<p class="lil_comment">* Requires gps</p>
+					</section>
+					
 					<!-- <table>
 						<tr>
 							<td><i class="material-icons">local_shipping</i> Shipping</td>

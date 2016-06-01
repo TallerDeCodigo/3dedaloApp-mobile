@@ -346,7 +346,6 @@ $(window).load(function(){
         e.preventDefault();
         /* IMPORTANT! getFormData returns an array, we have to parse into a JSON object before making the PUT call */
         var data = app.getFormData('#settings_form');
-
         // if(data.password_nuevo && data.password_nuevo !== ''){
         //  if(data.password_nuevo == data.password_again){
         //      var response = apiRH.putRequest('user/'+user+"/password/" , data);
@@ -358,6 +357,10 @@ $(window).load(function(){
         //  app.toast('Tus passwords no coinciden');
         // }
         // var response = apiRH.putRequest('user/'+user+'/' , data);
+        if( data.become_printer || data.become_scanner ){
+            /*** Get geolocation ***/
+            
+        }
         var response = apiRH.makeRequest('user/'+user+'/' , data);
         if(response.success)
             app.toast('Profile updated successfully');
