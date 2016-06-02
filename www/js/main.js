@@ -457,6 +457,7 @@
 			$("#info-maker").hide();
 		},
 		render_map : function(){
+			
 			var data = {explore_active: true};
 			var source   = $("#map_template").html();
 			var template = Handlebars.compile(source);
