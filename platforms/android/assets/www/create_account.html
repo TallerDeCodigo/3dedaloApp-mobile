@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	    <script type="text/javascript" src="js/functions.js"></script>
+	</head>
+
+	<body style="background:#212121">
+		<section class="main">
+			<!-- Template will be inserted here -->
+		</section>
+	</body>
+
+	<!-- Load Scripts -->
+	<script src="js/handlebars-runtime.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		app.initialize();
+	</script>
+	<script id="create_user_template" type="text/x-handlebars-template">
+		
+		<div id="content" class="settings">
+			{{> history_header_nouser}}
+			<section>
+				<form id="create_account_form">
+					<table><tr><td><i class="material-icons account_circle"></i> Personal Info</td></tr></table>
+					<br><img id="img-id" class="trigger_getphoto" src="images/photo.png" /><br>
+					<input type="hidden" value="" name="image_profile" id="image_profile">
+					<input type="text" name="user_name" type="text" placeholder="Name" value=""><br>
+					<input type="text" name="user_last_name" type="text" placeholder="Lastname" value=""><br>
+					<input type="text" name="user_email" type="text" placeholder="E-mail" value=""><br>
+					<input type="password" name="user_pwd" type="text" placeholder="Password" value=""><br>
+					<input type="password" name="user_rpt_pwd" type="text" placeholder="Confirm password" value=""><br>
+					<input type="text" name="user_bio" type="text" placeholder="Bio (Tell us about you)" value=""><br>
+					
+					<br><input type="submit" class="submit" value="Start!" >
+				</form>
+			</section>
+		</div>
+		{{> dom_assets}}
+
+	</script>
+
+	<script type="text/javascript">
+		app.render_create_user();
+		app.showLoader();
+	</script>
+	<script type="text/javascript" src="js/functions.js"></script>
+
+</html>

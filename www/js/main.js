@@ -590,6 +590,23 @@
 		  		console.log(err);
 		  	});
 		},
+		render_search_by_photo : function(term_id, tax_name){
+			// $.getJSON(api_base_url+'content/taxonomy/'+tax_name+'/'+term_id)
+			//  .done(function(response){
+			//  	/* Send header_title for it renders history_header */
+			 // 	var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
+				// var data = app.gatherEnvironment(response, header_title);
+				var source   = $("#search_by_photo_template").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template({}) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
+			// })
+			//   .fail(function(err){
+		 //  		console.log(err);
+		 //  	});
+		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */
 			$.getJSON(api_base_url+user+'/timeline/'+offset, function(response){

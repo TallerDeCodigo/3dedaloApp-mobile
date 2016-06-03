@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		</head>
+	<body>
+		<section class="main">
+			<!-- Template will be inserted here -->
+
+		</section>
+	</body>
+
+	<!-- Load Scripts -->
+	<!-- Load Scripts -->
+    <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		app.initialize();
+	</script>
+
+	<script id="post_template" type="text/x-handlebars-template">
+
+		<div id="content" class="post">
+
+			{{> history_header}}
+			<section>
+				<img src="{{data.thumb_url}}"/>
+			</section>
+
+			<section class="post_head">
+				<h1>{{data.post_title}}</h1>
+				<p class="side_profile date">{{data.post_date}}</p>
+				{{#if data.thumb_url}}
+					<img src="{{data.post_editor.profile_pic}}" class="profile_pic round"><p class="side_profile">{{data.post_editor.name}}</p>
+				{{else}}
+					<p><i class="material-icons" >account_circle</i> {{data.post_editor.name}}</p>
+				{{/if}}
+			</section>
+			<section>
+				<p>{{{data.post_content}}}</p>
+			</section>
+			
+		</div>
+		{{#if logged_user}}
+			{{> sidemenu_logged me}}
+		{{else}}
+			{{> sidemenu}}
+		{{/if}}
+	</script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript">
+		var GET = app.getUrlVars();
+		app.render_post(GET.id);
+		app.showLoader();
+	</script>
+
+	<script type='text/javascript' src='js/swipe.js'></script>
+	<script type='text/javascript' src='js/callswipe2.js'></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+</html>
