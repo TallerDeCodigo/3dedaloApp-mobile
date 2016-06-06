@@ -180,14 +180,12 @@
 		},
 		render_header : function(){
 			$.getJSON(api_base_url+'auth/user/me/', function(response){
-				console.log(response);
 				var template = Handlebars.templates.header(response);
 				$('.content').append( template );
 			});
 		},
 		render_menu : function(){
 			$.getJSON(api_base_url+'auth/'+user+'/me', function(response){
-				console.log(response);
 				var template = Handlebars.templates.header(response);
 				$('.main').prepend( template ).trigger('create');
 			});
@@ -204,7 +202,6 @@
 			 .done(function(response){
 				var data = app.gatherEnvironment(response);
 					data.home_active = true;
-					console.log(JSON.stringify(data));
 			 	var source   = $("#feed_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );
