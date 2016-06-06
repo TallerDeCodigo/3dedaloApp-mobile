@@ -246,7 +246,7 @@
 			 	console.log(error);
 			 });
 		},
-		initMakersMap : function(){
+		initMakersMap : function(file_carried){
 
 			var map;
 			var mapOptions = {
@@ -255,6 +255,7 @@
 				zoomControl: true,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
+			var file_carried = (file_carried) ? file_carried : null;
 			
 			map = new google.maps.Map(document.getElementById('map'), mapOptions);
 			navigator.geolocation.getCurrentPosition(function(position) {
@@ -465,6 +466,16 @@
 			app.showLoader();
 			app.initMakersMap();
 		},
+		render_file_map : function(ref_id){
+			/** Render map when printing a file **/
+			var reference = ref_id;
+			var data = {explore_active: true};
+			var source   = $("#map_template").html();
+			var template = Handlebars.compile(source);
+			$('.main').html( template(data) );
+			app.showLoader();
+			app.initMakersMap(reference);
+		},
 		render_detail : function(product_id){
 
 			$.getJSON(api_base_url+'products/'+product_id)
@@ -653,68 +664,6 @@
 				console.log('Toasting error: ' + JSON.stringify(err));
 				alert(message);
 			}
-			return;
-		},
-		render_event_gallery_partial: function(event_id){
-			
-			$.getJSON(api_base_url+'events/'+event_id+'/gallery/99/', function(response){
-				var template = Handlebars.templates.gallery_base(response);
-				$('body').append( template);
-				/*Set elements into temporary variable */
-				window.event_temp_gallery_items = response.items;
-			});
-			return;
-		},
-		render_user_gallery_partial: function(user_login){
-			
-			$.getJSON(api_base_url+'user/'+user_login+'/gallery/99/', function(response){
-				var template = Handlebars.templates.gallery_base(response);
-				$('body').append( template );
-				/*Set elements into temporary variable */
-				window.user_temp_gallery_items = response.items;
-			});
-			return;
-		},
-		render_artist_project_partial: function(user_login){
-			
-			$.getJSON(api_base_url+'user/'+user_login+'/projects/99/', function(response){
-				var template = Handlebars.templates.gallery_base(response);
-				$('body').append( template );
-				/*Set elements into temporary variable */
-				window.user_temp_gallery_items = response.items;
-			});
-			return;
-		},
-		trigger_event_gallery: function(index){
-			window.event_gallery = null;
-			var pswpElement = document.querySelectorAll('.pswp')[0];
-			var items = window.event_temp_gallery_items;
-			var options = {
-				history: false,
-		        focus: false,
-
-		        showAnimationDuration: 0,
-		        hideAnimationDuration: 0,
-			    index: index
-			};
-			// Initializes and opens PhotoSwipe
-			window.event_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-			return;
-		},
-		trigger_user_gallery: function(index){
-			window.user_gallery = null;
-			var pswpElement = document.querySelectorAll('.pswp')[0];
-			var items = window.user_temp_gallery_items;
-			var options = {
-				history: false,
-		        focus: false,
-
-		        showAnimationDuration: 0,
-		        hideAnimationDuration: 0,
-			    index: index
-			};
-			// Initializes and opens PhotoSwipe
-			window.user_gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
 			return;
 		}
 	};

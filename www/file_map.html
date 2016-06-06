@@ -30,13 +30,7 @@
 
 	<script id="map_template" type="text/x-handlebars-template">
 		<div id="content" class="map">
-			{{>search_header}}
-			<div class="subheader" style="text-align:center">
-				<!-- <a id="allBtn" class="cats1 select">ALL</a> -->
-				<a id="printBtn" class="cats1">PRINTER</a>
-				<a id="scanBtn" class="cats1">SCANNER</a>
-				<a id="shipBtn" class="cats1">+SHIP</a>
-			</div>
+			{{> history_header}}
 			<div id="no-cat" class="pages">
 				<section>
 		    		<div id="map"></div>
@@ -56,7 +50,8 @@
 	</script>
 	
 	<script type="text/javascript">
-		app.render_map();
+		var GET = app.getUrlVars();
+		app.render_file_map(GET.ref_id);
 	</script>
     <script type="text/javascript" src="js/functions.js"></script>
     <script type="text/javascript" src="js/google.js"></script>

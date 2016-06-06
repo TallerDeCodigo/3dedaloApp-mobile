@@ -61,7 +61,9 @@
 				</div>
 				<div class="table_cell">
 					<span>$ {{data.product_price}}</span>
-					<p><a href="#" class="add_to_cart"><i class="material-icons file_download" ></i> Add to cart</a></p>
+					{{#if data.has_file}}
+						<p><a href="file_map.html?ref_id={{data.ID}}" class="add_to_cart"><i class="material-icons file_download" ></i>Download</a></p>
+					{{/if}}
 					<p><a href="#" class="techBtn"><i class="material-icons info" ></i> Technical</a></p>
 				</div>
 				<br>
