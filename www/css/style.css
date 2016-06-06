@@ -635,9 +635,11 @@ div.wrapper {
 	overflow:hidden;
 	background:#FFF;
 }
-.pages.search_results{
+.pages.search_results,
+.pages.not_that_much{
 	top: 56px;
 }
+
 
 
 #mask {
@@ -1500,9 +1502,37 @@ div.gm-style-iw {
 	font-size:75%;
 	color:#757575;
 }
+#info-maker .select_printer{
+	display:block;clear:both;position:absolute;background:rgb(245, 249, 253);top:-1.8rem;left:33%;padding:0.5rem;
+	border-radius:2px;
+	box-shadow:0px 0px 1px #666;
+}
+#info-maker .select_printer a{
+	color:#1E88E5;
+}
 
 .geoloc_me{}
 .geoloc_me h3{font-size:12px;letter-spacing:0.6px;}
+
+.success_message p{}
+.success_message.user_connected p{
+	letter-spacing: 0.6px;
+    line-height: 1.4rem;
+    text-align: center;
+}
+.success_message.user_connected p>bold{
+	font-size: 1.4rem;
+    display: block;
+    text-align: center;
+    margin: 2rem 0 1rem 0;
+    color: #1E88E5;
+}
+.success_message .big-ass{
+	width: 40%;
+    opacity: 0.15;
+    margin: 1rem auto!important;
+    display: block!important;
+}
 
 /* ACCOUNT SETTINGS */
 

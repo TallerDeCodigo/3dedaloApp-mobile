@@ -61,7 +61,7 @@
 		},
 		registerPartials: function() {
 			/* Add files to be loaded here */
-			var filenames = ['header', 'history_header', 'history_header_nouser', 'search_header', 'feed', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader', 'dom_assets', 'maker_map'];
+			var filenames = ['header', 'history_header', 'history_header_nouser', 'search_header', 'feed', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader', 'dom_assets'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
 				request.open('GET', 'views/partials/' + filename + '.hbs', false);
@@ -246,7 +246,7 @@
 			 	console.log(error);
 			 });
 		},
-		initMakersMap : function(file_carried){
+		initMakersMap : function(){
 
 			var map;
 			var mapOptions = {
@@ -255,7 +255,6 @@
 				zoomControl: true,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
-			var file_carried = (file_carried) ? file_carried : null;
 			
 			map = new google.maps.Map(document.getElementById('map'), mapOptions);
 			navigator.geolocation.getCurrentPosition(function(position) {
@@ -285,10 +284,39 @@
 				app.hideLoader();
 			});  
 		
+		},
+		initPrinterMap : function(file_carried){
+
+			var map;
+			var mapOptions = {
+				zoom: 15,
+				disableDefaultUI: true,
+				zoomControl: true,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			var file_carried = (file_carried) ? file_carried : null;
+			
+			map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+				var printer = [];
+
+				var infowindow = new google.maps.InfoWindow({
+					map: map,
+					position: geolocate,
+					content: '<div class="geoloc_me"><h3>'+user_first+'</h3></div>',
+					buttons: { close: { visible: false } }
+				});
+				app.onlyprint(position, map, file_carried);
+				map.setCenter(geolocate);
+				app.hideLoader();
+			});  
+		
 		}, 
-		onlyprint: function(position, map) {
+		onlyprint: function(position, map, file_carried) {
 			app.showLoader();
 			app.registerTemplate('partials/maker_map');
+			app.registerTemplate('partials/maker_map_select');
 			var theResponse = null;
 			var image = 'images/marker.png';
 			var printer = [];
@@ -302,6 +330,7 @@
 				}
 
 			$.getJSON(api_base_url+'around/'+user+'/makers/printer'+'?@='+position.coords.latitude+','+position.coords.longitude , function(response){
+				console.log(response);
 			})
 			 .fail(function(err){
 				app.hideLoader();
@@ -315,14 +344,18 @@
 					app.marker1.push(new google.maps.Marker({ position: printer[i], map: map, icon: image }));
 					app.marker1[i].ref_id = parseInt(theResponse.pool[i].ID);
 					app.marker1[i].distance_to = theResponse.pool[i].distance;
+					console.log(app.marker1[i]);
 					app.marker1[i].addListener('click', 
 												function() {
 													app.showLoader();
 													var context = this;
 													$.getJSON(api_base_url+'min/'+user+'/maker/'+context.ref_id)
 													 .done(function(response){
-													 	var data = {profile: response.profile, distance: context.distance_to};
-														var template = Handlebars.templates['partials/maker_map'];
+													 	var data = {profile: response.profile, ref_id: file_carried, distance: context.distance_to};
+														var template = (file_carried) 
+																			? Handlebars.templates['partials/maker_map_select'] 
+																			: Handlebars.templates['partials/maker_map'];
+														data.file_reference = (file_carried) ? file_carried : null;
 														$('#insert_info').html( template(data) );
 														$("#info-maker").fadeIn();
 														app.hideLoader();
@@ -469,12 +502,14 @@
 		render_file_map : function(ref_id){
 			/** Render map when printing a file **/
 			var reference = ref_id;
-			var data = {explore_active: true};
+			var data = app.gatherEnvironment(null, "Select a printer")
+			data['explore_active'] =  true;
+
 			var source   = $("#map_template").html();
 			var template = Handlebars.compile(source);
 			$('.main').html( template(data) );
 			app.showLoader();
-			app.initMakersMap(reference);
+			app.initPrinterMap(reference);
 		},
 		render_detail : function(product_id){
 
@@ -617,6 +652,22 @@
 			//   .fail(function(err){
 		 //  		console.log(err);
 		 //  	});
+		},
+		render_select_printer : function(ref_id, printer_id){
+			/*** Make purchase action ***/
+			var response = apiRH.makeRequest(user+'/purchase/'+ref_id, {printer_id: printer_id});
+			if(response){
+				// $context.addClass('read');
+				var data = app.gatherEnvironment(null, "Printing in progress...");
+				var source   = $("#success_select_printer").html();
+				var template = Handlebars.compile(source);
+				$('.main').html( template(data) );
+				setTimeout(function(){
+					app.hideLoader();
+				}, 2000);
+				return;
+			}
+			console.log("Wha wha wha whaaaa");
 		},
 		get_user_timeline : function(offset){
 			/* To do: send block length from the app */

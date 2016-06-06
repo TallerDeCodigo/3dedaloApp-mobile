@@ -8,8 +8,8 @@ function requestHandlerAPI(){
 	/*** Attributes ***/
 	this.token = null;
 	this.upload_ready = false;
-	this.version = "1.0";
-	this.app_build = "1.0.2";
+	this.version = "1.2";
+	this.app_build = "1.2.5.2";
 	this.device_model = (typeof device != 'undefined') ? device.model : 'not set';
 	this.device_platform = (typeof device != 'undefined') ? device.platform : 'not set';
 	this.device_platform_version = (typeof device != 'undefined') ? device.version : 'not set';
@@ -30,7 +30,7 @@ function requestHandlerAPI(){
 	this.ls = window.localStorage;
 	/* Constructor */
 	this.construct = function(app_context){
-					console.log('Initialized rest API Dedalo sdk v1.0');
+					console.log('Initialized rest API Dedalo sdk v1.2');
 					if(this.ls.getItem('request_token')) this.token = this.ls.getItem('request_token');
 					sdk_app_context = app_context;
 					/* For chaining purposes ::) */

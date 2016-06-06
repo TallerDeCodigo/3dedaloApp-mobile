@@ -44,10 +44,12 @@ $(window).on("load resize",function(){
     var ancho = document.documentElement.clientWidth;
     var alto = document.documentElement.clientHeight;
     var altfull = alto-156 + "px";
+    var altfull2 = alto-56 + "px";
     var altfull1 = alto-104 + "px";
     $("#principalf").css("height", ancho);
     $("#static").css("height", altfull1);
     $(".pages").css("height", altfull);
+    $(".pages.not_that_much").css("height", altfull1);
     $(".pagina").css("height", altfull);
     var totitems = $('.actions').length;
     totitems = totitems + " ITEMS";
