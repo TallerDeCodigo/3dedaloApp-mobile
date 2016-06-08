@@ -4,7 +4,7 @@
  *
  */
 function requestHandlerAPI(){
-
+	console.log("Request handler");
 	/*** Attributes ***/
 	this.token = null;
 	this.upload_ready = false;

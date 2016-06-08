@@ -40,7 +40,10 @@
 				    		{{/each}}
 						</ul>
 					</div>
-					<div id="overswipe"><span><i class="material-icons favorite_border invert" ></i> 0</span><span><i class="material-icons file_download invert" ></i> 0</span><span><i class="material-icons remove_red_eye invert" ></i> 0</span></div>
+					<div id="overswipe">
+						<span> <i class="material-icons favorite_border invert" ></i> 0</span>
+						<span> <i class="material-icons file_download invert" ></i> {{data.download_count}}</span>
+						<span> <i class="material-icons remove_red_eye invert" ></i> {{data.times_viewed}}</span></div>
 					<a class="navegar" onclick="slider.prev();return false;" href="#"><i class="material-icons keyboard_arrow_left" ></i></a>
 					<a class="navegar" onclick="slider.next();return false;" href="#"><i class="material-icons keyboard_arrow_right" ></i></a>
 				</section>
