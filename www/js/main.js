@@ -197,9 +197,11 @@
 			})
 			 .done(function(response){
 				var data = app.gatherEnvironment(response);
+				console.log(data);
 					data.home_active = true;
 				var feed_tpl = Handlebars.templates['feed'];
 				var html 	 = feed_tpl(data);
+				console.log(html);
 				$('.main').html( html );
 				setTimeout(function(){	
 					app.hideLoader();
