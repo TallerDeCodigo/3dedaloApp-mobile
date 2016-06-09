@@ -562,11 +562,25 @@
 			/* Send header_title for it renders history_header */
 			$.getJSON(api_base_url+user+'/me/')
 			 .done(function(response){
-			 	console.log(response);
-				/* Send header_title for it renders history_header */
 				var data = app.gatherEnvironment(response, "Account settings");
+				/* Get printers and models from catalogue */
 				data.printers = app.getJsonCatalogue("pModels");
-				console.log(data.printers);
+				var parent_count = Object.keys(app.getJsonCatalogue("pModels")).length;
+				var this_brand = null;
+				data.printer_brands = [];
+				data.printer_models = [];
+				console.log(data);
+				for(var i = 0; i < parent_count; i++){
+					this_brand = Object.keys(data.printers)[i];
+					data.printer_brands.push(this_brand);
+					var level_count = data.printers[this_brand].length;
+					data.printer_models[this_brand] =  [];
+					for(var j = 0; j<level_count; j++ ){
+						var this_model = data.printers[this_brand];
+						data.printer_models[this_brand].push(this_model[j]);
+					}
+				}
+				window.printers_global = data.printer_models;
 				var source   = $("#settings_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );

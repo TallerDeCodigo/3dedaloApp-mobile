@@ -47,21 +47,19 @@
 							<input type="checkbox" name="become_printer" id="become_printer" value="true" {{#if data.is_printer}}checked{{/if}}>
 							<label for="become_printer"></label>
 						</div>
-						<label class="inline_check">Become a printer *</label>
+						<label class="inline_check">Become a printer</label>
 						<section class="form_part dbl_indent {{#unless data.is_printer}}hidden{{/unless}}" >
 							<p class="lil_comment">Printer specs</p>
-							<select name="printer_brand" id="printer_brand">
+							<select name="printer_brand" class="good_ol_select fifty" id="printer_brand">
 								<option value="">Brand</option>
 								{{#each printer_brands}}
-									<option value="{{slug}}">{{name}}</option>
+									<option value="{{@index}}" {{#if_eq @index data.printer_brand }}selected{{/if_eq}}>{{.}}</option>
 								{{/each}}
 							</select>
-							<select name="printer_model" id="printer_model">
+							<select name="printer_model" class="good_ol_select fifty" id="printer_model">
 								<option value="">Model</option>
-								{{#each printer_models}}
-									<option value="{{slug}}">{{name}}</option>
-								{{/each}}
 							</select>
+							<a class="buttonlike" id="locate_new_printer"><i class="material-icons location"></i>Set my location as a printer</a>
 						</section>
 						<br>
 					</section>
@@ -71,7 +69,7 @@
 							<input type="checkbox" name="become_scanner" id="become_scanner" value="true" {{#if data.is_scanner}}checked{{/if}}>
 							<label for="become_scanner"></label>
 						</div>
-						<label class="inline_check">Become a scanner *</label>
+						<label class="inline_check">Become a scanner</label>
 						<section class="form_part dbl_indent {{#unless data.is_scanner}}hidden{{/unless}}">
 							<p class="lil_comment">Scanner specs</p>
 							<input type="text" name="scanner_brand" id="scanner_brand" placeholder="Brand" value="">
@@ -79,7 +77,6 @@
 							<input type="text" name="scanner_resolution" id="scanner_resolution" placeholder="Resolution" value="">
 						</section>
 						<br>
-						<p class="lil_comment">* Require GPS</p>
 					</section>
 					<br><p>Change your password</p>
 					<input type="password" name="user_pwd" placeholder="New password" value=""><br>
