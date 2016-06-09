@@ -150,7 +150,6 @@
 			return JSON.parse(response.responseText);
 		},
 		gatherEnvironment: function(optional_data, history_title) {
-			console.log('gather');
 			/* Gather environment information */
 			var meInfo 	= apiRH.ls.getItem('me');
 			var logged 	= apiRH.ls.getItem('me.logged');
@@ -188,7 +187,6 @@
 				return true;
 		},
 		render_feed : function(offset, filter){
-			// app.initialize();
 			app.showLoader();
 			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
 			})
@@ -201,23 +199,13 @@
 				var data = app.gatherEnvironment(response);
 					data.home_active = true;
 				var feed_tpl = Handlebars.templates['feed'];
+				var html 	 = feed_tpl(data);
+				$('.main').html( html );
 				setTimeout(function(){	
-					alert(JSON.stringify(Handlebars.templates));
-				}, 10000);
-				alert(JSON.stringify(Handlebars.templates));
-				alert(feed_tpl);
-
-				// var html 	 = feed_tpl(data);
-				// alert(JSON.stringify(html));
-				// $('.main').html( html );
-				// alert(html);
-				// alert("Still here");
-				// setTimeout(function(){	
-				// 	app.hideLoader();
-				// 	alert(JSON.stringify(Handlebars.templates));
-				// 	if(!loggedIn)
-				// 		$('#account1').trigger('click');
-				// }, 5000);
+					app.hideLoader();
+					if(!loggedIn)
+						$('#account1').trigger('click');
+				}, 2000);
 			});
 			
 		},
