@@ -145,6 +145,10 @@
 				navigator.splashscreen.hide();
 			}
 		},
+		getJsonCatalogue: function(catalogue_name) {
+			var response = $.getJSON('compiled/catalogues/'+catalogue_name+'.json');
+			return JSON.parse(response.responseText);
+		},
 		gatherEnvironment: function(optional_data, history_title) {
 			console.log('gather');
 			/* Gather environment information */
@@ -561,6 +565,8 @@
 			 	console.log(response);
 				/* Send header_title for it renders history_header */
 				var data = app.gatherEnvironment(response, "Account settings");
+				data.printers = app.getJsonCatalogue("pModels");
+				console.log(data.printers);
 				var source   = $("#settings_template").html();
 				var template = Handlebars.compile(source);
 				$('.main').html( template(data) );

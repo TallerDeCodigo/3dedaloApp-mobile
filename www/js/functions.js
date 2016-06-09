@@ -348,6 +348,10 @@ $(window).load(function(){
     })
 
      if($('#settings_form').length){
+        window.printer = {};
+        window.scanner = {};
+        window.printer.justmodified = false;
+        window.scanner.justmodified = false;
         /*
          * Update user profile
          */
@@ -378,7 +382,10 @@ $(window).load(function(){
 
         $('#become_printer').on('click', function(){
             if($('#become_printer').prop('checked')){
-                $(this).parent().siblings('.form_part').removeClass('hidden');
+                var $become_printer_details = $(this).parent().siblings('.form_part');
+                $become_printer_details.removeClass('hidden');
+                /*** Update specifics from the hardware ***/
+                window.printer.justmodified = true;
                 return;
             }
             $(this).parent().siblings('.form_part').addClass('hidden');
@@ -386,11 +393,12 @@ $(window).load(function(){
 
         $('#become_scanner').on('click', function(){
             if($('#become_scanner').prop('checked')){
-                $(this).parent().siblings('.form_part').removeClass('hidden');
-                console.log($(this).parent().siblings('.form_part').removeClass('hidden'));
+                var $become_scanner_details = $(this).parent().siblings('.form_part');
+                $become_scanner_details.removeClass('hidden');
+                /*** Update specifics from the hardware ***/
+                window.scanner.justmodified = true;
                 return;
             }
-            console.log($(this).parent().siblings('.form_part').removeClass('hidden'));
             $(this).parent().siblings('.form_part').addClass('hidden');
         });
 
