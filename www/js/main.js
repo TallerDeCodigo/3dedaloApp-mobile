@@ -1,4 +1,4 @@
-	 /*     _                        _     _           _   
+   /*     _                        _     _           _   
 	*    / \   _ __  _ __     ___ | |__ (_) ___  ___| |_ 
 	*   / _ \ | '_ \| '_ \   / _ \| '_ \| |/ _ \/ __| __|
 	*  / ___ \| |_) | |_) | | (_) | |_) | |  __/ (__| |_ 
@@ -8,9 +8,12 @@
 
 	var app = {
 		app_context: this,
-		// Application Constructor
+			// Application Constructor
 		initialize: function() {
 			this.bindEvents();
+			/* Initialize API request handler */
+			window.apiRH = new requestHandlerAPI().construct(app);
+
 			/* IMPORTANT to set requests to be syncronous */
 			/* TODO test all requests without the following code 'cause of deprecation */
 			$.ajaxSetup({
@@ -23,16 +26,13 @@
 			this.ls 		= window.localStorage;
 			var log_info 	= JSON.parse(this.ls.getItem('dedalo_log_info'));
 			var me_info 	= JSON.parse(this.ls.getItem('me'));
-							window.user 	= (log_info) ? log_info.user_login : '';
-							window.user_display = (me_info) ? me_info.first_name+' '+me_info.last_name : window.user;
-							window.user_first = (me_info) ? me_info.first_name : window.user;
-							window.user_id 	= (log_info) ? log_info.user_id : '';
-							window.user_role = (log_info) ? log_info.user_role : '';
+							window.user 		= (log_info) ? log_info.user_login 	: '';
+							window.user_display = (me_info)  ? me_info.first_name+' '+me_info.last_name : window.user;
+							window.user_first 	= (me_info)  ? me_info.first_name 	: window.user;
+							window.user_id 		= (log_info) ? log_info.user_id 	: '';
+							window.user_role 	= (log_info) ? log_info.user_role 	: '';
 			if(log_info)
 				loggedIn = true;
-			/* Initialize API request handler */
-			window.apiRH = new requestHandlerAPI().construct(app);
-
 			/*** Initialize maps tools ***/
 			this.marker1 = [];
 			this.marker2 = [];
@@ -57,9 +57,10 @@
 			}
 			
 			/* Requesting passive token if no token is previously stored */
-			console.log(apiRH.request_token().get_request_token());
+			console.log("Token::: "+apiRH.request_token().get_request_token());
 		},
 		registerPartials: function() {
+			console.log("Register partials");
 			/* Add files to be loaded here */
 			var filenames = ['header', 'history_header', 'history_header_nouser', 'search_header', 'feed', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader', 'dom_assets'];
 			filenames.forEach(function (filename) {
@@ -91,6 +92,7 @@
 	        return;
 		},
 		registerHelpers : function() {
+			console.log("Register helpers");
 		    Handlebars.registerHelper('if_eq', function(a, b, opts) {
 			    if (a == b) {
 			        return opts.fn(this);
@@ -115,7 +117,6 @@
 		// deviceready Event Handler
 		onDeviceReady: function() {
 			app.receivedEvent('deviceready');
-
 			/*   ___    _         _   _     
 			*  / _ \  / \  _   _| |_| |__  
 			* | | | |/ _ \| | | | __| '_ \ 
@@ -124,16 +125,19 @@
 			*/                              
 			try{
 				OAuth.initialize('VWadBFs2rbk8esrvqSEFCyHGKnc');
+				console.log("Initialized Oauth");
 			}
 			catch(err){
-				// app.toast("Oauth error ocurred");
+				app.toast("Oauth error ocurred");
 				console.log('OAuth initialize error: ' + err);
 			}
+			return;
 		},
 
 		// deviceready Event Handler
 		onMobileInit: function() {
 			app.receivedEvent('mobileinit');
+			console.log("mobileinit");
 		},
 		// Update DOM on a Received Event
 		receivedEvent: function(id) {
@@ -142,6 +146,7 @@
 			}
 		},
 		gatherEnvironment: function(optional_data, history_title) {
+			console.log('gather');
 			/* Gather environment information */
 			var meInfo 	= apiRH.ls.getItem('me');
 			var logged 	= apiRH.ls.getItem('me.logged');
@@ -178,21 +183,8 @@
 					if (hasOwnProperty.call(obj, key)) return false;
 				return true;
 		},
-		render_header : function(){
-			$.getJSON(api_base_url+'auth/user/me/', function(response){
-				console.log(response);
-				var template = Handlebars.templates.header(response);
-				$('.content').append( template );
-			});
-		},
-		render_menu : function(){
-			$.getJSON(api_base_url+'auth/'+user+'/me', function(response){
-				console.log(response);
-				var template = Handlebars.templates.header(response);
-				$('.main').prepend( template ).trigger('create');
-			});
-		},
 		render_feed : function(offset, filter){
+			// app.initialize();
 			app.showLoader();
 			$.getJSON(api_base_url+'feed/'+offset+'/'+filter , function(response){
 			})
@@ -204,15 +196,24 @@
 			 .done(function(response){
 				var data = app.gatherEnvironment(response);
 					data.home_active = true;
-					console.log(JSON.stringify(data));
-			 	var source   = $("#feed_template").html();
-				var template = Handlebars.compile(source);
-				$('.main').html( template(data) );
-				setTimeout(function(){
-					app.hideLoader();
-					if(!loggedIn)
-						$('#account1').trigger('click');
-				}, 2000);
+				var feed_tpl = Handlebars.templates['feed'];
+				setTimeout(function(){	
+					alert(JSON.stringify(Handlebars.templates));
+				}, 10000);
+				alert(JSON.stringify(Handlebars.templates));
+				alert(feed_tpl);
+
+				// var html 	 = feed_tpl(data);
+				// alert(JSON.stringify(html));
+				// $('.main').html( html );
+				// alert(html);
+				// alert("Still here");
+				// setTimeout(function(){	
+				// 	app.hideLoader();
+				// 	alert(JSON.stringify(Handlebars.templates));
+				// 	if(!loggedIn)
+				// 		$('#account1').trigger('click');
+				// }, 5000);
 			});
 			
 		},
@@ -330,7 +331,6 @@
 				}
 
 			$.getJSON(api_base_url+'around/'+user+'/makers/printer'+'?@='+position.coords.latitude+','+position.coords.longitude , function(response){
-				console.log(response);
 			})
 			 .fail(function(err){
 				app.hideLoader();
@@ -344,7 +344,6 @@
 					app.marker1.push(new google.maps.Marker({ position: printer[i], map: map, icon: image }));
 					app.marker1[i].ref_id = parseInt(theResponse.pool[i].ID);
 					app.marker1[i].distance_to = theResponse.pool[i].distance;
-					console.log(app.marker1[i]);
 					app.marker1[i].addListener('click', 
 												function() {
 													app.showLoader();
@@ -515,7 +514,6 @@
 
 			$.getJSON(api_base_url+'products/'+product_id)
 			 .done(function(response){
-			 	console.log(response);
 				var data = app.gatherEnvironment(response, "Printables");
 				var source   = $("#detail_template").html();
 				var template = Handlebars.compile(source);
