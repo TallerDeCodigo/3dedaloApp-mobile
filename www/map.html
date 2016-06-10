@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script type="text/javascript" src="js/bower_components/handlebars/handlebars.runtime.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
-		<meta http-equiv="Content-Security-Policy" content="script-src 'self' *.googleapis.com/ https://maps.googleapis.com/ https://maps.googleapis.com/maps/api/ https://maps.googleapis.com/* https://maps.gstatic.com/ https://mts0.googleapis.com/ 'unsafe-inline' 'unsafe-eval'">
+		<meta http-equiv="Content-Security-Policy" content="script-src 'self' *googleapis.com/ https://maps.googleapis.com/ https://maps.googleapis.com/maps/api/ https://maps.googleapis.com/* https://maps.gstatic.com/ https://mts0.googleapis.com/ 'unsafe-inline' 'unsafe-eval'">
 		<title>DEDALO</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ3zqRkIHDwpNjliZ1ir7nJ7CNz6ikMtI&v=3.exp"></script>
@@ -18,7 +19,10 @@
 
 	<!-- Load Scripts -->
 	<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="js/bower_components/handlebars/handlebars.min.js"></script>
+	<script src="compiled/views/partials.js"></script>
+	<script src="compiled/views/map.js"></script>
+	<script src="compiled/views/partials/maker_map.js"></script>
+	<script src="compiled/views/partials/maker_map_select.js"></script>
 	<script src="js/api-sdk-1.0.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/plugins.js"></script>
@@ -26,36 +30,6 @@
 	<script type="text/javascript">
 		/* Initialize app object and perform initial login check */
 		app.initialize();
-	</script>
-
-	<script id="map_template" type="text/x-handlebars-template">
-		<div id="content" class="map">
-			{{>search_header}}
-			<div class="subheader" style="text-align:center">
-				<!-- <a id="allBtn" class="cats1 select">ALL</a> -->
-				<a id="printBtn" class="cats1">PRINTER</a>
-				<a id="scanBtn" class="cats1">SCANNER</a>
-				<a id="shipBtn" class="cats1">+SHIP</a>
-			</div>
-			<div id="no-cat" class="pages">
-				<section>
-		    		<div id="map"></div>
-		    		<section id="insert_info" class="insert_info">
-		    			
-		    		</section>
-		    	</section>
-			</div>
-			{{>footer}}
-		</div>
-		{{> dom_assets}}
-		{{#if logged_user}}
-			{{> sidemenu_logged me}}
-		{{else}}
-			{{> sidemenu}}
-		{{/if}}
-	</script>
-	
-	<script type="text/javascript">
 		app.render_map();
 	</script>
     <script type="text/javascript" src="js/functions.js"></script>

@@ -201,12 +201,10 @@
 		render_search_composite : function(){
 			$.getJSON(api_base_url+user+'/content/search-composite/')
 			 .done(function(response){
-			 	console.log(response);
 				response.search_active =  true;
 				var data 	 = app.gatherEnvironment(response);
 					data.search_active = true;
-				var source   = $("#search_template").html();
-				var template = Handlebars.compile(source);
+				var template = Handlebars.templates['search'];
 				$('.main').html( template(data) );
 			})
 			 .fail(function(error){
@@ -220,8 +218,7 @@
 					data.search_active = true;
 					data.search_term = search_term;
 					console.log(data);
-				var source   = $("#search_results_template").html();
-				var template = Handlebars.compile(source);
+				var template = Handlebars.templates['search_results'];
 				$('.main').html( template(data) );
 			})
 			 .fail(function(error){
@@ -297,8 +294,6 @@
 		}, 
 		onlyprint: function(position, map, file_carried) {
 			app.showLoader();
-			app.registerTemplate('partials/maker_map');
-			app.registerTemplate('partials/maker_map_select');
 			var theResponse = null;
 			var image = 'images/marker.png';
 			var printer = [];
@@ -333,8 +328,8 @@
 													 .done(function(response){
 													 	var data = {profile: response.profile, ref_id: file_carried, distance: context.distance_to};
 														var template = (file_carried) 
-																			? Handlebars.templates['partials/maker_map_select'] 
-																			: Handlebars.templates['partials/maker_map'];
+																			? Handlebars.templates['maker_map_select'] 
+																			: Handlebars.templates['maker_map'];
 														data.file_reference = (file_carried) ? file_carried : null;
 														$('#insert_info').html( template(data) );
 														$("#info-maker").fadeIn();
@@ -356,7 +351,6 @@
 		}, 
 		onlyscan: function(position, map) {
 			app.showLoader();
-			app.registerTemplate('partials/maker_map');
 			var image = 'images/marker.png';
 			var theResponse = null;
 			var scanner = [];
@@ -391,7 +385,7 @@
 													$.getJSON(api_base_url+'min/'+user+'/maker/'+context.ref_id)
 													 .done(function(response){
 													 	var data = {profile: response.profile, distance: context.distance_to};
-														var template = Handlebars.templates['partials/maker_map'];
+														var template = Handlebars.templates['maker_map'];
 														$('#insert_info').html( template(data) );
 														$("#info-maker").fadeIn();
 														app.hideLoader();
@@ -445,7 +439,7 @@
 													$.getJSON(api_base_url+'min/'+user+'/maker/'+context.ref_id)
 													 .done(function(response){
 													 	var data = {profile: response.profile, distance: context.distance_to};
-														var template = Handlebars.templates['partials/maker_map'];
+														var template = Handlebars.templates['maker_map'];
 														$('#insert_info').html( template(data) );
 														$("#info-maker").fadeIn();
 														app.hideLoader();
@@ -473,9 +467,8 @@
 		render_map : function(){
 			
 			var data = {explore_active: true};
-			var source   = $("#map_template").html();
-			var template = Handlebars.compile(source);
-			$('.main').html( template(data) );
+			var map_template = Handlebars.templates['map'];
+			$('.main').html( map_template(data) );
 			app.showLoader();
 			app.initMakersMap();
 		},
@@ -485,8 +478,7 @@
 			var data = app.gatherEnvironment(null, "Select a printer")
 			data['explore_active'] =  true;
 
-			var source   = $("#map_template").html();
-			var template = Handlebars.compile(source);
+			var template = Handlebars.templates['file_map'];
 			$('.main').html( template(data) );
 			app.showLoader();
 			app.initPrinterMap(reference);
@@ -496,8 +488,8 @@
 			$.getJSON(api_base_url+'products/'+product_id)
 			 .done(function(response){
 				var data = app.gatherEnvironment(response, "Printables");
-				var source   = $("#detail_template").html();
-				var template = Handlebars.compile(source);
+
+				var template = Handlebars.templates['detail'];
 				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
@@ -513,8 +505,8 @@
 			$.getJSON(api_base_url+'content/'+post_id)
 			 .done(function(response){
 				var data = app.gatherEnvironment(response, "Now reading");
-				var source   = $("#post_template").html();
-				var template = Handlebars.compile(source);
+
+				var template = Handlebars.templates['post'];
 				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
@@ -528,8 +520,8 @@
 
 			/* Send header_title for it renders history_header */
 			var data = app.gatherEnvironment(null, "Create account");
-			var source   = $("#create_user_template").html();
-			var template = Handlebars.compile(source);
+
+			var template = Handlebars.templates['create_user'];
 			$('.main').html( template(data) );
 			setTimeout(function(){
 				app.hideLoader();
@@ -558,8 +550,7 @@
 					}
 				}
 				window.printers_global = data.printer_models;
-				var source   = $("#settings_template").html();
-				var template = Handlebars.compile(source);
+				var template = Handlebars.templates['settings'];
 				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
@@ -573,8 +564,8 @@
 			/* Send header_title for it renders history_header */
 			var data = app.gatherEnvironment(null, "Notifications");
 			data.notifications_active = true;
-			var source   = $("#notifications_template").html();
-			var template = Handlebars.compile(source);
+
+			var template = Handlebars.templates['notifications'];
 			$('.main').html( template(data) );
 			setTimeout(function(){
 				app.hideLoader();
@@ -586,8 +577,8 @@
 			 	/* Send header_title for it renders history_header */
 				var data = app.gatherEnvironment(response, "Dashboard");
 			 	console.log(data);
-				var source   = $("#dashboard_template").html();
-				var template = Handlebars.compile(source);
+
+				var template = Handlebars.templates['dashboard'];
 				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
@@ -602,9 +593,8 @@
 			 .done(function(response){
 			 	/* Send header_title for it renders history_header */
 				var data = app.gatherEnvironment(response, "Maker profile");
-			 	console.log(data);
-				var source   = $("#maker_template").html();
-				var template = Handlebars.compile(source);
+
+				var template = Handlebars.templates['maker'];
 				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
@@ -620,8 +610,8 @@
 			 	/* Send header_title for it renders history_header */
 			 	var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
 				var data = app.gatherEnvironment(response, header_title);
-				var source   = $("#tax_archive_template").html();
-				var template = Handlebars.compile(source);
+
+				var template = Handlebars.templates['tax-archive'];
 				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
@@ -637,8 +627,7 @@
 			//  	/* Send header_title for it renders history_header */
 			 // 	var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
 				// var data = app.gatherEnvironment(response, header_title);
-				var source   = $("#search_by_photo_template").html();
-				var template = Handlebars.compile(source);
+				var template = Handlebars.templates['search_by_photo'];
 				$('.main').html( template({}) );
 				setTimeout(function(){
 					app.hideLoader();
@@ -654,8 +643,8 @@
 			if(response){
 				// $context.addClass('read');
 				var data = app.gatherEnvironment(null, "Printing in progress...");
-				var source   = $("#success_select_printer").html();
-				var template = Handlebars.compile(source);
+
+				var template = Handlebars.templates['select_printer'];
 				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
@@ -663,31 +652,6 @@
 				return;
 			}
 			console.log("Wha wha wha whaaaa");
-		},
-		get_user_timeline : function(offset){
-			/* To do: send block length from the app */
-			$.getJSON(api_base_url+user+'/timeline/'+offset, function(response){
-				offset++;
-				var data = {};
-				data.results = response;
-				var source   = $("#event_entry_template").html();
-				var template = Handlebars.compile(source);
-				$('.feed_container').append( template(data) );
-				/* To do: send block length from the app, change hardcoded 10 */
-				if($('#load_more_posts').length > 0)
-					$('#load_more_posts').remove();
-				if(data.results.length < 10){
-					$('.feed_container').append( "<a class='load_more' data-role='none'>No hay más actividad</a>" );
-					return;
-				}
-				$('.feed_container').append( "<a class='load_more' id='load_more_posts' data-role='none' data-page='"+offset+"'><i class='fa fa-refresh'></i> Cargar más</a>" );
-				return;
-			}).fail(function(err){
-				console.log(err);
-			}).done(function(err){
-				app.render_header();
-			});
-			
 		},
 		get_file_from_device: function(destination, source){
 			apiRH.getFileFromDevice(destination, source);		

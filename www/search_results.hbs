@@ -1,0 +1,30 @@
+<div id="content" class="search">
+	{{> search_header}}
+
+	<div id="no-cat" class="pages search_results">
+		<section>
+    	{{#if data.count}}
+    		{{#each data.pool}}
+				<a href="{{#if productos}}detail{{else}}post{{/if}}.html?id={{ID}}" class="small link">
+					<img src="{{thumb_url}}">
+					<div>
+					{{#if productos}}
+						{{#if designer_brand.profile_pic}}
+							<img src="{{designer_brand.profile_pic}}" alt="{{designer_brand.name}}" class="round profile_pic">
+						{{else}}
+							<i class="material-icons account_circle invert"></i>
+						{{/if}}
+					{{/if}}
+						<h1>{{name}}</h1>
+						<span>{{designer_brand.name}}</span>
+					</div>
+				</a>
+			{{/each}}
+    	{{/if}}
+    	</section>
+	</div>
+    
+</div>
+{{> footer}}
+{{> dom_assets}}
+{{> sidemenu}}
