@@ -1,1 +1,0 @@
-!function(){var e=Handlebars.template,a=Handlebars.templates=Handlebars.templates||{};a["feed.hbs"]=e({compiler:[7,">= 4.0.0"],main:function(e,a,n,l,s){var t;return'<div id="content" class="index">\nlorem ipsum:::: '+e.escapeExpression(e.lambda(null!=(t=null!=a?a.me:a)?t.display_name:t,a))+"\n</div>\n"},useData:!0})}();

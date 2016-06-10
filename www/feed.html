@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<script type="text/javascript" src="js/bower_components/handlebars/handlebars.min.js"></script>
-	<script type="text/javascript" src="compiled/feed.js"></script>
+	<script type="text/javascript" src="js/bower_components/handlebars/handlebars.runtime.min.js"></script>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval'">
@@ -15,24 +14,21 @@
 			<!-- Template will be inserted here -->
 		</section>
 	</body>
-
+	
 	<!-- Load Scripts -->
-	<script type="text/javascript">
-		!function(){var e=Handlebars.template,a=Handlebars.templates=Handlebars.templates||{};a["feed"]=e({compiler:[7,">= 4.0.0"],main:function(e,a,n,l,s){var t;return'<div id="content" class="index">\nlorem ipsum:::: '+e.escapeExpression(e.lambda(null!=(t=null!=a?a.me:a)?t.display_name:t,a))+"\n</div>\n"},useData:!0})}();
-	</script>
+    <script src="compiled/views/partials.js"></script>
+    <script src="compiled/views/feed.js"></script>
     <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/api-sdk-1.0.js"></script>
-	<script src="js/main.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/oauth.js"></script>
+	<script src="js/main.js"></script>
+
 	<script type="text/javascript">
 		/* Initialize app object and perform initial login check */
 		window.is_feed = true;
 		app.initialize();
-	</script>
-		
-	<script type="text/javascript">
 		app.render_feed(0, 'all');
 		app.showLoader();
 	</script>

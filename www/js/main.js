@@ -20,7 +20,9 @@
 				 async: false
 			});
 			window.loggedIn = false;
-			app.registerPartials();
+			console.log(Handlebars);
+			app.registerCompiledPartials();
+			// app.registerPartials();
 			app.registerHelpers();
 			/* localStorage init */
 			this.ls 		= window.localStorage;
@@ -65,20 +67,21 @@
 			var filenames = ['header', 'history_header', 'history_header_nouser', 'search_header', 'feed', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader', 'dom_assets'];
 			filenames.forEach(function (filename) {
 				var request = new XMLHttpRequest();
-				request.open('GET', 'views/partials/' + filename + '.hbs', false);
+				request.open('GET', 'compiled/views/partials/' + filename + '.hbs', false);
 				request.send(null);
 				if (request.status === 200) 
 			    	Handlebars.registerPartial(filename, request.responseText);
 
 			});
 		},
-		registerPartial: function(filename) {
-			var request = new XMLHttpRequest();
-			request.open('GET', 'views/partials/' + filename + '.hbs', false);
-			request.send(null);
-			if (request.status === 200) 
-			    	Handlebars.registerPartial(filename, request.responseText);
-			return;
+		registerCompiledPartials: function() {
+			console.log("Register pre compiled partials");
+			/* Add files to be loaded here */
+			var filenames = ['header', 'history_header', 'history_header_nouser', 'search_header', 'feed_chunk', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader', 'dom_assets'];
+			
+			filenames.forEach(function (filename) {
+			    	Handlebars.registerPartial(filename, Handlebars.templates[filename]);
+			});
 		},
 		registerTemplate : function(name) {
 		    $.ajax({
@@ -197,11 +200,9 @@
 			})
 			 .done(function(response){
 				var data = app.gatherEnvironment(response);
-				console.log(data);
 					data.home_active = true;
 				var feed_tpl = Handlebars.templates['feed'];
 				var html 	 = feed_tpl(data);
-				console.log(html);
 				$('.main').html( html );
 				setTimeout(function(){	
 					app.hideLoader();

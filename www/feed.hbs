@@ -1,3 +1,11 @@
 <div id="content" class="index">
-lorem ipsum:::: {{me.display_name}}
+	{{> header}}
+	{{> feed_chunk data}}
+	{{> footer}}
+	{{> dom_assets}}
 </div>
+{{#if logged_user}}
+	{{> sidemenu_logged me}}
+{{else}}
+	{{> sidemenu}}
+{{/if}}
