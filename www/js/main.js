@@ -22,7 +22,6 @@
 			window.loggedIn = false;
 			console.log(Handlebars);
 			app.registerCompiledPartials();
-			// app.registerPartials();
 			app.registerHelpers();
 			/* localStorage init */
 			this.ls 		= window.localStorage;
@@ -60,19 +59,6 @@
 			
 			/* Requesting passive token if no token is previously stored */
 			console.log("Token::: "+apiRH.request_token().get_request_token());
-		},
-		registerPartials: function() {
-			console.log("Register partials");
-			/* Add files to be loaded here */
-			var filenames = ['header', 'history_header', 'history_header_nouser', 'search_header', 'feed', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader', 'dom_assets'];
-			filenames.forEach(function (filename) {
-				var request = new XMLHttpRequest();
-				request.open('GET', 'compiled/views/partials/' + filename + '.hbs', false);
-				request.send(null);
-				if (request.status === 200) 
-			    	Handlebars.registerPartial(filename, request.responseText);
-
-			});
 		},
 		registerCompiledPartials: function() {
 			console.log("Register pre compiled partials");

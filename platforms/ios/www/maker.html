@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
+		<title>DEDALO</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+
+	<body>
+		<section class="main">
+			<!-- Template will be inserted here -->
+		</section>
+	</body>
+
+	<!-- Load Scripts -->
+	<script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="js/bower_components/handlebars/handlebars.min.js"></script>
+	<script src="js/api-sdk-1.0.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		app.initialize();
+	</script>
+	<script id="maker_template" type="text/x-handlebars-template">
+		<div id="content" class="maker">
+			{{>history_header}}
+			<section class="maker_content">
+				<section class="thumb_container">
+					{{# if data.same_maker.count}}
+						{{# each data.same_maker.pool}}
+							<a class="thumbs" href="detail.html?id={{ID}}"><img src="{{thumb_url}}" /></a>
+						{{/each}}
+					{{/if}}
+				</section>
+				{{#if data.profile.profile_pic}}
+					<img src="{{data.profile.profile_pic}}" class="profile_pic round" />
+				{{else}}
+					<i class="material-icons account_circle big" ></i>
+				{{/if}}
+				<section class="profile_info">
+					<p class="user_name">{{data.profile.user_display}}</p>
+					<p class="rating_container">
+						<i class="material-icons star mini on"></i>
+						<i class="material-icons star mini on"></i>
+						<i class="material-icons star mini on"></i>
+					</p>
+					{{#if data.profile.address}}
+						{{data.profile.address}}
+					{{/if}}
+					{{#if data.profile.bio}}
+						<section class="bio">
+						{{{data.profile.bio}}}
+						</section>
+					{{/if}}
+					<div class="clearfix"></div>
+					{{# if data.profile.categories.count}}
+						{{# each data.profile.categories.pool}}
+							<a href="#">{{name}}</a>
+						{{/ each}}
+					{{/if}}
+				</section>
+			</section>
+			{{> footer}}
+		</div>
+		{{> dom_assets}}
+		{{#if logged_user}}
+			{{> sidemenu_logged me}}
+		{{else}}
+			{{> sidemenu}}
+		{{/if}}
+	</script>
+	<script type="text/javascript">
+		var GET = app.getUrlVars();
+		app.render_maker(GET.id);
+		app.showLoader();
+	</script>
+	<script type='text/javascript' src='js/swipe.js'></script>
+	<script type='text/javascript' src='js/callswipe2.js'></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+</html>
