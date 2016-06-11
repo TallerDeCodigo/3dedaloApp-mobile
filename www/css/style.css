@@ -2282,3 +2282,7 @@ div.gm-style-iw {
 	right:-9999px;
 	margin:auto;
 }
+
+.platform-ios .daheader{
+	padding-top: 2rem;
+}
