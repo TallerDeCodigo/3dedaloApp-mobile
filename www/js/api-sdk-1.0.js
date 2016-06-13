@@ -504,13 +504,14 @@ function requestHandlerAPI(){
 		this.fileselect_fail = function (error) {
 								app.toast("An error has occurred: " + error);
 							};
-		/*
+		/**
 		 * @param String destination Upload destination Options: "profile", "event"
 		 * @param String source Source to get media file from Options: "camera", "gallery"
-		 * @note Before getFileFromDevice
+		 * @return void
 		 */
 		this.getFileFromDevice = function(destination, source){
-
+			console.log(dwstination);
+			console.log(source);
 			this.photoDestinationType = navigator.camera.DestinationType;
 			var sourcetype =  navigator.camera.PictureSourceType.PHOTOLIBRARY;
 			if(source == "camera") sourcetype =  navigator.camera.PictureSourceType.CAMERA;

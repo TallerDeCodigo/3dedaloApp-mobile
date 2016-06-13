@@ -1,0 +1,49 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.moonware.cameraplus": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "com.oauthio.plugins.oauthio": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "nl.x-services.plugins.toast": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "org.dedalo.app"
+        }
+    }
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="js/bower_components/handlebars/handlebars.runtime.min.js"></script>
+		<script type="text/javascript" src="js/bower_components/handlebars/handlebars.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1", "user-scalable=no">
 		<title>DEDALO</title>
@@ -25,16 +25,6 @@
 	<script type="text/javascript">
 		/* Initialize app object and perform initial login check */
 		app.initialize();
-	</script>
-	<script id="search_by_photo_template" type="text/x-handlebars-template">
-		
-		<div id="content" class="settings">
-			{{>history_header}}
-		</div>
-
-	</script>
-
-	<script type="text/javascript">
 		app.render_search_by_photo();
 		app.showLoader();
 	</script>

@@ -165,6 +165,10 @@ $(window).load(function(){
 		$(".bots").click(function(){
 			$(".bots").removeClass( "active" );
 			$(this).addClass( "active" );
+			if( $(this).data('source') == 'gallery' ){
+				
+				return;
+			}
 		});
 
 		$(".cats").click(function(){

@@ -120,6 +120,40 @@
 				app.toast("Oauth error ocurred");
 				console.log('OAuth initialize error: ' + err);
 			}
+			if(device.platform === "iOS" && parseInt(device.version) === 9){
+               $.mobile.hashListeningEnabled = false;
+           }
+
+           if ( ! ( $.mobile.hashListeningEnabled &&
+               $.mobile.path.isHashValid( location.hash ) &&
+               ( $( hashPage ).is( ":jqmData(role='page')" ) ||
+                $.mobile.path.isPath( hash ) ||
+                hash === $.mobile.dialogHashKey ) ) ) {
+
+                   // make sure to set initial popstate state if it exists
+                   // so that navigation back to the initial page works properly
+                   if ( $.event.special.navigate.isPushStateEnabled() ) {
+                       $.mobile.navigate.navigator.squash( path.parseLocation().href );
+                   }
+
+                   $.mobile.changePage( $.mobile.firstPage, {
+                                       transition: "none",
+                                       reverse: true,
+                                       changeHash: false,
+                                       fromHashChange: true
+                                       });
+               } else {
+                   // trigger hashchange or navigate to squash and record the correct
+                   // history entry for an initial hash path
+                   if ( !$.event.special.navigate.isPushStateEnabled() ) {
+                       $window.trigger( "hashchange", [true] );
+                   } else {
+                       // TODO figure out how to simplify this interaction with the initial history entry
+                       // at the bottom js/navigate/navigate.js
+                       $.mobile.navigate.history.stack = [];
+                       $.mobile.navigate( $.mobile.path.isPath( location.hash ) ? location.hash : location.href );
+                   }
+               }
 			return;
 		},
 
@@ -538,7 +572,6 @@
 				var this_brand = null;
 				data.printer_brands = [];
 				data.printer_models = [];
-				console.log(data);
 				for(var i = 0; i < parent_count; i++){
 					this_brand = Object.keys(data.printers)[i];
 					data.printer_brands.push(this_brand);
@@ -576,8 +609,6 @@
 			 .done(function(response){
 			 	/* Send header_title for it renders history_header */
 				var data = app.gatherEnvironment(response, "Dashboard");
-			 	console.log(data);
-
 				var template = Handlebars.templates['dashboard'];
 				$('.main').html( template(data) );
 				setTimeout(function(){
@@ -626,9 +657,11 @@
 			//  .done(function(response){
 			//  	/* Send header_title for it renders history_header */
 			 // 	var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
-				// var data = app.gatherEnvironment(response, header_title);
+				var data = app.gatherEnvironment(null, "Search by picture");
+				app.registerTemplate('search_by_photo');
 				var template = Handlebars.templates['search_by_photo'];
-				$('.main').html( template({}) );
+				// var template = Handlebars.templates['search_by_photo'];
+				$('.main').html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
 				}, 2000);

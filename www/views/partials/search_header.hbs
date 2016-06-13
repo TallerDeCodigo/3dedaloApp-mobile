@@ -3,8 +3,8 @@
 	<div id="barra">
 		<i class="material-icons search invert"></i>
 		<form id="search_form" action="search_results.html" method="GET">
-			<input type="text" name="s" onfocus="if(this.value == 'Search') { this.value = ''; }$(this).css('color','#FFF');" value="{{#if search_term}}{{search_term}}{{else}}Search{{/if}}" style="color: rgb(255, 255, 255);">
-			<input type="submit" value="">
+			<input type="text" name="s" placeholder="Search"  value="{{#if search_term}}{{search_term}}{{else}}{{/if}}" style="color: rgb(255, 255, 255);">
+			<input type="submit" value="" style="display:none; visibility: hidden; width: 0px; height=0px; ">
 		</form>
 	</div>
 	<i id="photo" class="material-icons search photo_camera"></i>
