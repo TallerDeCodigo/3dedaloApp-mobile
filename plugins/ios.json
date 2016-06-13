@@ -7,9 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.moonware.cameraplus": {
-            "PACKAGE_NAME": "org.dedalo.app"
-        },
         "com.oauthio.plugins.oauthio": {
             "PACKAGE_NAME": "org.dedalo.app"
         },

@@ -20,7 +20,6 @@
 				 async: false
 			});
 			window.loggedIn = false;
-			console.log(Handlebars);
 			app.registerCompiledPartials();
 			app.registerHelpers();
 			/* localStorage init */
@@ -81,7 +80,6 @@
 	        return;
 		},
 		registerHelpers : function() {
-			console.log("Register helpers");
 		    Handlebars.registerHelper('if_eq', function(a, b, opts) {
 			    if (a == b) {
 			        return opts.fn(this);
