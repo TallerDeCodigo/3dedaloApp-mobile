@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	/* Production API URL */
 	window.api_base_url = "https://3dedalo.org/rest/v1/";
 	/* Development local API URL */
-	window.api_base_url = "http://dedalo.dev/rest/v1/";
+	// window.api_base_url = "http://dedalo.dev/rest/v1/";
 	// window.api_base_url = "http://localhost/dedalo/rest/v1/";
 	
 	this.ls = window.localStorage;
@@ -36,6 +36,7 @@ function requestHandlerAPI(){
 					/* For chaining purposes ::) */
 					return this;
 				};
+				
 		/*** Methods ***/
 		/* 
 		 * Manage pseudo Log in process to use protected API calls
@@ -58,6 +59,7 @@ function requestHandlerAPI(){
 								console.log(response);
 								return (response.success) ? response.data : false;
 							};
+
 		/* 
 		 * Register a new user account the old fashioned way
 		 * @param data_login JSON {user_login, user_password}

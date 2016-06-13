@@ -65,36 +65,36 @@
 			var filenames = ['header', 'history_header', 'history_header_nouser', 'search_header', 'feed_chunk', 'sidemenu', 'sidemenu_logged', 'footer', 'subheader', 'dom_assets'];
 			
 			filenames.forEach(function (filename) {
-			    	Handlebars.registerPartial(filename, Handlebars.templates[filename]);
+					Handlebars.registerPartial(filename, Handlebars.templates[filename]);
 			});
 		},
 		registerTemplate : function(name) {
-		    $.ajax({
-	            url : 'views/' + name + '.hbs',
-	            success : function(response) {
-		                if (Handlebars.templates === undefined)
-		                    Handlebars.templates = {};
-		            Handlebars.templates[name] = Handlebars.compile(response);
-	            }
-	        });
-	        return;
+			$.ajax({
+				url : 'views/' + name + '.hbs',
+				success : function(response) {
+						if (Handlebars.templates === undefined)
+							Handlebars.templates = {};
+					Handlebars.templates[name] = Handlebars.compile(response);
+				}
+			});
+			return;
 		},
 		registerHelpers : function() {
-		    Handlebars.registerHelper('if_eq', function(a, b, opts) {
-			    if (a == b) {
-			        return opts.fn(this);
-			    } else {
-			        return opts.inverse(this);
-			    }
+			Handlebars.registerHelper('if_eq', function(a, b, opts) {
+				if (a == b) {
+					return opts.fn(this);
+				} else {
+					return opts.inverse(this);
+				}
 			});
 			Handlebars.registerHelper('if_module', function(a, b, opts) {
-			    if (a%b == 0) {
-			        return opts.fn(this);
-			    } else {
-			        return opts.inverse(this);
-			    }
+				if (a%b == 0) {
+					return opts.fn(this);
+				} else {
+					return opts.inverse(this);
+				}
 			});
-	        return;
+			return;
 		},
 		bindEvents: function() {
 			document.addEventListener('deviceready', app.onDeviceReady, false);
@@ -118,40 +118,19 @@
 				app.toast("Oauth error ocurred");
 				console.log('OAuth initialize error: ' + err);
 			}
-			if(device.platform === "iOS" && parseInt(device.version) === 9){
-               $.mobile.hashListeningEnabled = false;
-           }
-
-           if ( ! ( $.mobile.hashListeningEnabled &&
-               $.mobile.path.isHashValid( location.hash ) &&
-               ( $( hashPage ).is( ":jqmData(role='page')" ) ||
-                $.mobile.path.isPath( hash ) ||
-                hash === $.mobile.dialogHashKey ) ) ) {
-
-                   // make sure to set initial popstate state if it exists
-                   // so that navigation back to the initial page works properly
-                   if ( $.event.special.navigate.isPushStateEnabled() ) {
-                       $.mobile.navigate.navigator.squash( path.parseLocation().href );
-                   }
-
-                   $.mobile.changePage( $.mobile.firstPage, {
-                                       transition: "none",
-                                       reverse: true,
-                                       changeHash: false,
-                                       fromHashChange: true
-                                       });
-               } else {
-                   // trigger hashchange or navigate to squash and record the correct
-                   // history entry for an initial hash path
-                   if ( !$.event.special.navigate.isPushStateEnabled() ) {
-                       $window.trigger( "hashchange", [true] );
-                   } else {
-                       // TODO figure out how to simplify this interaction with the initial history entry
-                       // at the bottom js/navigate/navigate.js
-                       $.mobile.navigate.history.stack = [];
-                       $.mobile.navigate( $.mobile.path.isPath( location.hash ) ? location.hash : location.href );
-                   }
-               }
+			var backButtonElement = document.getElementById("backBtn");
+			console.log(backButtonElement);
+			backButtonElement.addEventListener("click", onBackButton, false);
+			function onBackButton(){
+    			console.log('Back button');
+    			if(navigator.app){
+    				console.log('Back button navigator');
+    				navigator.app.backHistory();
+    				return;
+    			}
+			   	window.history.go(-1);
+			   	return;
+			}
 			return;
 		},
 
@@ -240,7 +219,7 @@
 				$('.main').html( template(data) );
 			})
 			 .fail(function(error){
-			 	console.log(error);
+				console.log(error);
 			 });
 		},
 		render_search_results : function(search_term){
@@ -254,7 +233,7 @@
 				$('.main').html( template(data) );
 			})
 			 .fail(function(error){
-			 	console.log(error);
+				console.log(error);
 			 });
 		},
 		initMakersMap : function(){
@@ -345,8 +324,8 @@
 				app.toast("Couldn't locate printers around you, please check your GPS settings and try again.");
 			})
 			 .done(function(response){	
-			 	theResponse = response;
-			 	var i;		 	
+				theResponse = response;
+				var i;		 	
 				for(i = 0; i<response.count-1; i++){
 					printer.push(new google.maps.LatLng(response.pool[i].latitude, response.pool[i].longitude));
 					app.marker1.push(new google.maps.Marker({ position: printer[i], map: map, icon: image }));
@@ -358,7 +337,7 @@
 													var context = this;
 													$.getJSON(api_base_url+'min/'+user+'/maker/'+context.ref_id)
 													 .done(function(response){
-													 	var data = {profile: response.profile, ref_id: file_carried, distance: context.distance_to};
+														var data = {profile: response.profile, ref_id: file_carried, distance: context.distance_to};
 														var template = (file_carried) 
 																			? Handlebars.templates['maker_map_select'] 
 																			: Handlebars.templates['maker_map'];
@@ -368,15 +347,15 @@
 														app.hideLoader();
 													})
 													 .fail(function(error){
-													 	app.toast("Oops! couldn't get maker details");
-													 	app.hideLoader();
+														app.toast("Oops! couldn't get maker details");
+														app.hideLoader();
 													 });
 												});
 					app.marker1[i].setVisible(true);
 				}
 
 				setTimeout(function(){
-				    app.hideLoader();
+					app.hideLoader();
 				}, 2000);
 				$("#info-maker").hide();
 			});
@@ -402,8 +381,8 @@
 				app.toast("Couldn't locate scanners around you, please check your GPS settings and try again.")
 			})
 			 .done(function(response){
-			 	theResponse = response;
-			 	var i;					
+				theResponse = response;
+				var i;					
 				for( i = 0; i<response.count-1; i++){
 					scanner.push(new google.maps.LatLng(response.pool[i].latitude, 
 														response.pool[i].longitude));
@@ -416,21 +395,21 @@
 													var context = this;
 													$.getJSON(api_base_url+'min/'+user+'/maker/'+context.ref_id)
 													 .done(function(response){
-													 	var data = {profile: response.profile, distance: context.distance_to};
+														var data = {profile: response.profile, distance: context.distance_to};
 														var template = Handlebars.templates['maker_map'];
 														$('#insert_info').html( template(data) );
 														$("#info-maker").fadeIn();
 														app.hideLoader();
 													})
 													 .fail(function(error){
-													 	app.toast("Oops! couldn't get maker details");
-													 	app.hideLoader();
+														app.toast("Oops! couldn't get maker details");
+														app.hideLoader();
 													 });
 												});
 					app.marker2[i].setVisible(true);
 				}
 				setTimeout(function(){
-				    app.hideLoader();
+					app.hideLoader();
 				}, 2000);
 				$("#info-maker").hide();
 			});
@@ -457,8 +436,8 @@
 				app.toast("Couldn't locate printers around you, please check your GPS settings and try again.");
 			})
 			 .done(function(response){	
-			 	theResponse = response;
-			 	var i;		 	
+				theResponse = response;
+				var i;		 	
 				for(i = 0; i<response.count-1; i++){
 					witship.push(new google.maps.LatLng(response.pool[i].latitude, response.pool[i].longitude));
 					app.marker3.push(new google.maps.Marker({ position: witship[i], map: map, icon: image }));
@@ -470,22 +449,22 @@
 													var context = this;
 													$.getJSON(api_base_url+'min/'+user+'/maker/'+context.ref_id)
 													 .done(function(response){
-													 	var data = {profile: response.profile, distance: context.distance_to};
+														var data = {profile: response.profile, distance: context.distance_to};
 														var template = Handlebars.templates['maker_map'];
 														$('#insert_info').html( template(data) );
 														$("#info-maker").fadeIn();
 														app.hideLoader();
 													})
 													 .fail(function(error){
-													 	app.toast("Oops! couldn't get maker details");
-													 	app.hideLoader();
+														app.toast("Oops! couldn't get maker details");
+														app.hideLoader();
 													 });
 												});
 					app.marker3[i].setVisible(true);
 				}
 
 				setTimeout(function(){
-				    app.hideLoader();
+					app.hideLoader();
 				}, 2000);
 				$("#info-maker").hide();
 			});
@@ -528,7 +507,7 @@
 				}, 2000);
 			})
 			 .fail(function(error){
-			 	console.log(error);
+				console.log(error);
 			 });
 		},
 		render_post : function(post_id){
@@ -545,7 +524,7 @@
 				}, 2000);
 			})
 			 .fail(function(error){
-			 	console.log(error);
+				console.log(error);
 			 });
 		},
 		render_create_user : function(){
@@ -588,8 +567,8 @@
 				}, 2000);
 			})
 			  .fail(function(err){
-		  		console.log(err);
-		  	});
+				console.log(err);
+			});
 		},
 		render_notifications : function(){
 			/* Send header_title for it renders history_header */
@@ -605,7 +584,7 @@
 		render_dashboard : function(){
 			$.getJSON(api_base_url+user+'/dashboard/')
 			 .done(function(response){
-			 	/* Send header_title for it renders history_header */
+				/* Send header_title for it renders history_header */
 				var data = app.gatherEnvironment(response, "Dashboard");
 				var template = Handlebars.templates['dashboard'];
 				$('.main').html( template(data) );
@@ -614,13 +593,13 @@
 				}, 2000);
 			})
 			  .fail(function(err){
-		  		console.log(err);
-		  	});
+				console.log(err);
+			});
 		},
 		render_maker : function(maker_id){
 			$.getJSON(api_base_url+user+'/maker/'+maker_id)
 			 .done(function(response){
-			 	/* Send header_title for it renders history_header */
+				/* Send header_title for it renders history_header */
 				var data = app.gatherEnvironment(response, "Maker profile");
 
 				var template = Handlebars.templates['maker'];
@@ -630,14 +609,14 @@
 				}, 2000);
 			})
 			  .fail(function(err){
-		  		console.log(err);
-		  	});
+				console.log(err);
+			});
 		},
 		render_taxonomy : function(term_id, tax_name){
 			$.getJSON(api_base_url+'content/taxonomy/'+tax_name+'/'+term_id)
 			 .done(function(response){
-			 	/* Send header_title for it renders history_header */
-			 	var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
+				/* Send header_title for it renders history_header */
+				var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
 				var data = app.gatherEnvironment(response, header_title);
 
 				var template = Handlebars.templates['tax-archive'];
@@ -647,8 +626,8 @@
 				}, 2000);
 			})
 			  .fail(function(err){
-		  		console.log(err);
-		  	});
+				console.log(err);
+			});
 		},
 		render_search_by_photo : function(term_id, tax_name){
 			// $.getJSON(api_base_url+'content/taxonomy/'+tax_name+'/'+term_id)
