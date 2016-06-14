@@ -121,11 +121,6 @@
 			var backButtonElement = document.getElementById("backBtn");
 			if(backButtonElement)
 				backButtonElement.addEventListener("click", onBackButton, false);
-			
-			if ( device.platform === "iOS" ) {
-				$.mobile.hashListeningEnabled = false;
-			}
-
 			function onBackButton(){
     			if(navigator.app){
     				console.log('Back button navigator');

@@ -244,8 +244,9 @@ $(window).load(function(){
 			$("body").animate({scrollTop: topAdjusted-50}, 400);
 		});
 
-		if(window.device && window.device.platform == "iOS"){
-			$(".daheader")
+		if(typeof(device) != 'undefined' && device.platform == "iOS"){
+			console.log("Hello, Im Mr Meseeks look at me!");
+			$(".daheader").addClass("iOS");
 		}
 
 	});

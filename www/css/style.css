@@ -272,7 +272,7 @@ header p {
 	font-size:140%;
 	left:70px;
 	color:#FFF;
-	line-height:58px;
+	line-height:50px;
 }
 
 .daheader #account1.profile_pic{
@@ -2297,6 +2297,17 @@ div.gm-style-iw {
 	margin:auto;
 }
 
-.platform-ios .daheader{
-	padding-top: 2rem;
+.daheader.iOS{
+	padding-top: 1.5rem;
+    height: 68px;
+}
+.daheader.iOS+.subheader{
+	top: 62px!important;
+}
+
+.daheader.iOS>#backBtn,
+.daheader.iOS .photo_camera,
+.daheader.iOS .logo_hook,
+.daheader.iOS #account1.profile_pic{
+	top: 29px!important;
 }
