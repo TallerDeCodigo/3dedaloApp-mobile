@@ -507,7 +507,7 @@ function requestHandlerAPI(){
 		 */
 		this.initializeProfileFileTransfer = function(){
 									if(this.upload_ready){
-										var ft = new FileTransfer();
+										// var ft = new FileTransfer();
 										ft.upload(  this.transfer_options.fileUrl, 
 													encodeURI(api_base_url+"transfers/"+user+"/profile/"), 
 													context.profile_transfer_win, 
