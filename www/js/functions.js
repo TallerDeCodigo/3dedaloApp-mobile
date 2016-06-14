@@ -249,6 +249,17 @@ $(window).load(function(){
 			$(".daheader").addClass("iOS");
 		}
 
+		/** Show prompt to upload **/
+		$("#add_photo_appear").on('click', function(){
+			$('.upload_options').fadeIn().removeClass('hidden');
+		});
+
+		/** Close prompt on touch **/
+		$(".close_on_touch").on('click', function(e){
+			if( !$(e.target).hasClass('dont_close') )
+				$(this).fadeOut().addClass('hidden');
+		});
+
 	});
 
 });
@@ -352,9 +363,13 @@ $(window).load(function(){
 
    
 
-	$('.trigger_getphoto').on('click', function(e){
-		app.get_file_from_device('profile', 'gallery');
-	})
+	$('#get_pic_gallery').on('click', function(e){
+		app.get_file_from_device('search', 'gallery');
+	});
+
+	$('#get_pic_camera').on('click', function(e){
+		app.get_file_from_device('search', 'camera');
+	});
 
 	 if($('#settings_form').length){
 		window.printer = {};

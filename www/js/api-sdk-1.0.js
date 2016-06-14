@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	/* Production API URL */
 	window.api_base_url = "https://3dedalo.org/rest/v1/";
 	/* Development local API URL */
-	window.api_base_url = "http://dedalo.dev/rest/v1/";
+	// window.api_base_url = "http://dedalo.dev/rest/v1/";
 	// window.api_base_url = "http://localhost/dedalo/rest/v1/";
 	
 	this.ls = window.localStorage;
@@ -473,11 +473,34 @@ function requestHandlerAPI(){
 										params.client = "app";
 									this.transfer_options.params = params;
 									this.upload_ready = true;
+									console.log(this.transfer_options);
+									console.log(this.upload_ready);
+									app.hideLoader();
+								};
+
+		/*
+		 * Prepare params for Search File transfer
+		 * @param fileURL
+		 */
+		this.prepareSearchFileTransfer = function(fileURL){
+									app.showLoader();
+									this.transfer_options = new FileUploadOptions();
+									this.transfer_options.fileUrl = fileURL;
+									this.transfer_options.fileKey = "file";
+									this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+									this.transfer_options.mimeType = "image/jpeg";
+
+									var params = {};
+										params.client = "app";
+									this.transfer_options.params = params;
+									this.upload_ready = true;
+									console.log(this.transfer_options);
+									console.log(this.upload_ready);
 									app.hideLoader();
 								};
 
 
-		/**
+		/*
 		 * Initialize Profile File transfer
 		 * @param fileURL
 		 * @see prepareProfileTransfer MUST be executed before
@@ -493,11 +516,38 @@ function requestHandlerAPI(){
 												);
 									}
 								};
+
+		/*
+		 * Initialize Search by image File transfer
+		 * @param fileURL
+		 * @see prepareProfileTransfer MUST be executed before
+		 */
+		this.initializeSearchFileTransfer = function(){
+									if(this.upload_ready){
+										var ft = new FileTransfer();
+										ft.upload(  this.transfer_options.fileUrl, 
+													encodeURI(api_base_url+"transfers/"+user+"/profile/"), 
+													context.profile_transfer_win, 
+													context.transfer_fail, 
+													this.transfer_options
+												);
+									}
+								};
+								
 		this.fileselect_win = function (r) {
 								if(!r && r == '')
 									return;
-								context.initializeEventFileTransfer(r);
+								// context.initializeEventFileTransfer(r);
+								return context.prepareProfileFileTransfer(r);
 							};
+
+		this.search_fileselect_win = function (r) {
+								if(!r && r == '')
+									return;
+								// context.initializeEventFileTransfer(r);
+								return context.prepareProfileFileTransfer(r);
+							};
+
 		this.profileselect_win = function (r) {
 								if(!r && r == '')
 									
@@ -512,7 +562,7 @@ function requestHandlerAPI(){
 		 * @return void
 		 */
 		this.getFileFromDevice = function(destination, source){
-			console.log(dwstination);
+			console.log(destination);
 			console.log(source);
 			this.photoDestinationType = navigator.camera.DestinationType;
 			var sourcetype =  navigator.camera.PictureSourceType.PHOTOLIBRARY;
@@ -523,7 +573,7 @@ function requestHandlerAPI(){
 					sourceType: sourcetype,
 					mediaType: navigator.camera.MediaType.ALLMEDIA  });
 			if(destination == 'search')
-				navigator.camera.getPicture(context.fileselect_win, context.fileselect_fail, { quality: 100,
+				navigator.camera.getPicture(context.search_fileselect_win, context.fileselect_fail, { quality: 100,
 						destinationType: this.photoDestinationType.FILE_URI,
 						sourceType: sourcetype,
 						mediaType: navigator.camera.MediaType.ALLMEDIA  });
