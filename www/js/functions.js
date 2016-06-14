@@ -244,6 +244,10 @@ $(window).load(function(){
 			$("body").animate({scrollTop: topAdjusted-50}, 400);
 		});
 
+		if(window.device && window.device.platform == "iOS"){
+			$(".daheader")
+		}
+
 	});
 
 });

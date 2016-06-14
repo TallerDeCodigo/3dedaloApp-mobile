@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.dedalo.app" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.dedalodomus.app" version="1.2.7.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>3Dedalo</name>
     <description>
         3Dedalo i...
@@ -11,7 +11,7 @@
     <plugin name="cordova-plugin-whitelist" spec="1" />
 
     <feature name="App">
-        <param name="android-package" value="org.apache.cordova.App" />
+        <param name="android-package" value="org.dedalodomus.app" />
     </feature>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

@@ -119,17 +119,20 @@
 				console.log('OAuth initialize error: ' + err);
 			}
 			var backButtonElement = document.getElementById("backBtn");
-			console.log(backButtonElement);
-			backButtonElement.addEventListener("click", onBackButton, false);
+			if(backButtonElement)
+				backButtonElement.addEventListener("click", onBackButton, false);
+			
+			if ( device.platform === "iOS" ) {
+				$.mobile.hashListeningEnabled = false;
+			}
+
 			function onBackButton(){
-    			console.log('Back button');
     			if(navigator.app){
     				console.log('Back button navigator');
     				navigator.app.backHistory();
     				return;
     			}
-			   	window.history.go(-1);
-			   	return;
+			   	history.go(-1);
 			}
 			return;
 		},

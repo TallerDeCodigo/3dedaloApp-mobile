@@ -33,6 +33,9 @@
         },
         "nl.x-services.plugins.toast": {
             "PACKAGE_NAME": "org.dedalo.app"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "org.dedalodomus.app"
         }
     },
     "dependent_plugins": {

@@ -1651,6 +1651,11 @@ div.gm-style-iw {
 	border-radius:2px;
 	width:60px;
 }
+
+.dashboard_section{
+	padding: 1rem 2rem;
+}
+
 .good_ol_select{
 	background-color: #FFF;
 	
