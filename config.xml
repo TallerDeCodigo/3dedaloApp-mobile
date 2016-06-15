@@ -19,7 +19,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-
+    <access origin="https://*/*" />
+    <access origin="https://*.google.com" />
+    <access origin="https://*.googleapis.com" />
+    <access origin="https://*.gstatic.com" />
+    
     <platform name="android">
         <allow-intent href="market:*" />    
         <allow-navigation href="http://*" />
