@@ -317,11 +317,12 @@ $(window).load(function(){
 
 	/* Further search send form */
 	$('#further_search #send_form').on("click", function(e){
+		console.log("Further send");
 		e.preventDefault();
 		app.showLoader();
 		var data_adv_search = app.getFormData('#further_search');
 		apiRH.initializeSearchFileTransfer(data_adv_search);
-		console.log(data_adv_search);
+		console.log("data_adv :::: "+JSON.stringify(data_adv_search));
 		// var responsedata    = apiRH.makeRequest('content/search/advanced/', data_adv_search);
 		// if(responsedata) {
 		// 	console.log(responsedata);
@@ -331,7 +332,7 @@ $(window).load(function(){
 		// 	return;
 		// }
 		// app.toast('Sorry, we couldn\'t post your request, please try again.');
-		app.toast(data_adv_search);
+		app.toast(JSON.stringify(data_adv_search));
 		// app.hideLoader();
 		return;
 	});

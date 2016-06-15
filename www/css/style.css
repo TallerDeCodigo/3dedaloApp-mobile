@@ -291,14 +291,8 @@ header #back {
 	color:#FFF;
 }
 
-header p {
-	position:relative;
-	font-size:140%;
-	left:70px;
-	color:#FFF;
-	line-height:50px;
-}
-
+header p { position: relative; font-size: 140%; left: 70px; color: #FFF; line-height: 59px; font-weight: 400; font-family: "Roboto"; letter-spacing: 0.4px; }
+.daheader{z-index: 999999999;}
 .daheader #account1.profile_pic{
 	margin:initial;
 	left:initial;
@@ -2376,10 +2370,12 @@ div.gm-style-iw {
 .daheader.iOS{
 	padding-top: 1.5rem;
     height: 68px;
+    line-height: 2.8rem;
 }
 .daheader.iOS+.subheader{
 	top: 62px!important;
 }
+.daheader.iOS > p{}
 
 .daheader.iOS>#backBtn,
 .daheader.iOS .photo_camera,

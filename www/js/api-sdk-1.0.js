@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	/* Production API URL */
 	window.api_base_url = "https://3dedalo.org/rest/v1/";
 	/* Development local API URL */
-	window.api_base_url = "http://dedalo.dev/rest/v1/";
+	// window.api_base_url = "http://dedalo.dev/rest/v1/";
 	// window.api_base_url = "http://localhost/dedalo/rest/v1/";
 	
 	this.ls = window.localStorage;
@@ -429,11 +429,27 @@ function requestHandlerAPI(){
 									// window.location.reload(true);
 									return true;
 								};
+		/*
+		 * Advanced search success callback
+		 * @param 
+		 */
 		this.search_transfer_win = function (r) {
-									// app.toast("Imagen de perfil modificada");
-									// window.location.reload(true);
+									console.log("win r :::"+JSON.stringify(r));
+									app.toast("Dedalo is processing your request");
+									app.registerTemplate('success_advanced_search');
+									var template = Handlebars.templates['success_advanced_search'];
+									console.log(template);
+									$('.main').html( template({}) );
+									setTimeout(function(){
+										app.hideLoader();
+									}, 2000);
+
 									return true;
 								};
+		/*
+		 * Advanced search fail callback
+		 * @param 
+		 */
 		this.transfer_fail = function (error) {
 								console.log(JSON.stringify(error));
 								alert("An error has occurred: Code = " + error.code);
@@ -491,7 +507,7 @@ function requestHandlerAPI(){
 		 */
 		this.initializeProfileFileTransfer = function(){
 									if(this.upload_ready){
-										// var ft = new FileTransfer();
+										var ft = new FileTransfer();
 										ft.upload(  this.transfer_options.fileUrl, 
 													encodeURI(api_base_url+"transfers/"+user+"/profile/"), 
 													context.profile_transfer_win, 
@@ -505,8 +521,10 @@ function requestHandlerAPI(){
 		 * Initialize Search by image File transfer
 		 * @param fileURL
 		 * @see prepareProfileTransfer MUST be executed before
+		 * Dedalo approved
 		 */
 		this.initializeSearchFileTransfer = function(params){
+												console.log(this.upload_ready);
 												if(this.upload_ready){
 													var ft = new FileTransfer();
 													this.transfer_options.params = params;
@@ -516,6 +534,7 @@ function requestHandlerAPI(){
 																context.transfer_fail, 
 																this.transfer_options
 															);
+													console.log(api_base_url+"content/search/advanced/");
 												}
 											};
 								
