@@ -430,7 +430,7 @@ function requestHandlerAPI(){
 									return true;
 								};
 		this.transfer_fail = function (error) {
-								console.log(error);
+								console.log(JSON.stringify(error));
 								alert("An error has occurred: Code = " + error.code);
 								console.log("upload error source " + error.source);
 								console.log("upload error target " + error.target);
