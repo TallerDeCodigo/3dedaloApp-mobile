@@ -435,28 +435,7 @@ function requestHandlerAPI(){
 								console.log("upload error source " + error.source);
 								console.log("upload error target " + error.target);
 							};
-		/*
-		 * Initialize File transfer
-		 * @param fileURL
-		 * Note: to avoid passing the event value through these callbacks we save it to a localStorage item
-		 */
-		this.initializeEventFileTransfer = function(fileURL){
-									app.showLoader();
-									this.transfer_options = new FileUploadOptions();
-									this.transfer_options.fileKey = "file";
-									this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-									this.transfer_options.mimeType = "image/jpeg";
-
-									var params = {};
-										params.client = "app";
-
-									this.transfer_options.params = params;
-
-									var ft = new FileTransfer();
-									var ls = window.localStorage;
-									var event_id = ls.getItem('museo_last_selected_event');
-									ft.upload(fileURL, encodeURI(api_base_url+"transfers/"+user+"/event_upload/"+event_id+"/"), context.transfer_win, context.transfer_fail, this.transfer_options);
-								};
+		
 		/*
 		 * Prepare params for Profile File transfer
 		 * @param fileURL
@@ -494,7 +473,7 @@ function requestHandlerAPI(){
 										params.client = "app";
 									this.transfer_options.params = params;
 									this.upload_ready = true;
-									console.log(this.transfer_options);
+									console.log(JSON.stringify(this.transfer_options));
 									console.log(this.upload_ready);
 									app.hideLoader();
 								};
@@ -537,14 +516,12 @@ function requestHandlerAPI(){
 		this.fileselect_win = function (r) {
 								if(!r && r == '')
 									return;
-								// context.initializeEventFileTransfer(r);
 								return context.prepareProfileFileTransfer(r);
 							};
 
 		this.search_fileselect_win = function (r) {
 								if(!r && r == '')
 									return;
-								// context.initializeEventFileTransfer(r);
 								return context.prepareProfileFileTransfer(r);
 							};
 

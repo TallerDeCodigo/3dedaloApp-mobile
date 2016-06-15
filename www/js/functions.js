@@ -314,6 +314,23 @@ $(window).load(function(){
 		// app.hideLoader();
 		return;
 	});
+
+	/* Further search */
+	$('#further_search').submit(function(e){
+		e.preventDefault();
+		app.showLoader();
+		var data_adv_search      = app.getFormData('#further_search');
+		var responsedata    = apiRH.makeRequest('', data_adv_search);
+		if(responsedata) {
+			// apiRH.save_user_data_clientside(responsedata);
+			// window.location.assign('feed.html?filter_feed=all');
+			// app.hideLoader();
+			return;
+		}
+		app.toast('Sorry, we couldn\'t post your request, please try again.');
+		// app.hideLoader();
+		return;
+	});
 	
 	/* Category follow events */
 	$(document).on('click', '.follow_category', function(e){

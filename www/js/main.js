@@ -627,23 +627,16 @@
 				console.log(err);
 			});
 		},
-		render_search_by_photo : function(term_id, tax_name){
-			// $.getJSON(api_base_url+'content/taxonomy/'+tax_name+'/'+term_id)
-			//  .done(function(response){
-			//  	/* Send header_title for it renders history_header */
-			 // 	var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
-				var data = app.gatherEnvironment(null, "Search by picture");
-				app.registerTemplate('search_by_photo');
-				var template = Handlebars.templates['search_by_photo'];
-				// var template = Handlebars.templates['search_by_photo'];
-				$('.main').html( template(data) );
-				setTimeout(function(){
-					app.hideLoader();
-				}, 2000);
-			// })
-			//   .fail(function(err){
-		 //  		console.log(err);
-		 //  	});
+		render_direct_photo : function(){
+			app.registerTemplate('direct_photo');
+			var data = app.gatherEnvironment(null, "Advanced search");
+			var template = Handlebars.templates['direct_photo'];
+
+			$('.main').html( template(data) );
+			setTimeout(function(){
+				app.hideLoader();
+			}, 2000);
+
 		},
 		render_select_printer : function(ref_id, printer_id){
 			/*** Make purchase action ***/
@@ -686,18 +679,18 @@
 		}
 	};
 
-   /*      _                                       _                        _       
-	*   __| | ___   ___ _   _ _ __ ___   ___ _ __ | |_   _ __ ___  __ _  __| |_   _ 
-	*  / _` |/ _ \ / __| | | | '_ ` _ \ / _ \ '_ \| __| | '__/ _ \/ _` |/ _` | | | |
-	* | (_| | (_) | (__| |_| | | | | | |  __/ | | | |_  | | |  __/ (_| | (_| | |_| |
-	*  \__,_|\___/ \___|\__,_|_| |_| |_|\___|_| |_|\__| |_|  \___|\__,_|\__,_|\__, |
-	*                                                                         |___/ 
-	*/
+/*      _                                       _                        _       
+ *   __| | ___   ___ _   _ _ __ ___   ___ _ __ | |_   _ __ ___  __ _  __| |_   _ 
+ *  / _` |/ _ \ / __| | | | '_ ` _ \ / _ \ '_ \| __| | '__/ _ \/ _` |/ _` | | | |
+ * | (_| | (_) | (__| |_| | | | | | |  __/ | | | |_  | | |  __/ (_| | (_| | |_| |
+ *  \__,_|\___/ \___|\__,_|_| |_| |_|\___|_| |_|\__| |_|  \___|\__,_|\__,_|\__, |
+ *                                                                         |___/ 
+ */
 	jQuery(document).ready(function($) {
 
-		$('#search_by_photo').click(function(){
-			app.get_file_from_device('search', 'camera');
-		});
+		// $('#search_by_photo').click(function(){
+		// 	app.get_file_from_device('search', 'camera');
+		// });
 
 		/* Create a new account the old fashioned way */
 		if($('#register_form').length)
@@ -752,10 +745,7 @@
 		});
 
 
-
-
-
-		// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 
 
 
@@ -775,9 +765,6 @@
 			
 		});
 
-	
-
-	//-----------------------------------------------------------
 
 		/* Pagination Load more posts */
 		$(document).on('tap', '#load_more_posts', function(e){
@@ -797,107 +784,5 @@
 			e.stopPropagation();
 		});
 
-	
-		/* Insert new comment in event */
-		$('#comment_button').on('tap', function(){
-			var post_id = $('#hidden_event_id').val();
-			var comment_content = $('#comment_content').val();
-			var response = apiRH.makeRequest(user+'/events/comments/', {'event_id': post_id, 'comment_content': comment_content});
-			if(response.success){
-				window.location.reload();
-				return;
-			}
-			app.toast('Ha ocurrido un error al postear tu comentario');
-		});
-
-		/* Autocomplete usernames for recommend event */
-		$("#user_rec").on("change keyup", function() {
-			var search = $(this).val();
-			var render = "";
-			var response = apiRH.getRequest(user+'/search/'+search, null);
-			response.data.forEach(function(value){
-				render += "<li class='fill_input' data-value='"+value+"'>"+value+"</li>";
-			});
-					$("#hidden_list").html(render).show().delay(6000).fadeOut('fast');
-			});
-
-			/* change value when suggested username is clicked */
-			$(document).on('tap', '.fill_input', function(){
-				var value = $(this).data('value');
-				$('#user_rec').val(value);
-				$("#hidden_list").html('').fadeOut('fast');
-			});
-
-			$(document).on('tap', 'a[rel=external]', function(){
-				app.showLoader();
-			});
-
-			/* Category follow events */
-			$(document).on('tap', '._nav_follow_category', function(e){
-				e.preventDefault();
-				var $context 	= $(this);
-				var cat_id 		= $(this).data('id');
-				var response 	= apiRH.makeRequest(user+'/categories/follow/', {'cat_id': cat_id});
-			e.stopPropagation();
-			if(response.success){
-				app.toast('Sigues una nueva categoría');
-				$context.removeClass('_nav_follow_category follow_category').addClass('_nav_unfollow_category unfollow_category');
-				if($context.hasClass('inline')){
-					$context.html('<i class="fa fa-check"></i>');
-					return;
-				}
-				$context.html('<i class="fa fa-check"></i> Siguiendo');
-				e.stopPropagation();
-				return;
-			}
-			return app.toast('Oops! ocurrió un error');
-			});
-
-		/* Category follow events */
-			$(document).on('tap', '._nav_unfollow_category', function(e){
-				e.preventDefault();
-				var $context 	= $(this);
-				var cat_id 		= $(this).data('id');
-				var response 	= apiRH.makeRequest(user+'/categories/unfollow/', {'cat_id': cat_id});
-				e.stopPropagation();
-			if(response.success){
-				app.toast('Dejaste de seguir una categoría');
-				$context.removeClass('_nav_unfollow_category unfollow_category').addClass('_nav_follow_category follow_category');
-				if($context.hasClass('inline')){
-					$context.html('<i class="fa fa-plus-circle"></i>');
-					return;	
-				}
-				$context.html('<i class="fa fa-plus-circle"></i> Seguir');
-				
-				return;	
-			}
-			return app.toast('Oops! ocurrió un error');
-			});
-
-			/* Upload file to event trigger */
-			$('#event_upload_trigger').on('tap', function(){
-				$(this).fadeOut('fast', function(){
-					$('#event_file_upload').fadeIn().removeClass('invisibo');
-					$('#event_camera_upload').fadeIn().removeClass('invisibo');
-				});
-			});
-
-				/* Upload picture from gallery */
-				$('#event_file_upload').on('tap', function(){
-					var ls = window.localStorage;
-					ls.setItem('museo_last_selected_event', $(this).data('eventid'));
-					app.get_file_from_device('event', 'gallery');
-				});
-				/* Take a picture and upload it */
-				$('#event_camera_upload').on('tap', function(){
-					var ls = window.localStorage;
-					ls.setItem('museo_last_selected_event', $(this).data('eventid'));
-					app.get_file_from_device('event', 'camera');
-				});
-		
-			/* Upload user profile pic */
-			$('#mod_user_profile').on('tap', function(){
-				app.get_file_from_device('profile', 'gallery');
-			});
 
 	});
