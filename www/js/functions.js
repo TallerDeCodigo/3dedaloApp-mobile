@@ -315,19 +315,23 @@ $(window).load(function(){
 		return;
 	});
 
-	/* Further search */
-	$('#further_search').submit(function(e){
+	/* Further search send form */
+	$('#further_search #send_form').on("click", function(e){
 		e.preventDefault();
 		app.showLoader();
-		var data_adv_search      = app.getFormData('#further_search');
-		var responsedata    = apiRH.makeRequest('', data_adv_search);
-		if(responsedata) {
-			// apiRH.save_user_data_clientside(responsedata);
-			// window.location.assign('feed.html?filter_feed=all');
-			// app.hideLoader();
-			return;
-		}
-		app.toast('Sorry, we couldn\'t post your request, please try again.');
+		var data_adv_search = app.getFormData('#further_search');
+		apiRH.initializeSearchFileTransfer(data_adv_search);
+		console.log(data_adv_search);
+		// var responsedata    = apiRH.makeRequest('content/search/advanced/', data_adv_search);
+		// if(responsedata) {
+		// 	console.log(responsedata);
+		// 	// apiRH.save_user_data_clientside(responsedata);
+		// 	// window.location.assign('feed.html?filter_feed=all');
+		// 	app.hideLoader();
+		// 	return;
+		// }
+		// app.toast('Sorry, we couldn\'t post your request, please try again.');
+		app.toast(data_adv_search);
 		// app.hideLoader();
 		return;
 	});

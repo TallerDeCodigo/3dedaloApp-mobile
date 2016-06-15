@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	/* Production API URL */
 	window.api_base_url = "https://3dedalo.org/rest/v1/";
 	/* Development local API URL */
-	// window.api_base_url = "http://dedalo.dev/rest/v1/";
+	window.api_base_url = "http://dedalo.dev/rest/v1/";
 	// window.api_base_url = "http://localhost/dedalo/rest/v1/";
 	
 	this.ls = window.localStorage;
@@ -429,6 +429,11 @@ function requestHandlerAPI(){
 									// window.location.reload(true);
 									return true;
 								};
+		this.search_transfer_win = function (r) {
+									// app.toast("Imagen de perfil modificada");
+									// window.location.reload(true);
+									return true;
+								};
 		this.transfer_fail = function (error) {
 								console.log(JSON.stringify(error));
 								alert("An error has occurred: Code = " + error.code);
@@ -501,17 +506,18 @@ function requestHandlerAPI(){
 		 * @param fileURL
 		 * @see prepareProfileTransfer MUST be executed before
 		 */
-		this.initializeSearchFileTransfer = function(){
-									if(this.upload_ready){
-										var ft = new FileTransfer();
-										ft.upload(  this.transfer_options.fileUrl, 
-													encodeURI(api_base_url+"transfers/"+user+"/profile/"), 
-													context.profile_transfer_win, 
-													context.transfer_fail, 
-													this.transfer_options
-												);
-									}
-								};
+		this.initializeSearchFileTransfer = function(params){
+												if(this.upload_ready){
+													var ft = new FileTransfer();
+													this.transfer_options.params = params;
+													ft.upload(  this.transfer_options.fileUrl, 
+																encodeURI(api_base_url+"content/search/advanced/"), 
+																context.search_transfer_win, 
+																context.transfer_fail, 
+																this.transfer_options
+															);
+												}
+											};
 								
 		this.fileselect_win = function (r) {
 								if(!r && r == '')
@@ -522,7 +528,7 @@ function requestHandlerAPI(){
 		this.search_fileselect_win = function (r) {
 								if(!r && r == '')
 									return;
-								return context.prepareProfileFileTransfer(r);
+								return context.prepareSearchFileTransfer(r);
 							};
 
 		this.profileselect_win = function (r) {

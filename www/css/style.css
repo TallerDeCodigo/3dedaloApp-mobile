@@ -1,4 +1,7 @@
-@font-face{font-family:roboto_medium;src:url(fonts/roboto-medium.eot);src:url(fonts/roboto-medium.eot?#iefix) format('embedded-opentype'),url(fonts/roboto-medium.woff) format('woff'),url(fonts/roboto-medium.ttf) format('truetype'),url(fonts/roboto-medium.svg#roboto_medium) format('svg');font-weight:400;font-style:normal;}
+@font-face{font-family:Roboto;src:url(fonts/Roboto-Light.eot);src:url(fonts/Roboto-Light.eot?#iefix) format('embedded-opentype'),url(fonts/Roboto-Light.woff) format('woff'),url(fonts/Roboto-Light.ttf) format('truetype'),url(fonts/Roboto-Light.svg#Roboto) format('svg');font-weight:300;font-style:normal;}
+@font-face{font-family:Roboto;src:url(fonts/Roboto-LightItalic.eot);src:url(fonts/Roboto-LightItalic.eot?#iefix) format('embedded-opentype'),url(fonts/Roboto-LightItalic.woff) format('woff'),url(fonts/Roboto-LightItalic.ttf) format('truetype'),url(fonts/Roboto-LightItalic.svg#Roboto) format('svg');font-weight:300;font-style:italic;}
+@font-face{font-family:Roboto;src:url(fonts/Roboto-Medium.eot);src:url(fonts/Roboto-Medium.eot?#iefix) format('embedded-opentype'),url(fonts/Roboto-Medium.woff) format('woff'),url(fonts/Roboto-Medium.ttf) format('truetype'),url(fonts/Roboto-Medium.svg#Roboto) format('svg');font-weight:500;font-style:normal;}
+@font-face{font-family:Roboto;src:url(fonts/Roboto-Regular.eot);src:url(fonts/Roboto-Regular.eot?#iefix) format('embedded-opentype'),url(fonts/Roboto-Regular.woff) format('woff'),url(fonts/Roboto-Regular.ttf) format('truetype'),url(fonts/Roboto-Regular.svg#Roboto) format('svg');font-weight:400;font-style:normal;}
 @font-face {
   font-family: 'MaterialIcons';
   font-style: normal;
@@ -29,7 +32,7 @@
 body {
 	background:#FFF;
 	margin:0;
-	font-family:'roboto_medium', sans-serif;
+	font-family:'Roboto', sans-serif;
 	font-weight:400;
 	font-size:16px;
 }
