@@ -224,7 +224,8 @@
 		render_search_results : function(search_term){
 			$.getJSON(api_base_url+'content/search/'+search_term)
 			 .done(function(response){
-				var data 	 = app.gatherEnvironment(response.data);
+			 	console.log(response);
+				var data 	 = app.gatherEnvironment(response);
 					data.search_active = true;
 					data.search_term = search_term;
 					console.log(data);
@@ -546,7 +547,7 @@
 			/* Send header_title for it renders history_header */
 			var data = app.gatherEnvironment(null, "Create account");
 			var template = Handlebars.templates['create_account'];
-			
+
 			$('.main').html( template(data) );
 			setTimeout(function(){
 				app.hideLoader();
