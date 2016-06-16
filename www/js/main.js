@@ -545,8 +545,8 @@
 
 			/* Send header_title for it renders history_header */
 			var data = app.gatherEnvironment(null, "Create account");
-
-			var template = Handlebars.templates['create_user'];
+			var template = Handlebars.templates['create_account'];
+			
 			$('.main').html( template(data) );
 			setTimeout(function(){
 				app.hideLoader();
