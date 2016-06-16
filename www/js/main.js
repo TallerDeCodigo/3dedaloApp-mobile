@@ -245,13 +245,21 @@
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			
+			setTimeout(function(){
+				if(!loggedIn){
+					$(".wrapper").show();
+					setTimeout(function() {$("#user").animate({"right":"0%"}, 300)}, 10);
+				}
+			}, 2000);
 			map = new google.maps.Map(document.getElementById('map'), mapOptions);
 			navigator.geolocation.getCurrentPosition(function(position) {
+
+				
 				var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				var printer = [];
 				var scanner = [];
 				var witship = [];
-
+				user_first = (user_first) ? user_first : "Guest";
 				var infowindow = new google.maps.InfoWindow({
 					map: map,
 					position: geolocate,
@@ -270,6 +278,7 @@
 				// google.maps.event.addDomListener(allBtn, "click", function(){ app.showall(position, map)});
 
 				map.setCenter(geolocate);
+
 				app.hideLoader();
 			});  
 		
@@ -320,7 +329,13 @@
 			})
 			 .fail(function(err){
 				app.hideLoader();
-				app.toast("Couldn't locate printers around you, please check your GPS settings and try again.");
+				if(!loggedIn){
+					$(".wrapper").show();
+					setTimeout(function() {$("#user").animate({"right":"0%"}, 300)}, 10);
+					app.toast("Please log in to locate printers and makers around you.");
+				}else{
+					app.toast("Couldn't locate printers around you, please check your GPS settings and try again.");
+				}
 			})
 			 .done(function(response){	
 				theResponse = response;
