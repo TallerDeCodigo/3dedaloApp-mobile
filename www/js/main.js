@@ -208,6 +208,7 @@
 			
 		},
 		render_search_composite : function(){
+			user = (user) ? user : "not_logged";
 			$.getJSON(api_base_url+user+'/content/search-composite/')
 			 .done(function(response){
 				response.search_active =  true;
