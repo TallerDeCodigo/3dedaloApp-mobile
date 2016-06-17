@@ -281,7 +281,7 @@ $(window).load(function(){
 		if(responsedata) {
 			console.log(responsedata);
 			apiRH.save_user_data_clientside(responsedata);
-			window.location.assign('feed.html?filter_feed=all');
+			window.location.assign('feed.html');
 			return;
 		}
 		app.toast('Tu email o contraseña no son válidos.');

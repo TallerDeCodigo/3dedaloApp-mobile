@@ -197,6 +197,7 @@
 				var data = app.gatherEnvironment(response);
 					data.home_active = true;
 				var feed_tpl = Handlebars.templates['feed'];
+				console.log(data);
 				var html 	 = feed_tpl(data);
 				$('.main').html( html );
 				setTimeout(function(){	
@@ -211,6 +212,7 @@
 			user = (user) ? user : "not_logged";
 			$.getJSON(api_base_url+user+'/content/search-composite/')
 			 .done(function(response){
+			 	console.log(JSON.stringify(response));
 				response.search_active =  true;
 				var data 	 = app.gatherEnvironment(response);
 					data.search_active = true;
@@ -218,7 +220,7 @@
 				$('.main').html( template(data) );
 			})
 			 .fail(function(error){
-				console.log(error);
+				console.log(JSON.stringify(error));
 			 });
 		},
 		render_search_results : function(search_term){
