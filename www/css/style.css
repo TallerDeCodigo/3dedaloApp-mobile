@@ -924,7 +924,7 @@ div.wrapper {
 	border-bottom:1px solid #E8E8E8;
 	color:#757575;
 }
-.detail b{padding-left:50px;}
+.detail b{}
 
 .detail section:nth-of-type(1) {
 	margin-top:56px;
