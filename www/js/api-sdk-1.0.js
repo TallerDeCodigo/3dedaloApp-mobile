@@ -475,6 +475,7 @@ function requestHandlerAPI(){
 									this.upload_ready = true;
 									console.log(this.transfer_options);
 									console.log(this.upload_ready);
+									$(".close_on_touch").trigger('click');
 									app.hideLoader();
 								};
 
