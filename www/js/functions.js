@@ -175,6 +175,7 @@ $(window).load(function(){
 		});
 
 		$(".cats").click(function(){
+			var sufix = $(this).data('id');
 			$("#no-cat").hide();
 			$("#barra").hide();
 			$("#photo").hide();
@@ -183,7 +184,7 @@ $(window).load(function(){
 			$(".sucats").removeClass( "select" );
 			$("#subcats a").first().addClass( "select" );
 			$("#swipper").animate({"top":"-50px"}, 200);
-			setTimeout(function() {$("#subcats").show()}, 200);
+			setTimeout(function() {$("#subcats"+sufix).show()}, 200);
 			slider.uno();
 			return false;
 		});

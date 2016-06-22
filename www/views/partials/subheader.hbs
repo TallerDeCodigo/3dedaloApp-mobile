@@ -1,16 +1,17 @@
 <div class="subheader">
 	<div id="swipper">
 		<div>
-			{{#each categories.pool}}<a class="cats">{{name}}</a>{{/each}}
+			{{#each categories.pool}}<a class="cats" data-id="{{ID}}">{{{name}}}</a>{{/each}}
 		</div>
 	</div>
-	<div id="subcats" style="display:none">
-		<div id="swipper1">
-		<div>
-			<a id="sca1" class="sucats" onclick="slider.uno();return false;" href="#">SUBCAT 1</a>
-			<a id="sca2" class="sucats" onclick="slider.dos();return false;" href="#">SUBCAT 2</a>
-			<a id="sca3" class="sucats" onclick="slider.tres();return false;" href="#">SUBCAT 3</a>
-			<a id="sca4" class="sucats" onclick="slider.cuatro();return false;" href="#">SUBCAT 4</a>
-		</div>
-	</div><i id="return" class="material-icons arrow_back"></i></div>
+	{{#each categories.pool}}
+		<div id="subcats{{ID}}" style="display:none">
+			<div id="swipper1">
+			<div>
+				{{#each subcat}}
+					<a id="sca1" class="sucats" onclick="slider.uno();return false;" href="#">SUBCAT 1</a>
+				{{/each }}
+			</div>
+		</div><i id="return" class="material-icons arrow_back"></i></div>
+	{{/each}}
 </div>
