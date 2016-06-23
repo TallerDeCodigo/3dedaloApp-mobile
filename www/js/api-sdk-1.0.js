@@ -491,6 +491,7 @@ function requestHandlerAPI(){
 									this.transfer_options.fileName 		= fileURL.substr(fileURL.lastIndexOf('/') + 1);
 									this.transfer_options.httpMethod 	= "POST";
 									this.transfer_options.mimeType 		= "image/jpeg";
+									this.transfer_options.chunkedMode 	= false;
 									this.transfer_options.headers 		= "{'Content-Type':'multipart/form-data'}";
 
 									var params = {};
