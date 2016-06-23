@@ -1,80 +1,13 @@
-06-21 18:07:44.615 10833-10880/org.dedalodomus.app I/OpenGLRenderer: Initialized EGL, version 1.4
-06-21 18:07:44.615 10833-10880/org.dedalodomus.app I/OpenGLRenderer: HWUI protection enabled for context ,  &this =0x7fa0c1bd00 ,&mEglDisplay = 1 , &mEglConfig = -1688587600 
-06-21 18:07:44.615 10833-10880/org.dedalodomus.app D/mali_winsys: new_window_surface returns 0x3000,  [1440x2560]-format:1
-06-21 18:07:44.655 10833-10833/org.dedalodomus.app I/chromium: [INFO:CONSOLE(497)] "{"fileKey":"file","fileName":"1466550464528.jpg","mimeType":"image/jpeg","params":{"client":"app"},"headers":null,"httpMethod":null,"fileUrl":"file:///storage/emulated/0/Android/data/org.dedalodomus.app/cache/1466550464528.jpg"}", source: file:///android_asset/www/js/api-sdk-1.0.js (497)
-06-21 18:07:44.655 10833-10833/org.dedalodomus.app I/chromium: [INFO:CONSOLE(498)] "true", source: file:///android_asset/www/js/api-sdk-1.0.js (498)
-06-21 18:07:44.655 10833-10833/org.dedalodomus.app I/Timeline: Timeline: Activity_idle id: android.os.BinderProxy@273983e0 time:48764484
+ 498 ::::: "{"fileKey":"file","fileName":"13422434_1375482405802217_4313153394412717159_o.jpg","mimeType":"image/jpeg","params":{"client":"app"},"headers":null,"httpMethod":null,"fileUrl":"/storage/emulated/0/Download/13422434_1375482405802217_4313153394412717159_o.jpg"}", source: file:///android_asset/www/js/api-sdk-1.0.js
 
 
-Hit
-
-06-21 18:40:29.555 22881-23024/org.dedalodomus.app D/FileTransfer: httpMethod: POST
-06-21 18:40:29.555 22881-22881/org.dedalodomus.app I/chromium: [INFO:CONSOLE(537)] "https://3dedalo.org/rest/v1/content/search/advanced/", source: file:///android_asset/www/js/api-sdk-1.0.js (537)
-06-21 18:40:29.555 22881-22881/org.dedalodomus.app I/chromium: [INFO:CONSOLE(325)] "data_adv :::: {"message":"Darth vader, lorem, ipsum, keychain"}", source: file:///android_asset/www/js/functions.js (325)
-06-21 18:40:29.635 22881-22881/org.dedalodomus.app D/cr_Ime: [InputMethodManagerWrapper.java:59] isActive: true
-06-21 18:40:29.635 22881-22881/org.dedalodomus.app D/cr_Ime: [InputMethodManagerWrapper.java:68] hideSoftInputFromWindow
-06-21 18:40:29.655 22881-24273/org.dedalodomus.app D/FileTransfer: Content Length: 4429476
-06-21 18:40:29.665 22881-24273/org.dedalodomus.app I/System.out: (HTTPLog)-Static: isSBSettingEnabled false
-06-21 18:40:29.665 22881-24273/org.dedalodomus.app I/System.out: (HTTPLog)-Static: isShipBuild true
-06-21 18:40:29.665 22881-24273/org.dedalodomus.app I/System.out: (HTTPLog)-Thread-20280-194261725: SmartBonding Enabling is false, SHIP_BUILD is true, log to file is false, DBG is false
-06-21 18:40:29.665 22881-24273/org.dedalodomus.app I/System.out: (HTTPLog)-Thread-20280-194261725: SMARTBONDING_FEATURE_ENABLED is true
-06-21 18:40:29.665 22881-24273/org.dedalodomus.app I/System.out: (HTTPLog)-Static: isSBSettingEnabled false
-06-21 18:40:29.665 22881-24273/org.dedalodomus.app I/System.out: KnoxVpnUidStorageknoxVpnSupported API value returned is false
-06-21 18:40:29.685 22881-24273/org.dedalodomus.app I/System.out: KnoxVpnUidStorageknoxVpnSupported API value returned is false
-06-21 18:40:29.725 22881-22881/org.dedalodomus.app D/SRIB_DCS: log_dcs ThreadedRenderer::initialize entered! 
-06-21 18:40:29.725 22881-22958/org.dedalodomus.app D/mali_winsys: new_window_surface returns 0x3000,  [1336x272]-format:1
-06-21 18:40:31.025 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 114896 of 4429476 bytes
-06-21 18:40:31.025 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 229584 of 4429476 bytes
-06-21 18:40:31.035 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 344272 of 4429476 bytes
-06-21 18:40:33.265 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 458960 of 4429476 bytes
-06-21 18:40:35.765 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 573648 of 4429476 bytes
-06-21 18:40:36.875 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 688336 of 4429476 bytes
-06-21 18:40:37.535 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 803024 of 4429476 bytes
-06-21 18:40:38.055 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 917712 of 4429476 bytes
-06-21 18:40:38.505 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1032400 of 4429476 bytes
-06-21 18:40:40.225 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1147088 of 4429476 bytes
-06-21 18:40:41.095 22881-22881/org.dedalodomus.app D/ViewRootImpl: ViewPostImeInputStage ACTION_DOWN
-06-21 18:40:46.225 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1261776 of 4429476 bytes
-06-21 18:40:48.295 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1376464 of 4429476 bytes
-06-21 18:40:48.315 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1491152 of 4429476 bytes
-06-21 18:40:50.155 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1605840 of 4429476 bytes
-06-21 18:40:51.785 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1720528 of 4429476 bytes
-06-21 18:40:53.825 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1835216 of 4429476 bytes
-06-21 18:40:56.345 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 1949904 of 4429476 bytes
-06-21 18:40:57.485 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2064592 of 4429476 bytes
-06-21 18:40:59.195 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2179280 of 4429476 bytes
-06-21 18:41:03.545 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2293968 of 4429476 bytes
-06-21 18:41:05.825 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2408656 of 4429476 bytes
-06-21 18:41:08.985 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2523344 of 4429476 bytes
-06-21 18:41:09.985 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2638032 of 4429476 bytes
-06-21 18:41:11.225 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2752720 of 4429476 bytes
-06-21 18:41:12.025 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2867408 of 4429476 bytes
-06-21 18:41:12.705 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 2982096 of 4429476 bytes
-06-21 18:41:13.255 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 3096784 of 4429476 bytes
-06-21 18:41:13.935 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 3211472 of 4429476 bytes
-06-21 18:41:13.945 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 3326160 of 4429476 bytes
-06-21 18:41:15.485 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 3440848 of 4429476 bytes
-06-21 18:41:18.795 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 3555536 of 4429476 bytes
-06-21 18:41:19.495 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 3670224 of 4429476 bytes
-06-21 18:41:19.495 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 3784912 of 4429476 bytes
-06-21 18:41:20.085 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 3899600 of 4429476 bytes
-06-21 18:41:20.575 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 4014288 of 4429476 bytes
-06-21 18:41:21.005 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 4128976 of 4429476 bytes
-06-21 18:41:21.425 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 4243664 of 4429476 bytes
-06-21 18:41:22.645 22881-24273/org.dedalodomus.app D/FileTransfer: Uploaded 4358352 of 4429476 bytes
-06-21 18:41:22.655 22881-24273/org.dedalodomus.app D/FileTransfer: Sent 4429476 of 4429476
-06-21 18:41:24.175 22881-24273/org.dedalodomus.app D/FileTransfer: response code: 500
-06-21 18:41:24.175 22881-24273/org.dedalodomus.app D/FileTransfer: response headers: {null=[HTTP/1.1 500 Internal Server Error], Age=[106], Connection=[keep-alive], Content-Length=[508], Content-Type=[text/html; charset=iso-8859-1], Date=[Tue, 21 Jun 2016 23:40:30 GMT], Server=[ATS], Via=[http/1.1 p3nlwpproxy001.prod.phx3.secureserver.net (ApacheTrafficServer/5.3.2 [c s f ])], X-Android-Received-Millis=[1466552484191], X-Android-Response-Source=[NETWORK 500], X-Android-Sent-Millis=[1466552430853], X-Port=[port_10255]}
-06-21 18:41:24.195 22881-24273/org.dedalodomus.app E/FileTransfer: {"code":1,"source":"file:\/\/\/storage\/emulated\/0\/Android\/data\/org.dedalodomus.app\/cache\/1466552401397.jpg","target":"https:\/\/3dedalo.org\/rest\/v1\/content\/search\/advanced\/","body":"<!DOCTYPE HTML PUBLIC \"-\/\/IETF\/\/DTD HTML 2.0\/\/EN\">\n<html><head>\n<title>500 Internal Server Error<\/title>\n<\/head><body>\n<h1>Internal Server Error<\/h1>\n<p>The server encountered an internal error or\nmisconfiguration and was unable to complete\nyour request.<\/p>\n<p>Please contact the server administrator\n and inform them of the time the error occurred,\n and the actions you performed just before this error.<\/p>\n<p>More information about this error may be available\nin the server error log.<\/p>\n<\/body><\/html>","http_status":500,"exception":"https:\/\/3dedalo.org\/rest\/v1\/content\/search\/advanced\/"}
-                                                                   java.io.FileNotFoundException: https://3dedalo.org/rest/v1/content/search/advanced/
-                                                                       at com.android.okhttp.internal.http.HttpURLConnectionImpl.getInputStream(HttpURLConnectionImpl.java:210)
-                                                                       at com.android.okhttp.internal.http.DelegatingHttpsURLConnection.getInputStream(DelegatingHttpsURLConnection.java:210)
-                                                                       at com.android.okhttp.internal.http.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:25)
-                                                                       at org.apache.cordova.filetransfer.FileTransfer.getInputStream(FileTransfer.java:590)
-                                                                       at org.apache.cordova.filetransfer.FileTransfer.access$500(FileTransfer.java:69)
-                                                                       at org.apache.cordova.filetransfer.FileTransfer$1.run(FileTransfer.java:509)
-                                                                       at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1112)
-                                                                       at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:587)
-                                                                       at java.lang.Thread.run(Thread.java:818)
-06-21 18:41:24.205 22881-22881/org.dedalodomus.app I/chromium: [INFO:CONSOLE(454)] "{"code":1,"source":"file:///storage/emulated/0/Android/data/org.dedalodomus.app/cache/1466552401397.jpg","target":"https://3dedalo.org/rest/v1/content/search/advanced/","http_status":500,"body":"<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>500 Internal Server Error</title>\n</head><body>\n<h1>Internal Server Error</h1>\n<p>The server encountered an internal error or\nmisconfiguration and was unable to complete\nyour request.</p>\n<p>Please contact the server administrator\n and inform them of the time the error occurred,\n and the actions you performed just before this error.</p>\n<p>More information about this error may be available\nin the server error log.</p>\n</body></html>","exception":"https://3dedalo.org/rest/v1/content/search/advanced/"}", source: file:///android_asset/www/js/api-sdk-1.0.js (454)
-06-21 18:41:24.225 22881-22881/org.dedalodomus.app D/PhoneWindow: *FMB* installDecor mIsFloating : true
+06-22 17:10:25.541 6211-11073/org.dedalodomus.app D/FileTransfer: got response from server
+06-22 17:10:25.541 6211-11073/org.dedalodomus.app D/FileTransfer: <pre>Array
+                                                                  (
+                                                                  )
+                                                                  </pre><pre>Array
+                                                                  (
+                                                                  )
+                                                                  </pre>
+06-22 17:10:25.561 6211-6211/org.dedalodomus.app I/chromium: [INFO:CONSOLE(437)] "win r :::{"bytesSent":37914,"responseCode":200,"response":"<pre>Array\n(\n)\n</pre><pre>Array\n(\n)\n</pre>","objectId":""}", source: file:///android_asset/www/js/api-sdk-1.0.js (437)
+06-22 17:10:25.601 6211-6211/org.dedalodomus.app I/chromium: [INFO:CONSOLE(441)] "function e(a,b){return f||(f=d()),f.call(this,a,b)}", source: file:///android_asset/www/js/api-sdk-1.0.js (441)

@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	/* Production API URL */
 	window.api_base_url = "https://3dedalo.org/rest/v1/";
 	/* Development local API URL */
-	window.api_base_url = "http://dedalo.dev/rest/v1/";
+	// window.api_base_url = "http://dedalo.dev/rest/v1/";
 	// window.api_base_url = "http://localhost/dedalo/rest/v1/";
 	
 	this.ls = window.localStorage;
@@ -486,10 +486,12 @@ function requestHandlerAPI(){
 		this.prepareSearchFileTransfer = function(fileURL){
 									app.showLoader();
 									this.transfer_options = new FileUploadOptions();
-									this.transfer_options.fileUrl = fileURL;
-									this.transfer_options.fileKey = "file";
-									this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-									this.transfer_options.mimeType = "image/jpeg";
+									this.transfer_options.fileUrl 		= fileURL;
+									this.transfer_options.fileKey 		= "file";
+									this.transfer_options.fileName 		= fileURL.substr(fileURL.lastIndexOf('/') + 1);
+									this.transfer_options.httpMethod 	= "POST";
+									this.transfer_options.mimeType 		= "image/jpeg";
+									this.transfer_options.headers 		= "{'Content-Type':'multipart/form-data'}";
 
 									var params = {};
 										params.client = "app";
@@ -525,7 +527,7 @@ function requestHandlerAPI(){
 		 * Dedalo approved
 		 */
 		this.initializeSearchFileTransfer = function(params){
-												console.log(this.upload_ready);
+
 												if(this.upload_ready){
 													var ft = new FileTransfer();
 													this.transfer_options.params = params;

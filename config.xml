@@ -22,6 +22,7 @@
     <access origin="https://*/*" />
     <access origin="https://*.google.com" />
     <access origin="https://*.googleapis.com" />
+    <access origin="https://sketchfab.com/models/*" />
     <access origin="https://*.gstatic.com" />
     
     <platform name="android">

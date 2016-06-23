@@ -333,7 +333,7 @@ $(window).load(function(){
 		// 	return;
 		// }
 		// app.toast('Sorry, we couldn\'t post your request, please try again.');
-		app.toast(JSON.stringify(data_adv_search));
+		// app.toast(JSON.stringify(data_adv_search));
 		// app.hideLoader();
 		return;
 	});
