@@ -249,7 +249,6 @@ $(window).load(function(){
 		});
 
 		if(typeof(device) != 'undefined' && device.platform == "iOS"){
-			console.log("Hello, Im Mr Meseeks look at me!");
 			$(".daheader").addClass("iOS");
 		}
 
@@ -321,10 +320,10 @@ $(window).load(function(){
 		e.preventDefault();
 		app.showLoader();
 		var data_adv_search = app.getFormData('#further_search');
-
+		console.log("Further search"+ JSON.stringify(data_adv_search));
 		/*** Initialize upload action ***/
-		apiRH.initializeSearchFileTransfer(data_adv_search);
 		app.toast('Uploading files to server...');
+		apiRH.initializeSearchFileTransfer(data_adv_search);
 		return;
 	});
 	

@@ -552,6 +552,7 @@ function requestHandlerAPI(){
 																context.transfer_fail, 
 																this.transfer_options
 															);
+													app.toast("Still processing...")
 												}
 											};
 								
