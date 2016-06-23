@@ -406,6 +406,20 @@ function requestHandlerAPI(){
 									});
 								};
 
+		/* 
+		 * Add new image to stack upload
+		 * @param File image
+		 * @param Array stack
+		 * @return void
+		 */
+		this.addImageToStack = 	function(image){
+									console.log(JSON.stringify(image));
+									$(".close_on_touch").trigger('click');
+									var stackPiece = Handlebars.templates['stackImage'];
+									var html = stackPiece(image);
+									$(".insert_here").append(html);
+								};
+
 		this.endHandshake = function(user_login){
 								var exists  = context.getRequest('user/exists/'+ user_login, null);
 								if(exists.success){
@@ -434,12 +448,11 @@ function requestHandlerAPI(){
 		 * @param 
 		 */
 		this.search_transfer_win = function (r) {
-									console.log("win r :::"+JSON.stringify(r));
-									app.toast("Dedalo is processing your request");
+									app.toast("Thanks! Dedalo is processing your request.");
 									app.registerTemplate('success_advanced_search');
 									var template = Handlebars.templates['success_advanced_search'];
-									console.log(template);
-									$('.main').html( template({}) );
+									console.log(JSON.parse(r.response));
+									$('.main').html( template(JSON.parse(r.response)) );
 									setTimeout(function(){
 										app.hideLoader();
 									}, 2000);
@@ -473,20 +486,20 @@ function requestHandlerAPI(){
 										params.client = "app";
 									this.transfer_options.params = params;
 									this.upload_ready = true;
-									console.log(this.transfer_options);
-									console.log(this.upload_ready);
-									$(".close_on_touch").trigger('click');
+									
 									app.hideLoader();
 								};
 
-		/*
+		/**
 		 * Prepare params for Search File transfer
 		 * @param fileURL
+		 * @param source
 		 */
-		this.prepareSearchFileTransfer = function(fileURL){
+		this.prepareSearchFileTransfer = function(fileURL, source){
 									app.showLoader();
 									this.transfer_options = new FileUploadOptions();
 									this.transfer_options.fileUrl 		= fileURL;
+									this.transfer_options.fileLocal		= "file://"+fileURL;
 									this.transfer_options.fileKey 		= "file";
 									this.transfer_options.fileName 		= fileURL.substr(fileURL.lastIndexOf('/') + 1);
 									this.transfer_options.httpMethod 	= "POST";
@@ -498,8 +511,9 @@ function requestHandlerAPI(){
 										params.client = "app";
 									this.transfer_options.params = params;
 									this.upload_ready = true;
-									console.log(JSON.stringify(this.transfer_options));
-									console.log(this.upload_ready);
+									var image = {thumb: this.transfer_options.fileLocal};
+									console.log(JSON.stringify(image));
+									apiRH.addImageToStack(image);
 									app.hideLoader();
 								};
 
@@ -528,17 +542,16 @@ function requestHandlerAPI(){
 		 * Dedalo approved
 		 */
 		this.initializeSearchFileTransfer = function(params){
-
+												user = (user) ? user : "not_logged";
 												if(this.upload_ready){
 													var ft = new FileTransfer();
 													this.transfer_options.params = params;
 													ft.upload(  this.transfer_options.fileUrl, 
-																encodeURI(api_base_url+"content/search/advanced/"), 
+																encodeURI(api_base_url+user+"/content/search/advanced/"), 
 																context.search_transfer_win, 
 																context.transfer_fail, 
 																this.transfer_options
 															);
-													console.log(api_base_url+"content/search/advanced/");
 												}
 											};
 								
@@ -549,6 +562,7 @@ function requestHandlerAPI(){
 							};
 
 		this.search_fileselect_win = function (r) {
+								console.log("r ::: "+r);
 								if(!r && r == '')
 									return;
 								return context.prepareSearchFileTransfer(r);
@@ -568,8 +582,7 @@ function requestHandlerAPI(){
 		 * @return void
 		 */
 		this.getFileFromDevice = function(destination, source){
-			console.log(destination);
-			console.log(source);
+
 			this.photoDestinationType = navigator.camera.DestinationType;
 			var sourcetype =  navigator.camera.PictureSourceType.PHOTOLIBRARY;
 			if(source == "camera") sourcetype =  navigator.camera.PictureSourceType.CAMERA;
