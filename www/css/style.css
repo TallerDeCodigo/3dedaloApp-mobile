@@ -1482,6 +1482,20 @@ div.wrapper {
 
 .no_results .further_form .submit_adv_search{margin-right: 1.1rem; color: #1978d0;}
 
+.filler_upper.insert_here{
+	display: block;
+    clear: both;
+    margin: 2.5rem 0;
+}
+.filler_upper.insert_here .stackImage{
+	width: 25%;
+    height: auto;
+    display: inline-block;
+    margin: 0 0rem 0 0.75rem;
+    text-align: left;
+}
+
+
 .wrapper.to_bottom{
 	position: absolute;
     bottom: 0;

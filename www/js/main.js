@@ -610,7 +610,7 @@
 				}, 2000);
 			})
 			  .fail(function(err){
-				console.log(err);
+				console.log(JSON.stringify(err));
 			});
 		},
 		render_maker : function(maker_id){
