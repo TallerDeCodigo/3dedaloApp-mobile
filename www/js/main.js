@@ -100,6 +100,14 @@
 			document.addEventListener('deviceready', app.onDeviceReady, false);
 			document.addEventListener('mobileinit', app.onDMobileInit, false);
 		},
+		onBackButton: function(){
+			if(navigator.app){
+				console.log('Back button navigator');
+				navigator.app.backHistory();
+				return;
+			}
+			window.history.back();
+		},
 
 		// deviceready Event Handler
 		onDeviceReady: function() {
@@ -120,15 +128,7 @@
 			}
 			var backButtonElement = document.getElementById("backBtn");
 			if(backButtonElement)
-				backButtonElement.addEventListener("click", onBackButton, false);
-			function onBackButton(){
-    			if(navigator.app){
-    				console.log('Back button navigator');
-    				navigator.app.backHistory();
-    				return;
-    			}
-			   	history.go(-1);
-			}
+				backButtonElement.addEventListener("click", app.onBackButton, false);
 			return;
 		},
 
@@ -212,7 +212,7 @@
 			user = (user) ? user : "not_logged";
 			$.getJSON(api_base_url+user+'/content/search-composite/')
 			 .done(function(response){
-			 	console.log(JSON.stringify(response));
+				console.log(JSON.stringify(response));
 				response.search_active =  true;
 				var data 	 = app.gatherEnvironment(response);
 					data.search_active = true;
@@ -226,7 +226,7 @@
 		render_search_results : function(search_term){
 			$.getJSON(api_base_url+'content/search/'+search_term)
 			 .done(function(response){
-			 	console.log(response);
+				console.log(response);
 				var data 	 = app.gatherEnvironment(response);
 					data.search_active = true;
 					data.search_term = search_term;

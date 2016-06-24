@@ -56,8 +56,8 @@
 		</section>
 	{{/if }}
 	<section id="technical">
-		<h2><i class="material-icons info medium" ></i> Technical Info</h2>
 		{{#if data.technical.info}}
+			<h2><i class="material-icons info medium" ></i> Technical Info</h2>
 			<p>{{{data.technical.info}}}</p>
 		{{/if}}
 		<h2><i class="material-icons print medium" ></i> Print Settings</h2>
@@ -73,9 +73,10 @@
 		{{#if data.printer.infill}}
 			<b>Infill:</b> {{data.printer.infill}}<br></p>
 		{{/if}}
-
-		<h2><i class="material-icons mode_edit medium" ></i> Notes</h2>
-		<p>{{data.technical.notes}}</p>
+		{{#if data.technical.notes}}
+			<h2><i class="material-icons mode_edit medium" ></i> Notes</h2>
+			<p>{{{data.technical.notes}}}</p>
+		{{/if}}
 	</section>
 	{{#if data.tags.count}}
 		<section class="tag_container">
