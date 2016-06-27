@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.dedalodomus.app" version="1.2.7.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.dedalodomus.app" version="1.2.10.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>3Dedalo</name>
     <description>
         3Dedalo i...
@@ -22,7 +22,6 @@
     <access origin="https://*/*" />
     <access origin="https://*.google.com" />
     <access origin="https://*.googleapis.com" />
-    <access origin="https://sketchfab.com/models/*" />
     <access origin="https://*.gstatic.com" />
     
     <platform name="android">
@@ -36,6 +35,9 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <allow-intent href="https://3dedalo.org/*" />
+        <allow-intent href="https://sketchfab.com/models/*" />
+        <access origin="https://sketchfab.com/models/*" />
+        <allow-navigation href="https://sketchfab.com/models/*" />
         <allow-navigation href="https://3dedalo.org/*" />
         <allow-navigation href="*://*.googleapis.com/*"/>
     </platform>
