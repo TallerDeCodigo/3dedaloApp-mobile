@@ -19,7 +19,7 @@
 		<div id="dashboard2" class="dashboard_section">
 			{{#if data.makers.count}}
 				{{# each data.makers.pool}}
-					<a class="usuario {{#if followed}} following unfollow_user {{else}} follow_user {{/if}}" data-id="{{ID}}"><img src="{{profile_pic}}"></a>
+					<a class="usuario {{#if followed}} following unfollow_user {{else}} follow_user {{/if}}" data-id="{{ID}}"><img src="{{#if profile_pic}}{{profile_pic}}{{else}}images/avatar.svg{{/if}}"></a>
 				{{/each}}
 		</div>
 				{{!-- <br>

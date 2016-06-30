@@ -298,7 +298,7 @@ header p { position: relative; font-size: 140%; left: 70px; color: #FFF; line-he
 	margin:initial;
 	left:initial;
 	width:36px;
-	height:36px;	
+	height:36px;
 }
 
 #barra {
@@ -336,7 +336,7 @@ header p { position: relative; font-size: 140%; left: 70px; color: #FFF; line-he
 	height:50px;
 	top:56px;
 	background:#1E88E5;
-	z-index:10;
+	z-index:999999999;
 }
 
 #subcats {
@@ -634,7 +634,7 @@ div.wrapper {
 	border-radius: 50%;
 	margin-top: -13px;
 	margin-left: -90px;
-	font-size: 400%;
+	/*font-size: 400%;*/
 	height: 92px;
 	width: 92px;
 	position: relative;
@@ -857,6 +857,10 @@ div.wrapper {
 	margin:18px;
 }
 
+.post section p * {
+	margin:0!important;
+}
+
 .post section:nth-of-type(2) h1 {
 	color:#1976D2;
 	font-size:125%;
@@ -893,6 +897,7 @@ div.wrapper {
 
 .post section:nth-of-type(3) p {
 	margin-top:23px;
+	padding-bottom:40px;
 }
 
 .post .profile_pic.round{
@@ -1137,7 +1142,7 @@ div.wrapper {
 	border-radius:50%;
 	width:32px;
 	height:32px;
-	font-size:400%;
+	/*font-size:400%;*/
 	position:relative;
 	display:inline-block;
 	margin:initial;
@@ -1536,7 +1541,7 @@ a.inline_link,
 	z-index:1800;
 }
 
-#return { position:absolute; background:#1E88E5; font-size:225%; top:-45px; left:15px; color:#FFF;}
+#return { position:absolute; background:#1E88E5; font-size:225%; top:-45px; left:15px; color:#FFF;opacity:0;}
 
 /* MAP */
 
@@ -1663,6 +1668,7 @@ div.gm-style-iw {
 	background:none;
 	outline:none;
 	border:none;
+	border-radius:0px;
 	border-bottom:1px solid #757575;
 }
 
@@ -1888,6 +1894,8 @@ div.gm-style-iw {
 	overflow:hidden;
 	margin:2px 5px;
 	border:3px solid #212121;
+	/*background:url('images/avatar.svg');
+	background-size:100% auto;*/
 }
 
 .usuario img {
@@ -2378,23 +2386,25 @@ div.gm-style-iw {
 	margin:auto;
 }
 
-.iOS_padding{
+/* iOS topbar adapt */
 
+body.iOS {padding-top:1.25rem!important;}
+.iOS .daheader {padding-top: 1.3rem;height: 68px;}
+.iOS #user .footer {padding-bottom:1.25rem!important;}
+.iOS .daheader > p{top:-6px!important;}
+
+.iOS .daheader > #backBtn,
+.iOS .daheader .photo_camera,
+.iOS .daheader .logo_hook,
+.iOS .daheader #account1{
+	top: 28px!important;
 }
 
-.daheader.iOS{
-	padding-top: 1.5rem;
-    height: 68px;
-    line-height: 2.8rem;
-}
-.daheader.iOS+.subheader{
-	top: 62px!important;
-}
-.daheader.iOS > p{}
+.iOS .subheader{top: 62px!important;}
+.iOS #return{top:-32px;}
+.iOS .settings section {margin-top:69px;}
 
-.daheader.iOS>#backBtn,
-.daheader.iOS .photo_camera,
-.daheader.iOS .logo_hook,
-.daheader.iOS #account1.profile_pic{
-	top: 29px!important;
-}
+/* Text field iOS */
+
+.iOS .settings input {-webkit-appearance:none;}
+.iOS .settings ::-webkit-input-placeholder {padding: 0px 2px;}

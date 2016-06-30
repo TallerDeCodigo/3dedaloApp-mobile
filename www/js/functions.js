@@ -248,9 +248,9 @@ $(window).load(function(){
 			$("body").animate({scrollTop: topAdjusted-50}, 400);
 		});
 
-		if(typeof(device) != 'undefined' && device.platform == "iOS"){
-			$(".daheader").addClass("iOS");
-		}
+		// if(typeof(device) != 'undefined' && device.platform == "iOS"){
+		// 	$("body").addClass("iOS");
+		// }
 
 		/** Show prompt to upload **/
 		$("#add_photo_appear").on('click', function(){

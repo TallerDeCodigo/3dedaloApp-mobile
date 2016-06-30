@@ -55,6 +55,11 @@
 					return;
 				}
 			}
+
+			/* Copiado de ondeviceready ----- QUITAR ----- */
+			var backButtonElement = document.getElementById("backBtn");
+			if(backButtonElement)
+				backButtonElement.addEventListener("click", app.onBackButton, false);
 			
 			/* Requesting passive token if no token is previously stored */
 			console.log("Token::: "+apiRH.request_token().get_request_token());
@@ -101,12 +106,23 @@
 			document.addEventListener('mobileinit', app.onDMobileInit, false);
 		},
 		onBackButton: function(){
-			if(navigator.app){
-				console.log('Back button navigator');
-				navigator.app.backHistory();
-				return;
-			}
-			window.history.back();
+			// if(navigator.app){
+			// 	console.log('Back button navigator');
+			// 	navigator.app.backHistory();
+			// 	return;
+			// }
+			// window.history.back();
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+		    if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
+		        // IOS DEVICE
+		        history.go(-1);
+		    } else if (userAgent.match(/Android/i)) {
+		        // ANDROID DEVICE
+		        navigator.app.backHistory();
+		    } else {
+		        // EVERY OTHER DEVICE
+		        history.go(-1);
+		    }
 		},
 
 		// deviceready Event Handler
@@ -647,7 +663,7 @@
 			});
 		},
 		render_direct_photo : function(){
-			app.registerTemplate('direct_photo');
+			//app.registerTemplate('direct_photo');
 			var data = app.gatherEnvironment(null, "Advanced search");
 			var template = Handlebars.templates['direct_photo'];
 

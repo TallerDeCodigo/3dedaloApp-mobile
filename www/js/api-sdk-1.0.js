@@ -25,7 +25,7 @@ function requestHandlerAPI(){
 	window.api_base_url = "https://3dedalo.org/rest/v1/";
 	/* Development local API URL */
 	// window.api_base_url = "http://dedalo.dev/rest/v1/";
-	// window.api_base_url = "http://localhost/dedalo/rest/v1/";
+	// window.api_base_url = "http://localhost/~manuelon/dedalo/rest/v1/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
@@ -88,6 +88,11 @@ function requestHandlerAPI(){
 		 * @return status Bool true is successfully logged in; false if an error ocurred
 		 */
 		this.logOut =  function(user_data){
+								/*
+								// OPCION DE LOG OUT iOS
+								window.localStorage.clear();
+								window.location.assign('feed.html?filter_feed=all');
+								*/
 								return this.makeRequest('auth/'+user_data.user_login+'/logout/', { request_token: user_data.request_token });
 							};
 		/* 

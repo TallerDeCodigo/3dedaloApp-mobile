@@ -27,4 +27,8 @@
 </div>
 {{> footer}}
 {{> dom_assets}}
-{{> sidemenu}}
+{{#if logged_user}}
+	{{> sidemenu_logged me}}
+{{else}}
+	{{> sidemenu}}
+{{/if}}
