@@ -483,12 +483,12 @@ function requestHandlerAPI(){
 									this.transfer_options.fileKey = "file";
 									this.transfer_options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
 									this.transfer_options.mimeType = "image/jpeg";
-
+									console.log(this.transfer_options);
 									var params = {};
 										params.client = "app";
 									this.transfer_options.params = params;
 									this.upload_ready = true;
-									
+									console.log("prepareProfileTransfer");
 									app.hideLoader();
 								};
 
@@ -508,7 +508,7 @@ function requestHandlerAPI(){
 									this.transfer_options.mimeType 		= "image/jpeg";
 									this.transfer_options.chunkedMode 	= false;
 									this.transfer_options.headers 		= "{'Content-Type':'multipart/form-data'}";
-
+									console.log(this.transfer_options);
 									var params = {};
 										params.client = "app";
 									this.transfer_options.params = params;
@@ -516,6 +516,7 @@ function requestHandlerAPI(){
 									var image = {thumb: this.transfer_options.fileLocal};
 									console.log(JSON.stringify(image));
 									apiRH.addImageToStack(image);
+									console.log("prepareSearchTransfer");
 									app.hideLoader();
 								};
 
@@ -547,6 +548,7 @@ function requestHandlerAPI(){
 												user = (user) ? user : "not_logged";
 												if(this.upload_ready){
 													var ft = new FileTransfer();
+													console.log(JSON.stringify(ft));
 													this.transfer_options.params = params;
 													ft.upload(  this.transfer_options.fileUrl, 
 																encodeURI(api_base_url+user+"/content/search/advanced/"), 
@@ -566,6 +568,7 @@ function requestHandlerAPI(){
 
 		this.search_fileselect_win = function (r) {
 								console.log("r ::: "+r);
+								console.log("Seach file sent");
 								if(!r && r == '')
 									return;
 								return context.prepareSearchFileTransfer(r);
