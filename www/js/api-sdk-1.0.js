@@ -66,8 +66,10 @@ function requestHandlerAPI(){
 		 * @return status Bool true is successfully logged in; false if an error ocurred (User already exists)
 		 */
 		this.registerNative =  function(data_login){
+								var userfinal = data_login.user_email;
+								userfinal = userfinal.replace("@", "").replace(/\./g, "").replace(/\-/g, "").replace(/\_/g, "");
 								var data = {
-												username 	: data_login.user_email, 
+												username 	: userfinal, 
 												email 		: data_login.user_email,
 												attrs 		: {
 																password: data_login.user_pwd,
@@ -88,11 +90,6 @@ function requestHandlerAPI(){
 		 * @return status Bool true is successfully logged in; false if an error ocurred
 		 */
 		this.logOut =  function(user_data){
-								/*
-								// OPCION DE LOG OUT iOS
-								window.localStorage.clear();
-								window.location.assign('feed.html?filter_feed=all');
-								*/
 								return this.makeRequest('auth/'+user_data.user_login+'/logout/', { request_token: user_data.request_token });
 							};
 		/* 

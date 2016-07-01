@@ -57,9 +57,9 @@
 			}
 
 			/* Copiado de ondeviceready ----- QUITAR ----- */
-			var backButtonElement = document.getElementById("backBtn");
-			if(backButtonElement)
-				backButtonElement.addEventListener("click", app.onBackButton, false);
+			// var backButtonElement = document.getElementById("backBtn");
+			// if(backButtonElement)
+			// 	backButtonElement.addEventListener("click", app.onBackButton, false);
 			
 			/* Requesting passive token if no token is previously stored */
 			console.log("Token::: "+apiRH.request_token().get_request_token());
@@ -763,7 +763,7 @@
 			});
 
 		/* Log Out from the API */
-		$('body').on('click', '#logout', function(e){
+		$('#logout').on('click', function(e){
 			/* Requesting logout from server */
 			var response = apiRH.logOut({user_login : user, request_token : apiRH.get_request_token() });
 			if(response.success){
@@ -772,7 +772,7 @@
 					app.ls.removeItem('request_token');
 					app.ls.removeItem('me.logged');
 					app.ls.removeItem('me');
-				window.location.assign('index.html');
+				window.location.assign('feed.html');
 				return;
 			}
 			app.toast('Ocurrió un problema al intentar cerrar tu sesión');

@@ -525,6 +525,7 @@ div.wrapper {
 	background:none;
 	outline:none;
 	border:none;
+	border-radius:0px;
 	border-bottom:1px solid #757575;
 }
 
@@ -2406,5 +2407,5 @@ body.iOS {padding-top:1.25rem!important;}
 
 /* Text field iOS */
 
-.iOS .settings input {-webkit-appearance:none;}
+.iOS .settings input, .iOS #login_form input {-webkit-appearance:none;}
 .iOS .settings ::-webkit-input-placeholder {padding: 0px 2px;}
