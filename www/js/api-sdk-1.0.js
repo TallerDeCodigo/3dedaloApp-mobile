@@ -450,26 +450,30 @@ function requestHandlerAPI(){
 		 * @param 
 		 */
 		this.search_transfer_win = function (r) {
-									app.toast("Thanks! Dedalo is processing your request.");
-									app.registerTemplate('success_advanced_search');
-									var template = Handlebars.templates['success_advanced_search'];
-									console.log(JSON.parse(r.response));
-									$('.main').html( template(JSON.parse(r.response)) );
-									setTimeout(function(){
-										app.hideLoader();
-									}, 2000);
+									setTimeout(function() {
+										app.toast("Thanks! Dedalo is processing your request.");
+										app.registerTemplate('success_advanced_search');
+										var template = Handlebars.templates['success_advanced_search'];
+										console.log(JSON.parse(r.response));
+										$('.main').html( template(JSON.parse(r.response)) );
+										setTimeout(function(){
+											app.hideLoader();
+										}, 2000);
 
-									return true;
+										return true;
+									}, 0);
 								};
 		/*
 		 * Advanced search fail callback
 		 * @param 
 		 */
 		this.transfer_fail = function (error) {
-								console.log(JSON.stringify(error));
-								alert("An error has occurred: Code = " + error.code);
-								console.log("upload error source " + error.source);
-								console.log("upload error target " + error.target);
+								setTimeout(function() {
+									console.log(JSON.stringify(error));
+									alert("An error has occurred: Code = " + error.code);
+									console.log("upload error source " + error.source);
+									console.log("upload error target " + error.target);
+								}, 0);
 							};
 		
 		/*
@@ -506,6 +510,8 @@ function requestHandlerAPI(){
 									this.transfer_options.fileName 		= fileURL.substr(fileURL.lastIndexOf('/') + 1);
 									this.transfer_options.httpMethod 	= "POST";
 									this.transfer_options.mimeType 		= "image/jpeg";
+									this.transfer_options.quality 		= 50;
+									this.transfer_options.correctOrientation = true;
 									this.transfer_options.chunkedMode 	= false;
 									this.transfer_options.headers 		= "{'Content-Type':'multipart/form-data'}";
 									console.log(this.transfer_options);
@@ -567,11 +573,13 @@ function requestHandlerAPI(){
 							};
 
 		this.search_fileselect_win = function (r) {
-								console.log("r ::: "+r);
-								console.log("Seach file sent");
-								if(!r && r == '')
-									return;
-								return context.prepareSearchFileTransfer(r);
+								setTimeout(function() {
+									console.log("r ::: "+r);
+									console.log("Seach file sent");
+									if(!r && r == '')
+										return;
+									return context.prepareSearchFileTransfer(r);
+								}, 0);
 							};
 
 		this.profileselect_win = function (r) {
