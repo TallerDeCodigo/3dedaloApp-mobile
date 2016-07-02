@@ -9,21 +9,21 @@
 		</section>
 		{{# if offered.count}}
 			<section class="offered">
-			Any of these?
-			{{# each offered.pool}}
-				<a href="detail.html?id={{ID}}" class="small link">
-					<img src="{{thumb_url}}">
-					<div>
-						{{#if designer_brand.profile_pic}}
-							<img src="{{designer_brand.profile_pic}}" alt="{{designer_brand.name}}" class="round profile_pic">
-						{{else}}
-							<i class="material-icons account_circle invert"></i>
-						{{/if}}
-						<h1>{{name}}</h1>
-						<span>{{designer_brand.name}}</span>
-					</div>
-				</a>
-			{{/ each}}
+				<p>We found these for you:</p>
+				{{# each offered.pool}}
+					<a href="detail.html?id={{ID}}" class="small link">
+						<img src="{{thumb_url}}">
+						<div>
+							{{#if designer_brand.profile_pic}}
+								<img src="{{designer_brand.profile_pic}}" alt="{{designer_brand.name}}" class="round profile_pic">
+							{{else}}
+								<i class="material-icons account_circle invert"></i>
+							{{/if}}
+							<h1>{{name}}</h1>
+							<span>{{designer_brand.name}}</span>
+						</div>
+					</a>
+				{{/ each}}
 			</section>
 		{{/ if }}
 	</div>	

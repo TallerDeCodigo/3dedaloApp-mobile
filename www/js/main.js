@@ -576,6 +576,7 @@
 			$.getJSON(api_base_url+user+'/me/')
 			 .done(function(response){
 				var data = app.gatherEnvironment(response, "Account settings");
+				console.log(data);
 				/* Get printers and models from catalogue */
 				data.printers = app.getJsonCatalogue("pModels");
 				var parent_count = Object.keys(app.getJsonCatalogue("pModels")).length;

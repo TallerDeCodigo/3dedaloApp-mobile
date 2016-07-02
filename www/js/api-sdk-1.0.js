@@ -495,38 +495,7 @@ function requestHandlerAPI(){
 									console.log("prepareProfileTransfer");
 									app.hideLoader();
 								};
-
-		/**
-		 * Prepare params for Search File transfer
-		 * @param fileURL
-		 * @param source
-		 */
-		this.prepareSearchFileTransfer = function(fileURL, source){
-									app.showLoader();
-									this.transfer_options = new FileUploadOptions();
-									this.transfer_options.fileUrl 		= fileURL;
-									this.transfer_options.fileLocal		= "file://"+fileURL;
-									this.transfer_options.fileKey 		= "file";
-									this.transfer_options.fileName 		= fileURL.substr(fileURL.lastIndexOf('/') + 1);
-									this.transfer_options.httpMethod 	= "POST";
-									this.transfer_options.mimeType 		= "image/jpeg";
-									this.transfer_options.quality 		= 50;
-									this.transfer_options.correctOrientation = true;
-									this.transfer_options.chunkedMode 	= false;
-									this.transfer_options.headers 		= "{'Content-Type':'multipart/form-data'}";
-									console.log(this.transfer_options);
-									var params = {};
-										params.client = "app";
-									this.transfer_options.params = params;
-									this.upload_ready = true;
-									var image = {thumb: this.transfer_options.fileLocal};
-									console.log(JSON.stringify(image));
-									apiRH.addImageToStack(image);
-									console.log("prepareSearchTransfer");
-									app.hideLoader();
-								};
-
-
+		
 		/*
 		 * Initialize Profile File transfer
 		 * @param fileURL
@@ -542,6 +511,37 @@ function requestHandlerAPI(){
 													this.transfer_options
 												);
 									}
+								};
+
+		/**
+		 * Prepare params for Search File transfer
+		 * @param fileURL
+		 * @param source
+		 */
+		this.prepareSearchFileTransfer = function(fileURL, source){
+									app.showLoader();
+									console.log(fileURL);
+									this.transfer_options = new FileUploadOptions();
+									this.transfer_options.fileUrl 		= fileURL;
+									this.transfer_options.fileLocal		= "file://"+fileURL;
+									this.transfer_options.fileKey 		= "file";
+									this.transfer_options.fileName 		= fileURL.substr(fileURL.lastIndexOf('/') + 1);
+									this.transfer_options.httpMethod 	= "POST";
+									this.transfer_options.mimeType 		= "image/jpeg";
+									this.transfer_options.quality 		= 50;
+									this.transfer_options.correctOrientation = true;
+									this.transfer_options.chunkedMode 	= false;
+									// this.transfer_options.headers 		= "{'Content-Type':'multipart/form-data'}";
+									console.log(this.transfer_options);
+									var params = {};
+										params.client = "app";
+									this.transfer_options.params = params;
+									this.upload_ready = true;
+									var image = {thumb: this.transfer_options.fileLocal};
+									console.log(JSON.stringify(image));
+									apiRH.addImageToStack(image);
+									console.log("prepareSearchTransfer");
+									app.hideLoader();
 								};
 
 		/*
@@ -566,6 +566,8 @@ function requestHandlerAPI(){
 												}
 											};
 								
+
+
 		this.fileselect_win = function (r) {
 								if(!r && r == '')
 									return;
