@@ -1477,6 +1477,8 @@ div.wrapper {
 	color: #1e88e5; text-decoration: underline; font-size: 14px; letter-spacing: 0.4px; font-family: "Roboto"; font-weight: 500; background-color: transparent; width: auto; height: auto;
 }
 
+/*Advanced Search*/
+
 .further_form{
 	padding: 1rem 0;
 }
@@ -1532,6 +1534,10 @@ div.wrapper {
   	position: relative;
     vertical-align: middle;
     margin-right: 0.5rem;
+}
+
+.offered p{
+	padding: 10px;
 }
 
 a.inline_link,
@@ -2403,7 +2409,7 @@ body.iOS {padding-top:1.25rem!important;}
 
 .iOS .subheader{top: 62px!important;}
 .iOS #return{top:-32px;}
-.iOS .settings section {margin-top:69px;}
+.iOS .settings section:not(.form_part .options) {margin-top:69px;}
 
 /* Text field iOS */
 
