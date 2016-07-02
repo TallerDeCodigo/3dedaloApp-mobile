@@ -2404,7 +2404,7 @@ div.gm-style-iw {
 
 /* iOS topbar adapt */
 
-/*body.iOS {padding-top:1.25rem!important;}
+body.iOS {padding-top:1.25rem!important;}
 .iOS .daheader {padding-top: 1.3rem;height: 68px;}
 .iOS #user .footer {padding-bottom:1.25rem!important;}
 .iOS .daheader > p{top:-6px!important;}
@@ -2421,4 +2421,4 @@ div.gm-style-iw {
 .iOS .settings section {margin-top:69px;}
 
 .iOS .settings input, .iOS #login_form input {-webkit-appearance:none;}
-.iOS .settings ::-webkit-input-placeholder {padding: 0px 2px;}*/
+.iOS .settings ::-webkit-input-placeholder {padding: 0px 2px;}

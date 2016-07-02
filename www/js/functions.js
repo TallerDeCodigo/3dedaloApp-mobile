@@ -74,14 +74,7 @@ $(window).on("load resize",function(){
 		total_length += $(this).width();
 		total_length += 20;
 	});
-	total_length += 2;
 	$("#swipper div").css("width", total_length);
-
-	$('.submenus').each(function(){
-		if ($(this).find(".sucats").length > 3) {
-			$(this).find(".swipper1 div").addClass("scrolleado");
-		}
-	});
 
 	var grd = $('.bigg').height();
 	$('.grd').css('height', grd);
@@ -190,17 +183,43 @@ $(window).load(function(){
 				$(".sucats").removeClass( "select" );
 				$("#subcats a").first().addClass( "select" );
 				$("#swipper").animate({"top":"-50px"}, 200);
-				setTimeout(function() {$("#subcats"+sufix).show()}, 200);
-				if ($("#subcats"+sufix).find(".sucats").length>3) {
-					var total_sub = 0;
-					$("#subcats"+sufix).find(".sucats").each(function(){
-						total_sub += $(this).width();
-					});
-					total_sub += 2;
-					$("#subcats"+sufix).css("width", total_sub);
-				}
+				setTimeout(function() {
+					$("#subcats"+sufix).show();
+					if ($("#subcats"+sufix).find(".sucats").length>2) {
+						$("#subcats"+sufix).find(".swipper1 div").addClass("scrolleado");
+						var total_sub = 0;
+						$("#subcats"+sufix).find(".sucats").each(function(){
+							total_sub += $(this).outerWidth();
+							total_sub += 3.5;
+						});
+						console.log("ancho-sin: "+total_sub+"ancho-tot: "+$("#subcats"+sufix).find(".swipper1").width());
+						if (total_sub+30 > $("#subcats"+sufix).find(".swipper1").width()) {
+							$("#subcats"+sufix).find(".scrolleado").css("width", total_sub);
+						} else {
+							$("#subcats"+sufix).find(".swipper1 div").removeClass("scrolleado");
+						}
+					}
+				}, 200);
+				$("#subcats"+sufix).find(".swipper1").scrollLeft("0px");
+				$("#subcats"+sufix).find(".swipper1 div .sucats:first-of-type").trigger( "click" );
 			} else if ($("#subcats"+sufix).find(".sucats").length && $('#barra').css('display')=='none') {
 				$("#subcats"+sufix).show();
+				if ($("#subcats"+sufix).find(".sucats").length>2) {
+					$("#subcats"+sufix).find(".swipper1 div").addClass("scrolleado");
+					var total_sub = 0;
+					$("#subcats"+sufix).find(".sucats").each(function(){
+						total_sub += $(this).outerWidth();
+						total_sub += 3.5;
+					});
+					console.log("ancho-sin: "+total_sub+"ancho-tot: "+$("#subcats"+sufix).find(".swipper1").width());
+					if (total_sub+30 > $("#subcats"+sufix).find(".swipper1").width()) {
+						$("#subcats"+sufix).find(".scrolleado").css("width", total_sub);
+					} else {
+						$("#subcats"+sufix).find(".swipper1 div").removeClass("scrolleado");
+					}
+				}
+				$("#subcats"+sufix).find(".swipper1").scrollLeft("0px");
+				$("#subcats"+sufix).find(".swipper1 div .sucats:first-of-type").trigger( "click" );
 			} else if ($("#subcats"+sufix).find(".sucats").length==0 && $('#barra').css('display')=='none') {
 				$("#swipper").animate({"top":"0px"}, 200);
 				$(".sucats").removeClass( "select" );
@@ -220,6 +239,7 @@ $(window).load(function(){
 		$(".sucats").click(function(){
 			$(".sucats").removeClass( "select" );
 			$(this).addClass( "select" );
+			/* the trigger directs here by its class */
 		});
 
 		$("#check").click(function(){
