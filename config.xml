@@ -40,12 +40,7 @@
         <allow-navigation href="https://sketchfab.com/models/*" />
         <allow-navigation href="https://3dedalo.org/*" />
         <allow-navigation href="*://*.googleapis.com/*"/>
-
-        <config-file platform="ios" target="*-Info.plist" parent="NSAppTransportSecurity">
-            <dict>
-                <key>NSAllowsArbitraryLoads</key><true/>
-            </dict>
-       </config-file>
+        
     </platform>
 
     <platform name="android">

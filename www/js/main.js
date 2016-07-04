@@ -646,15 +646,16 @@
 				console.log(err);
 			});
 		},
-		render_taxonomy : function(term_id, tax_name){
+		render_taxonomy : function(term_id, tax_name, targetSelector, templateName ){
 			$.getJSON(api_base_url+'content/taxonomy/'+tax_name+'/'+term_id)
 			 .done(function(response){
+			 	console.log(response);
 				/* Send header_title for it renders history_header */
 				var header_title = (tax_name == 'design-tools') ? 'Made with: '+response.name : response.name;
 				var data = app.gatherEnvironment(response, header_title);
 
-				var template = Handlebars.templates['tax-archive'];
-				$('.main').html( template(data) );
+				var template = Handlebars.templates[templateName];
+				$(targetSelector).html( template(data) );
 				setTimeout(function(){
 					app.hideLoader();
 				}, 2000);
@@ -688,7 +689,6 @@
 				}, 2000);
 				return;
 			}
-			console.log("Wha wha wha whaaaa");
 		},
 		get_file_from_device: function(destination, source){
 			apiRH.getFileFromDevice(destination, source);		

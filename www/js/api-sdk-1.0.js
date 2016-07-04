@@ -7,8 +7,8 @@ function requestHandlerAPI(){
 	/*** Attributes ***/
 	this.token = null;
 	this.upload_ready = false;
-	this.version = "1.2";
-	this.app_build = "1.2.7.2";
+	this.version = "1.3";
+	this.app_build = "1.3.2";
 	this.device_model = (typeof device != 'undefined') ? device.model : 'not set';
 	this.device_platform = (typeof device != 'undefined') ? device.platform : 'not set';
 	this.device_platform_version = (typeof device != 'undefined') ? device.version : 'not set';

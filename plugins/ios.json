@@ -22,6 +22,9 @@
         "cordova-plugin-file": {
             "PACKAGE_NAME": "org.dedalodomus.app"
         },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "org.dedalodomus.app"
+        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "org.dedalodomus.app"
         },
@@ -32,9 +35,6 @@
             "PACKAGE_NAME": "org.dedalodomus.app"
         },
         "nl.x-services.plugins.toast": {
-            "PACKAGE_NAME": "org.dedalodomus.app"
-        },
-        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "org.dedalodomus.app"
         }
     },

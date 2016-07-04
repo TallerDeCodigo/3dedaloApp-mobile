@@ -237,9 +237,11 @@ $(window).load(function(){
 		});
 
 		$(".sucats").click(function(){
+			app.showLoader();
 			$(".sucats").removeClass( "select" );
 			$(this).addClass( "select" );
 			/* the trigger directs here by its class */
+			app.render_taxonomy( $(this).data('id'), "category", ".inject", "search-composite-page" );
 		});
 
 		$("#check").click(function(){

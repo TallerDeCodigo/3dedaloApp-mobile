@@ -1,8 +1,8 @@
 <section>
 
-	{{#each pool}}
-		<a href="detail.html?id={{ID}}"><img src="{{thumb}}">
-		
+	{{#each data.pool}}
+		<a href="detail.html?id={{ID}}" class="small link">
+			<img src="{{thumb_url}}">
 			<div>
 				{{#if designer_brand.profile_pic}}
 					<img src="{{designer_brand.profile_pic}}" class="profile_pic round" />
@@ -15,5 +15,9 @@
 			</div>
 		</a>
 	{{/each}}
+
+	{{#if_eq 0 data.count}}
+		<p class="message big">There are no products in this category</p>
+	{{/if_eq}}
 
 </section>

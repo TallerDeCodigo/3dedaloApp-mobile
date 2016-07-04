@@ -1473,6 +1473,12 @@ div.wrapper {
 	letter-spacing:0.4px;
 	line-height: 1.25rem;
 }
+
+.search .message.big{
+	font-size:17px;
+	text-align:center;
+	margin:4rem 0;
+}
 .search .keyword{
 	color: #1679d9;
     font-size: 21px;
