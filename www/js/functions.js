@@ -429,7 +429,8 @@ $(window).load(function(){
 		app.get_file_from_device('search', 'camera');
 	});
 
-	 if($('#settings_form').length){
+	/*** Settings form ***/
+	if($('#settings_form').length){
 		window.printer = {};
 		window.scanner = {};
 		window.printer.justmodified = false;
@@ -441,17 +442,6 @@ $(window).load(function(){
 			e.preventDefault();
 			/* IMPORTANT! getFormData returns an array, we have to parse into a JSON object before making the PUT call */
 			var data = app.getFormData('#settings_form');
-			// if(data.password_nuevo && data.password_nuevo !== ''){
-			//  if(data.password_nuevo == data.password_again){
-			//      var response = apiRH.putRequest('user/'+user+"/password/" , data);
-			//      if(!response.success){
-			//          app.toast('There was an error saving your password');
-			//          return false;
-			//      }
-			//  }
-			//  app.toast('Tus passwords no coinciden');
-			// }
-			// var response = apiRH.putRequest('user/'+user+'/' , data);
 			if( data.become_printer || data.become_scanner ){
 				data.just_modified = (window.printer.justmodified || window.scanner.justmodified) ? true : false;
 				/*** Get geolocation ***/
@@ -501,15 +491,27 @@ $(window).load(function(){
 			}
 			$(this).parent().siblings('.form_part').addClass('hidden');
 		});
-			// $('#scanner_brand').on("change", function(){
-			// 	var selected_index = $('#scanner_brand option:selected').text();
-			// 	var Obj_length = Object.keys(window.scanners_global[selected_index]).length;
-			// 	var html = "";
-			// 	html += "<option value=''>Brand</option>";
-			// 	for(var i = 0; i< Obj_length; i++){
-			// 		var name = window.scanners_global[selected_index][i];
-			// 		html += "<option value='"+i+"'>"+name+"</option>";
-			// 	}
-			// 	$('#scanner_model').html(html);
-			// });
-	 }
+
+	}
+
+	/*** Password change form ***/
+	if($('#save_password').length){
+		
+		$('body').on('submit', '#save_password', function(e){
+			e.preventDefault();
+			var data = app.getFormData('#save_password');
+			if(data.user_pwd && data.user_pwd !== ''){
+				if(data.user_pwd == data.user_rpt_pwd){
+					var response = apiRH.makeRequest('user/'+user+"/password/" , data);
+					console.log(response);
+					if(!response.success){
+						app.toast('Sorry, There was an error saving your password');
+						return false;
+					}
+					app.toast('Password changed successfully');
+					return;
+				}
+				app.toast('Both passwords must match!');
+			}
+		});
+	}

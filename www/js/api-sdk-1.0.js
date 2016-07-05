@@ -24,7 +24,7 @@ function requestHandlerAPI(){
 	/* Production API URL */
 	window.api_base_url = "https://3dedalo.org/rest/v1/";
 	/* Development local API URL */
-	// window.api_base_url = "http://dedalo.dev/rest/v1/";
+	window.api_base_url = "http://dedalo.dev/rest/v1/";
 	// window.api_base_url = "http://localhost/~manuelon/dedalo/rest/v1/";
 	
 	this.ls = window.localStorage;
@@ -72,16 +72,18 @@ function requestHandlerAPI(){
 												username 	: userfinal, 
 												email 		: data_login.user_email,
 												attrs 		: {
-																password: data_login.user_pwd,
-																bio: data_login.user_province,
+																password 	: data_login.user_pwd,
+																bio 		: data_login.user_bio,
 																name 		: data_login.user_name, 
 																last_name 	: data_login.user_last_name, 
 																request_token: apiRH.get_request_token()
 															  }
 											};
+								console.log(data);
 								var response = this.makeRequest('auth/user/', data);
-								if(response.success)
-									initializeProfileFileTransfer();
+								console.log(response);
+								// if(response.success)
+									// apiRH.initializeProfileFileTransfer();
 								return (response.success) ? response.data : false;
 							};
 		/* 

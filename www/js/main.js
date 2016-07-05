@@ -106,12 +106,6 @@
 			document.addEventListener('mobileinit', app.onDMobileInit, false);
 		},
 		onBackButton: function(){
-			// if(navigator.app){
-			// 	console.log('Back button navigator');
-			// 	navigator.app.backHistory();
-			// 	return;
-			// }
-			// window.history.back();
 			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		    if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i) || userAgent.match(/iPod/i)) {
 		        // IOS DEVICE
@@ -123,6 +117,7 @@
 		        // EVERY OTHER DEVICE
 		        history.go(-1);
 		    }
+		    console.log("BAck");
 		},
 
 		// deviceready Event Handler
