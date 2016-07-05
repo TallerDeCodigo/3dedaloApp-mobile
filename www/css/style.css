@@ -176,12 +176,17 @@ a {
 	width: 20px;
 	height: 20px;
 	background-position: -134px -70px;
+	vertical-align: sub;
+	margin: 0 0.25rem;
 }
 .buttonlike{
 	background-color: #D5D9E8;
 	border-radius: 2px;
 	padding: 10px 11px 5px 5px;
 	color: #1976D1;
+	width: 100%;
+	display: block;
+	line-height: 1.5rem;
 }
 .buttonlike i{
 	vertical-align: bottom;
@@ -279,12 +284,12 @@ header #photo {
 
 header #backBtn{
 	display: block;
-    width: 32px;
-    height: 32px;
-    padding: 0.5px;
-    position: absolute;
-    top: 11px;
-    left: 15px;
+	width: 32px;
+	height: 32px;
+	padding: 0.5px;
+	position: absolute;
+	top: 11px;
+	left: 15px;
 }
 
 header #back {
@@ -1481,17 +1486,17 @@ div.wrapper {
 }
 .search .keyword{
 	color: #1679d9;
-    font-size: 21px;
-    letter-spacing: 0.6px;
-    margin: 3rem 1.1rem 2rem 1.1rem;
+	font-size: 21px;
+	letter-spacing: 0.6px;
+	margin: 3rem 1.1rem 2rem 1.1rem;
 }
 
 .no_results{
 	padding: 0.1px 0;
-    background-color: #f7f6fc;
-    height: 105%;
-    font-family: "Roboto";
-    font-weight: 400;
+	background-color: #f7f6fc;
+	height: 105%;
+	font-family: "Roboto";
+	font-weight: 400;
 }
 
 .search .no_results a{
@@ -1513,48 +1518,48 @@ div.wrapper {
 
 .filler_upper.insert_here{
 	display: block;
-    clear: both;
-    margin: 2.5rem 0;
+	clear: both;
+	margin: 2.5rem 0;
 }
 .filler_upper.insert_here .stackImage{
 	width: 25%;
-    height: auto;
-    display: inline-block;
-    margin: 0 0rem 0 0.75rem;
-    text-align: left;
+	height: auto;
+	display: inline-block;
+	margin: 0 0rem 0 0.75rem;
+	text-align: left;
 }
 
 
 .wrapper.to_bottom{
 	position: absolute;
-    bottom: 0;
-    display: block;
-    width: 100%;
-    height: auto;
-    background: transparent;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: auto;
+	background: transparent;
 }
 .upload_options {
 	width: 100%;
-    position: fixed;
-    background: rgba(14, 14, 14, 0.34);
-    top: 56px;
-    left: 0;
+	position: fixed;
+	background: rgba(14, 14, 14, 0.34);
+	top: 56px;
+	left: 0;
 }
 .search_results .wrapper.to_bottom>a{
-    width: 100%;
-    display: block;
-    padding: 1rem 3rem;
-    color: #8a8c8f;
-    background-color: #f3ecec;
-    text-decoration: none;
+	width: 100%;
+	display: block;
+	padding: 1rem 3rem;
+	color: #8a8c8f;
+	background-color: #f3ecec;
+	text-decoration: none;
 }
 
 .wrapper.to_bottom>a>.material-icons,
 .no_results .further_form .add_photo>.material-icons,
 .no_results .further_form .submit_adv_search>.material-icons{
-  	position: relative;
-    vertical-align: middle;
-    margin-right: 0.5rem;
+	position: relative;
+	vertical-align: middle;
+	margin-right: 0.5rem;
 }
 
 .offered p{
@@ -1757,14 +1762,14 @@ div.gm-style-iw {
 }
 
 .settings .submit {
-	position:relative;
-	display:inline-block;
-	margin:20px 0px 30px;
-	padding:5px 9px;
-	background:#9ED1FA;
-	color:#1976D2;
-	border-radius:2px;
-	width:60px;
+	position: relative;
+	display: inline-block;
+	margin: 20px 0px 30px;
+	padding: 5px 9px;
+	background: #9ED1FA;
+	color: #1976D2;
+	border-radius: 2px;
+	width: 70px;
 }
 
 .dashboard_section{

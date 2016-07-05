@@ -685,6 +685,37 @@
 				return;
 			}
 		},
+		locate_printer_here : function(){
+			var onSuccess = function(position) {
+		        console.log('Latitude: '    + position.coords.latitude          + '\n' +
+		              'Longitude: '         + position.coords.longitude         + '\n' +
+		              'Altitude: '          + position.coords.altitude          + '\n' +
+		              'Accuracy: '          + position.coords.accuracy          + '\n' +
+		              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+		              'Heading: '           + position.coords.heading           + '\n' +
+		              'Speed: '             + position.coords.speed             + '\n' +
+		              'Timestamp: '         + position.timestamp                + '\n');
+
+		        var data = {latitude: position.coords.latitude, longitude: position.coords.longitude}
+		        var response = apiRH.makeRequest('user/'+user+"/location/" , data);
+				console.log(response);
+				if(!response.success){
+					app.hideLoader();
+					app.toast('Sorry, There was an error saving your location');
+					return false;
+				}
+		        app.hideLoader();
+		        app.toast("Your current position is now registered as a printer location");
+				return;
+		    };
+
+		    var onError = function(error) {
+		        console.log('code: '    + error.code    + '\n' +
+		              'message: ' + error.message + '\n');
+		        app.toast("There was a problem while getting your location, please check your GPS settings and try again.");
+		    };
+		    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		},
 		get_file_from_device: function(destination, source){
 			apiRH.getFileFromDevice(destination, source);		
 		},
