@@ -180,7 +180,7 @@ a {
 	margin: 0 0.25rem;
 }
 .buttonlike{
-	background-color: #D5D9E8;
+	background-color: #9ed1fa;
 	border-radius: 2px;
 	padding: 10px 11px 5px 5px;
 	color: #1976D1;
@@ -209,6 +209,8 @@ a {
 .material-icons.favorite_border.invert{width:26px;height:26px;background-position:-99px -163px;}
 .material-icons.file_download.invert{width:26px;height:26px;background-position:-163px -131px;}
 .material-icons.remove_red_eye.invert{width:26px;height:26px;background-position:-131px -163px;}
+.material-icons.add_location{width: 20px; height: 20px; background-position: -198px -102px; vertical-align: sub; margin: 0 0.25rem;}
+.material-icons.edit_location{width: 20px; height: 20px; background-position: -230px -102px; vertical-align: sub; margin: 0 0.25rem;}
 
 
 .detail .add_to_cart{display:block;}
@@ -1771,6 +1773,9 @@ div.gm-style-iw {
 	border-radius: 2px;
 	width: 70px;
 }
+.buttonlike.printer{text-align: center;}
+.buttonlike.printer.on{background-color: #1976d1; color: #FFF;}
+
 
 .dashboard_section{
 	padding: 1rem 2rem;
@@ -2435,7 +2440,7 @@ body.iOS {padding-top:1.25rem!important;}
 
 .iOS .subheader{top: 62px!important;}
 .iOS #return{top:-32px;}
-.iOS .settings section:not(.form_part .options) {margin-top:69px;}
+/*.iOS .settings section:not(.form_part .options) {margin-top:69px;}*/
 
 .iOS .settings input, .iOS #login_form input {-webkit-appearance:none;}
 .iOS .settings ::-webkit-input-placeholder {padding: 0px 2px;}

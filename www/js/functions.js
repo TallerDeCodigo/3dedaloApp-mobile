@@ -480,6 +480,7 @@ $(window).load(function(){
 			$('#locate_new_printer').on("click", function(){
 				console.log("locate new printer");
 				app.showLoader();
+				app.locate_printer_here();
 			});
 
 		$('#become_scanner').on('click', function(){

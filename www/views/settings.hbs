@@ -33,7 +33,11 @@
 							<option value="{{@index}}" data-eq="{{../data.cat_printer_model}}" {{#if_eq @index ../data.cat_printer_model }}selected{{/if_eq}}>{{.}}</option>
 						{{/each}}
 					</select>
-					<a class="buttonlike" id="locate_new_printer"><i class="material-icons location"></i>Save printer location</a>
+					<a class="buttonlike printer {{#if data.location_set}}on{{/if}}" id="locate_new_printer">
+						<i class="material-icons {{#if data.location_set}}edit_location{{else}}add_location{{/if}}"></i>
+						{{#if data.location_set}}Edit printer location{{else}}Add printer location{{/if}}
+					</a>
+					<small>Current location will be used.</small>
 				</section>
 				<br>
 			</section>
@@ -117,3 +121,4 @@
 			</table> -->
 	</section>
 </div>
+{{> dom_assets}}
