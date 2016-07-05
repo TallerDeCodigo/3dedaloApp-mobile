@@ -2440,7 +2440,7 @@ body.iOS {padding-top:1.25rem!important;}
 
 .iOS .subheader{top: 62px!important;}
 .iOS #return{top:-32px;}
-/*.iOS .settings section:not(.form_part .options) {margin-top:69px;}*/
+.iOS .settings section:not(.form_part .options) {margin-top:69px;}
 
 .iOS .settings input, .iOS #login_form input {-webkit-appearance:none;}
 .iOS .settings ::-webkit-input-placeholder {padding: 0px 2px;}
